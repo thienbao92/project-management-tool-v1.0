@@ -5,3 +5,8 @@
 */
 
 angular.module('profile.Controller', [])
+
+.controller('profileCtrl', function ($scope) {
+
+})
+

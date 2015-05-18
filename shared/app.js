@@ -4,7 +4,9 @@
 * Description
 */
 angular.module('myApp', [
+//shared JS
     'myApp.services',
+//controllers
     'list.Controller',
     'login.Controller',
     'board.Controller',
@@ -12,12 +14,9 @@ angular.module('myApp', [
     'organization.Controller',
     'profile.Controller',
     'task.Controller',
-    'timeline.Controller'
-    'ui.router',
-
-
-
-
+    'timeline.Controller',
+//plugin dependecies
+    'ui.router'
     ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
@@ -37,8 +36,14 @@ angular.module('myApp', [
         url: "/main",
         views: {
         '': { templateUrl: "main/main.html"},
-        'profile@main': {templateUrl: "profile/profile.html"},
-        'org@main': {templateUrl: "organization/organization.html"}
+        'profile@main': {
+            templateUrl: "profile/profile.html",
+            controller: "profileCtrl"
+        },
+        'org@main': {
+            templateUrl: "organization/organization.html",
+            controller: "orgCtrl"
+        }
         }
     })
     //profile page
@@ -50,15 +55,11 @@ angular.module('myApp', [
             templateUrl: "list/list.html",
             controller: "listCtrl"
         },
-        'timeline@board': {templateUrl: "timeline/timeline.html"}
+        'timeline@board': {
+            templateUrl: "timeline/timeline.html",
+            controller: "timelineCtrl"
+        }
         }        
 
         })
-    //org page
-    .state('main.org', {
-        url: "/organization",
-        templateUrl: "organization/organization.html"
-        })
-    
-    
 })

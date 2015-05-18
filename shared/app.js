@@ -31,11 +31,22 @@ angular.module('myApp', [
         url: "/error",
         templateUrl: "/shared_template/404.html"
         })
+
+    //authentication
+    .state('authentication', {
+        url: "/auth",
+        templateUrl: "authentication/login.html",
+        controller: 'authCtrl'
+        })
+
     //main page
     .state('main', {
         url: "/main",
         views: {
-        '': { templateUrl: "main/main.html"},
+        '': {
+            templateUrl: "main/main.html",
+            controller: "mainCtrl"
+        },
         'profile@main': {
             templateUrl: "profile/profile.html",
             controller: "profileCtrl"

@@ -5,7 +5,16 @@
 */
 angular.module('myApp', [
     'myApp.services',
-    'ui.router'
+    'list.Controller',
+    'login.Controller',
+    'board.Controller',
+    'main.Controller',
+    'organization.Controller',
+    'profile.Controller',
+    'task.Controller',
+    'timeline.Controller'
+    'ui.router',
+
 
 
 
@@ -37,7 +46,10 @@ angular.module('myApp', [
         url: "/board",
         views: {
         '': {templateUrl: "board/board.html"},
-        'list@board': {templateUrl: "list/list.html"},
+        'list@board': {
+            templateUrl: "list/list.html",
+            controller: "listCtrl"
+        },
         'timeline@board': {templateUrl: "timeline/timeline.html"}
         }        
 

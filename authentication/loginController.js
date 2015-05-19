@@ -20,6 +20,7 @@ angular.module('login.Controller', [])
 		}).then(function(){
 		    $scope.isSignup = true;
             alert("singup successfully");
+            console.log("test github")
 		}).error(function(){
 		    elert("unable")
 		})

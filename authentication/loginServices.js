@@ -21,7 +21,7 @@ angular.module('login.Services', [])
         if (authData) {
           console.log("Logged in as:", authData.uid);
           $rootScope.id = authData.uid;
-          $rootScope.googleName = authData.google.displayName;
+          //$rootScope.googleName = authData.google.displayName;
           $rootScope.isLogin = true;
 
         } else {

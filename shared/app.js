@@ -16,6 +16,7 @@ angular.module('myApp', [
     'profile.Controller',
     'task.Controller',
     'timeline.Controller',
+    'navigation.Controller',
 //plugin dependecies
     'ui.router',
 //angularfire

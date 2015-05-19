@@ -12,15 +12,15 @@ angular.module('login.Controller', [])
 
     //show signup form if value = true
     $scope.isSignup = false;
+    $scope.isLogin = false;
 
     $scope.signUp = function(){
         $rootScope.auth.$createUser({
 			email: $scope.email,
 			password: $scope.password
 		}).then(function(){
-		    $scope.isSignup = true;
+		    $scope.isSignup = false;
             alert("singup successfully");
-            console.log("test github")
 		}).error(function(){
 		    elert("unable")
 		})
@@ -33,8 +33,8 @@ angular.module('login.Controller', [])
             email: $scope.email,
             password: $scope.password
         }).then(function(user){
-            alert("success loggin as " +user);
-            console.log(user)
+            $scope.isLogin = true;
+            console.log(user);
         })
         }//end function signIn
 

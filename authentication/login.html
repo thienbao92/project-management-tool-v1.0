@@ -1,4 +1,4 @@
-<!-- Signup are -->
+<!-- Signup area -->
 <div ng-show="isSignup">
     <h1>Sign up</h1>
     <!-- email and password area -->
@@ -12,10 +12,10 @@
     <button ng-click="signUp()">sign up</button>
     <!------------END button click to sign up------------>
 </div>
-<!------------END Signup are------------>
+<!------------END Signup area------------>
 
 <!-- login area -->
-<div ng-hide="isSignup">
+<div ng-hide="isLogin">
 <h1>Sign in</h1>
     <!-- email and password area -->
         email: <input type="email" ng-model="email" />
@@ -31,8 +31,10 @@
 </div>
 <!------------END login area------------>
 
-<!-- show  -->
+<!-- logout area -->
 <div ng-show="isLogin">
-    welcome {{uid}}
+<button ng-click="logout()">Logout</button>
 </div>
-<!------------END show ------------>
+<!------------END logout area------------>
+
+

@@ -6,16 +6,12 @@
 
 angular.module('login.Controller', [])
 
-.controller('authCtrl', function ($scope,$rootScope, firebaseAuth ) {
-
-    $rootScope.auth = firebaseAuth;
-
+.controller('authCtrl', function ($scope, firebaseAuth, $state ) {
     //show signup form if value = true
     $scope.isSignup = false;
-    $scope.isLogin = false;
 
     $scope.signUp = function(){
-        $rootScope.auth.$createUser({
+        $scope.auth.$createUser({
 			email: $scope.email,
 			password: $scope.password
 		}).then(function(){
@@ -29,14 +25,15 @@ angular.module('login.Controller', [])
 
 
     $scope.signIn = function(){
-        $rootScope.auth.$authWithPassword({
+        $scope.auth.$authWithPassword({
             email: $scope.email,
             password: $scope.password
         }).then(function(user){
-            $scope.isLogin = true;
-            console.log(user);
+            $state.go('main');
         })
         }//end function signIn
 
-
+    $scope.logout = function(){
+        $scope.auth.$unauth();
+        }//end function logout
 })//End authCtrl

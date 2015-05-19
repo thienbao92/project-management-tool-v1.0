@@ -47,4 +47,5 @@ angular.module('login.Controller', [])
                     console.error("Authentication failed:", error);
                 });
             } //end function authGoogle
+
     }) //End authCtrl

@@ -15,23 +15,38 @@
 <div ui-view></div>
 
 
-<!-- JS library -->
-<script src="dist/angular.min.js"></script>
-<!-- angular UI router -->
-<script src="dist/angular-ui-router.min.js"></script>
+<!-- Angular JS library -->
+    <script src="dist/angular.min.js"></script>
+<!------------END Angular JS library------------>
 
-<!-- Custom library -->
-<!---------------------------------------->
-<!-- shared JS library -->
 
-<script src="shared/app.js"></script>
-<script src="shared/services.js"></script>
+<!-- Angular UI router -->
+    <script src="dist/angular-ui-router.min.js"></script>
+<!------------END Angular UI router------------>
+
+    <!-- Firebase and angular Fire -->
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/1.1.1/angularfire.min.js"></script>
+    <!------------END Firebase and angular Fire------------>
+
+    <!-----------------Custom JS----------------------->
+
+    <!-- shared JS library -->
+
+    <!-- shared JS library -->
+    <script src="shared/app.js"></script>
+    <script src="shared/services.js"></script>
+    <!-- END shared JS library -->
 
     <!-- main controller -->
     <script src="main/mainController.js"></script>
     <!------------END main controller------------>
+
     <!-- Authentication JS -->
     <script src="authentication/loginController.js"></script>
+    <script src="authentication/loginServices.js"></script>
     <!------------END Authentication JS------------>
 
     <!-- board JS -->
@@ -57,5 +72,6 @@
     <!-- timeline JS -->
     <script src="timeline/timelineController.js"></script>
     <!------------END timeline JS------------>
+
     </body>
 </html>

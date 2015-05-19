@@ -9,6 +9,7 @@ angular.module('myApp', [
 //controllers
     'list.Controller',
     'login.Controller',
+    'login.Services',
     'board.Controller',
     'main.Controller',
     'organization.Controller',
@@ -16,7 +17,9 @@ angular.module('myApp', [
     'task.Controller',
     'timeline.Controller',
 //plugin dependecies
-    'ui.router'
+    'ui.router',
+//angularfire
+    'firebase'
     ])
 
 .config(function ($stateProvider, $urlRouterProvider) {

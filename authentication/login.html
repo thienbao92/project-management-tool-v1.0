@@ -1,1 +1,32 @@
-this is login page
+<!-- Signup are -->
+<div ng-show="isSignup">
+    <h1>Sign up</h1>
+    <!-- email and password area -->
+        email: <input type="email" ng-model="email" />
+    <br>
+    Password: <input type="password" ng-model="password" />
+    <br>
+    <!------------END email and password area------------>
+
+    <!-- button click to sign up -->
+    <button ng-click="signUp()">sign up</button>
+    <!------------END button click to sign up------------>
+</div>
+<!------------END Signup are------------>
+
+<!-- login area -->
+<div ng-hide="isSignup">
+<h1>Sign in</h1>
+    <!-- email and password area -->
+        email: <input type="email" ng-model="email" />
+    <br>
+    Password: <input type="password" ng-model="password" />
+    <br>
+    <!------------END email and password area------------>
+
+    <!-- button click to sign up -->
+    <button ng-click="signIn()">Login</button>
+    <button ng-click="isSignup =!isSignup">Sign up</button>
+    <!------------END button click to sign up------------>
+</div>
+<!------------END login area------------>

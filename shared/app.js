@@ -1,8 +1,8 @@
 /**
-* myApp Module
-*
-* Description
-*/
+ * myApp Module
+ *
+ * Description
+ */
 angular.module('myApp', [
 //shared JS
     'myApp.services',
@@ -31,50 +31,52 @@ angular.module('myApp', [
 
     $stateProvider
     //error page
-    .state('error', {
+        .state('error', {
         url: "/error",
         templateUrl: "/shared_template/404.html"
-        })
+    })
 
     //authentication
     .state('authentication', {
         url: "/auth",
         templateUrl: "authentication/login.html",
         controller: 'authCtrl'
-        })
+    })
 
     //main page
     .state('main', {
-        url: "/main",
-        views: {
-        '': {
-            templateUrl: "main/main.html",
-            controller: "mainCtrl"
-        },
-        'profile@main': {
-            templateUrl: "profile/profile.html",
-            controller: "profileCtrl"
-        },
-        'org@main': {
-            templateUrl: "organization/organization.html",
-            controller: "orgCtrl"
-        }
-        }
-    })
-    //profile page
-    .state('board', {
-        url: "/board",
-        views: {
-        '': {templateUrl: "board/board.html"},
-        'list@board': {
-            templateUrl: "list/list.html",
-            controller: "listCtrl"
-        },
-        'timeline@board': {
-            templateUrl: "timeline/timeline.html",
-            controller: "timelineCtrl"
-        }
-        }        
+            url: "/main",
+            views: {
+                '': {
+                    templateUrl: "main/main.html",
+                    controller: "mainCtrl"
+                },
+                'profile@main': {
+                    templateUrl: "profile/profile.html",
+                    controller: "profileCtrl"
+                },
+                'org@main': {
+                    templateUrl: "organization/organization.html",
+                    controller: "orgCtrl"
+                }
+            }
+        })
+        //profile page
+        .state('board', {
+            url: "/board",
+            views: {
+                '': {
+                    templateUrl: "board/board.html"
+                },
+                'list@board': {
+                    templateUrl: "list/list.html",
+                    controller: "listCtrl"
+                },
+                'timeline@board': {
+                    templateUrl: "timeline/timeline.html",
+                    controller: "timelineCtrl"
+                }
+            }
 
         })
 })

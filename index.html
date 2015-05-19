@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html ng-app="myApp" >
+<html ng-app="myApp">
+
 <head>
-	<title>Project management tool v1.0</title>
+    <title>Project management tool v1.0</title>
 </head>
+
 <body>
-<!-- navigation goes here -->
-<p>this is navigation area</p> 
+    <!-- navigation area -->
+    <div ng-include src="'navigation/navigation.html'"></div>
+    <!------------END navigation area------------>
 
-    <p>Welcome {{id}}</p>
-    <!-- dùng để test, sẽ xoá sau -->
-
-
-<a ui-sref="main">main page</a>
-<a ui-sref="board"> board</a>
-<a ui-sref="authentication">login page</a>
-  <!-- dùng để test, sẽ xoá sau -->
-    
-<div ui-view></div>
+    <!-- Route view -->
+    <div ui-view></div>
+    <!------------END Route view------------>
 
 
-<!-- Angular JS library -->
+
+    <!-- Angular JS library -->
     <script src="dist/angular.min.js"></script>
-<!------------END Angular JS library------------>
+    <!------------END Angular JS library------------>
 
 
-<!-- Angular UI router -->
+    <!-- Angular UI router -->
     <script src="dist/angular-ui-router.min.js"></script>
-<!------------END Angular UI router------------>
+    <!------------END Angular UI router------------>
 
     <!-- Firebase and angular Fire -->
     <!-- Firebase -->
@@ -72,10 +69,15 @@
     <!-- task JS -->
     <script src="task/taskController.js"></script>
     <!------------END task JS------------>
-    
+
     <!-- timeline JS -->
     <script src="timeline/timelineController.js"></script>
     <!------------END timeline JS------------>
 
-    </body>
+    <!-- navigation JS -->
+    <script src="navigation/navigationController.js"></script>
+    <!------------END navigation JS------------>
+
+</body>
+
 </html>

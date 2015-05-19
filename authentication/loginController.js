@@ -19,6 +19,7 @@ angular.module('login.Controller', [])
 			password: $scope.password
 		}).then(function(){
 		    $scope.isSignup = true;
+            alert("singup successfully");
 		}).error(function(){
 		    elert("unable")
 		})

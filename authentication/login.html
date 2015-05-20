@@ -1,45 +1,63 @@
 <!-- Signup area -->
 <div ng-show="isSignup">
-    <h1>Sign up</h1>
-    <!-- email and password area -->
-        email: <input type="email" ng-model="email" />
-    <br>
-    Password: <input type="password" ng-model="password" />
-    <br>
-    <!------------END email and password area------------>
+    <form name="signupForm">
+        <md-content layout="column" layout-align="center">
+            <h1>Sign up</h1>
+            <!-- email and password area -->
+            <md-input-container>
+                <label>Email</label>
+                <input type="email" ng-model="email" />
+            </md-input-container>
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" ng-model="password" />
+            </md-input-container>
+        </md-content>
+        <!------------END email and password area------------>
 
-    <!-- button click to sign up -->
-    <button ng-click="signUp()">sign up</button>
-    <!------------END button click to sign up------------>
+        <!-- button click to sign up -->
+        <md-content layout="row" layout-align="center">
+            <md-button ng-click="signUp()" class="md-raised md-primary">sign up</md-button>
+        </md-content>
+        <!------------END button click to sign up------------>
+    </form>
 </div>
 <!------------END Signup area------------>
 
 <!-- login area -->
 <div ng-hide="isLogin">
-<h1>Sign in</h1>
-    <!-- email and password area -->
-        email: <input type="email" ng-model="email" />
-    <br>
-    Password: <input type="password" ng-model="password" />
-    <br>
-    <!------------END email and password area------------>
+    <form name="loginForm" layout="column">
+        <md-content layout="column" layout-align="center">
+            <h1>Sign in</h1>
+            <!-- email and password area -->
+            <md-input-container>
+                <label>Email</label>
+                <input type="email" ng-model="email" />
+            </md-input-container>
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" ng-model="password" />
+            </md-input-container>
+        </md-content>
+        <!------------END email and password area------------>
 
-    <!-- button click to sign up -->
-    <button ng-click="signIn()">Login</button>
-    <button ng-click="isSignup =!isSignup">Sign up</button>
-    <button ng-click="authGoogle()">Login with Google account</button>
-    <!------------END button click to sign up------------>
+        <!-- button click to sign up -->
+        <md-content layout="row" layout-align="center">
+            <md-button ng-click="signIn()" class="md-raised md-primary">Login</md-button>
+            <md-button ng-click="isSignup =!isSignup" class="md-raised">Sign up</md-button>
+            <md-button ng-click="authGoogle()" class="md-raised md-primary">Sign in with Google</md-button>
+        </md-content>
+        <!------------END button click to sign up------------>
 
-    <!-- error -->
-    <p>{{announce}}</p>
-    <!------------END error------------>
+        <!-- error -->
+        <p>{{announce}}</p>
+        <!------------END error------------>
+    </form>
 </div>
 <!------------END login area------------>
 
 <!-- logout area -->
 <div ng-show="isLogin">
-<button ng-click="logout()">Logout</button>
+    <md-button ng-click="logout()" class="md-raised md-primary">Logout</md-button>
 </div>
 <!------------END logout area------------>
-
-

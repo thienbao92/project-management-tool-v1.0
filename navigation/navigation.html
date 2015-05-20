@@ -1,7 +1,16 @@
-this is navigation area
-<br> Welcome {{googleName}}
-<br>
-<a ui-sref="main">main page</a>
-<a ui-sref="board"> board</a>
-<a ui-sref="authentication">login page</a>
-<!-- dùng để test, sẽ xoá sau -->
+<md-toolbar layout="row" layout-padding>
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ui-sref="main">
+            COCOON
+        </md-button>
+
+        <span flex></span>
+        <p class="md-body-1">Welcome <strong>{{googleName}}</strong></p>
+        <div class="md-toolbar__menu" layout="row">
+            <md-button ui-sref="main">main page</md-button>
+            <md-button ui-sref="board"> board</md-button>
+            <md-button ui-sref="authentication">login page</md-button>
+        </div>
+    </div>
+    <!-- dùng để test, sẽ xoá sau -->
+</md-toolbar>

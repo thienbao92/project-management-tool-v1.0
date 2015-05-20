@@ -4,6 +4,7 @@
  * Description
  */
 angular.module('myApp', [
+    'ngMaterial',
 //shared JS
     'myApp.services',
 //controllers

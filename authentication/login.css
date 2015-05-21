@@ -1,6 +1,15 @@
+.login-bg {
+  position: absolute;
+  z-index: 0;
+  overflow: visible; }
+
 form {
-    max-width: 600px;
-    max-height: 800px;
-    padding: 2em;
-    margin: 0 auto;
-}
+  position: relative;
+  z-index: 2;
+  max-width: 600px; }
+  form md-content {
+    padding: 2em; }
+    form md-content h1 {
+      text-align: center; }
+
+/*# sourceMappingURL=login.css.map */

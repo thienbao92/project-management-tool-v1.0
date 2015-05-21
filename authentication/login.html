@@ -1,63 +1,64 @@
-<!-- Signup area -->
-<div ng-show="isSignup">
-    <form name="signupForm">
-        <md-content layout="column" layout-align="center">
-            <h1>Sign up</h1>
-            <!-- email and password area -->
-            <md-input-container>
-                <label>Email</label>
-                <input type="email" ng-model="email" />
-            </md-input-container>
-            <md-input-container>
-                <label>Password</label>
-                <input type="password" ng-model="password" />
-            </md-input-container>
-        </md-content>
-        <!------------END email and password area------------>
+<md-content layout-fill layout layout-align="center center" class="md-hue-1 login-bg">
 
-        <!-- button click to sign up -->
-        <md-content layout="row" layout-align="center">
-            <md-button ng-click="signUp()" class="md-raised md-primary">sign up</md-button>
-        </md-content>
-        <!------------END button click to sign up------------>
-    </form>
-</div>
+<!-- Signup area -->
+<form ng-show="isSignup" name="signupForm" class="md-whiteframe-z2">
+    <md-content layout="column" layout-align="center">
+        <h1 class="md-display-3">Sign up</h1>
+        <!-- email and password area -->
+        <md-input-container>
+            <label>Email</label>
+            <input type="email" ng-model="email" />
+        </md-input-container>
+        <md-input-container>
+            <label>Password</label>
+            <input type="password" ng-model="password" />
+        </md-input-container>
+    </md-content>
+    <!------------END email and password area------------>
+
+    <!-- button click to sign up -->
+    <md-content layout="row" layout-align="center">
+        <md-button ng-click="signUp()" class="md-raised md-accent">sign up</md-button>
+    </md-content>
+    <!------------END button click to sign up------------>
+</form>
 <!------------END Signup area------------>
 
 <!-- login area -->
-<div ng-hide="isLogin">
-    <form name="loginForm" layout="column">
-        <md-content layout="column" layout-align="center">
-            <h1>Sign in</h1>
-            <!-- email and password area -->
-            <md-input-container>
-                <label>Email</label>
-                <input type="email" ng-model="email" />
-            </md-input-container>
-            <md-input-container>
-                <label>Password</label>
-                <input type="password" ng-model="password" />
-            </md-input-container>
-        </md-content>
-        <!------------END email and password area------------>
+<form ng-hide="isLogin" name="loginForm" class="md-whiteframe-z2" layout="column">
+    <md-content layout="column" layout-align="center">
+        <h1 class="md-display-3">Log in</h1>
+        <!-- email and password area -->
+        <md-input-container>
+            <label>Email</label>
+            <input type="email" ng-model="email" />
+        </md-input-container>
+        <md-input-container>
+            <label>Password</label>
+            <input type="password" ng-model="password" />
+        </md-input-container>
+    </md-content>
+    <!------------END email and password area------------>
 
-        <!-- button click to sign up -->
-        <md-content layout="row" layout-align="center">
-            <md-button ng-click="signIn()" class="md-raised md-primary">Login</md-button>
-            <md-button ng-click="isSignup =!isSignup" class="md-raised">Sign up</md-button>
-            <md-button ng-click="authGoogle()" class="md-raised md-primary">Sign in with Google</md-button>
-        </md-content>
-        <!------------END button click to sign up------------>
+    <!-- button click to sign up -->
+    <md-content layout="row" layout-sm="column" layout-align="center">
+        <md-button ng-click="signIn()" class="md-raised md-accent">Login</md-button>
+        <md-button ng-click="isSignup =!isSignup" class="md-raised">Sign up</md-button>
+        <div md-theme="google">
+            <md-button ng-click="authGoogle()" class="md-raised md-accent"><i class="fa fa-google-plus"></i> Log in with Google</md-button>
+        </div>
+    </md-content>
+    <!------------END button click to sign up------------>
 
-        <!-- error -->
-        <p>{{announce}}</p>
-        <!------------END error------------>
-    </form>
-</div>
+    <!-- error -->
+    <md-content ng-show="announce">{{announce}}</md-content>
+    <!------------END error------------>
+</form>
 <!------------END login area------------>
 
 <!-- logout area -->
 <div ng-show="isLogin">
-    <md-button ng-click="logout()" class="md-raised md-primary">Logout</md-button>
+    <md-button ng-click="logout()" class="md-raised md-accent">Logout</md-button>
 </div>
 <!------------END logout area------------>
+</md-content>

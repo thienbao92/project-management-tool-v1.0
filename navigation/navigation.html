@@ -1,11 +1,13 @@
-<md-toolbar layout="row" layout-padding>
+<md-toolbar layout="row" layout-padding class="md-whiteframe-z3">
     <div class="md-toolbar-tools">
+        <!-- logo -->
         <md-button class="md-icon-button" ui-sref="main">
             COCOON
         </md-button>
 
         <span flex></span>
         <p class="md-body-1">Welcome <strong>{{googleName}}</strong></p>
+        <!-- toolbar-menu -->
         <div class="md-toolbar__menu" layout="row">
             <md-button ui-sref="main">main page</md-button>
             <md-button ui-sref="board"> board</md-button>

@@ -44,9 +44,7 @@
     <md-content layout="row" layout-sm="column" layout-align="center">
         <md-button ng-click="signIn()" class="md-raised md-accent">Login</md-button>
         <md-button ng-click="isSignup =!isSignup" class="md-raised">Sign up</md-button>
-        <div md-theme="google">
-            <md-button ng-click="authGoogle()" class="md-raised md-accent"><i class="fa fa-google-plus"></i> Log in with Google</md-button>
-        </div>
+        <md-button ng-click="authGoogle()" md-theme="google" class="md-raised md-accent"><i class="fa fa-google-plus"></i> Log in with Google</md-button>
     </md-content>
     <!------------END button click to sign up------------>
 

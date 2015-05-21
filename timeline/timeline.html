@@ -1,35 +1,35 @@
 <md-toolbar>
-    <div class="md-toolbar-tools">
-        this is timeline area
-    </div>
+  <div class="md-toolbar-tools">
+    this is timeline area
+  </div>
 </md-toolbar>
 
 <md-content>
-    <!-- day picker -->
-    <div layout="row" layout-align="start center" flex>
-        <md-button>Today</md-button>
-        <div layout="column" layout-align="center start" flex>
-            <md-select placeholder="Month" ng-model="month">
-                <md-option value="1">Jan</md-option>
-                <md-option value="2">Feb</md-option>
-            </md-select>
-        </div>
+  <!-- day picker -->
+  <div layout="row" layout-align="start center" flex>
+    <md-button>Today</md-button>
+    <div layout="column" layout-align="center start" flex>
+      <md-select placeholder="Month" ng-model="month">
+        <md-option value="1">Jan</md-option>
+        <md-option value="2">Feb</md-option>
+      </md-select>
     </div>
-    <md-divider></md-divider>
-    <!-- END day picker -->
+  </div>
+  <md-divider></md-divider>
+  <!-- END day picker -->
 
-    <!-- calendar -->
-    <md-list layout="row" class="calendar">
-        <md-list-item class="calendar__item" layout-align="center center">Week1</md-list-item>
-        <md-list-item class="calendar__item" layout-align="center center">Week2</md-list-item>
-    </md-list>
-    <!-- END calendar -->
+  <!-- calendar -->
+  <md-list layout="row" class="calendar">
+    <md-list-item class="calendar__item" layout-align="center center">Week1</md-list-item>
+    <md-list-item class="calendar__item" layout-align="center center">Week2</md-list-item>
+  </md-list>
+  <!-- END calendar -->
 
-    <!-- list--timeline -->
-    <md-list layout="column" class="list--timeline">
-        <md-list-item>
-            <div class="list--timeline__header">List1</div>
-        </md-list-item>
-    </md-list>
-    <!-- END list--timeline -->
+  <!-- list--timeline -->
+  <md-list layout="column" class="list--timeline">
+    <md-list-item>
+      <div class="list--timeline__header">List1</div>
+    </md-list-item>
+  </md-list>
+  <!-- END list--timeline -->
 </md-content>

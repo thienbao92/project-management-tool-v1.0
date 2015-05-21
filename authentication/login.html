@@ -1,62 +1,62 @@
 <md-content layout-fill layout layout-align="center center" class="md-hue-1 login-bg">
 
-<!-- Signup area -->
-<form ng-show="isSignup" name="signupForm" class="md-whiteframe-z2">
+  <!-- Signup area -->
+  <form ng-show="isSignup" name="signupForm" class="md-whiteframe-z2">
     <md-content layout="column" layout-align="center">
-        <h1 class="md-display-3">Sign up</h1>
-        <!-- email and password area -->
-        <md-input-container>
-            <label>Email</label>
-            <input type="email" ng-model="email" />
-        </md-input-container>
-        <md-input-container>
-            <label>Password</label>
-            <input type="password" ng-model="password" />
-        </md-input-container>
+      <h1 class="md-display-3">Sign up</h1>
+      <!-- email and password area -->
+      <md-input-container>
+        <label>Email</label>
+        <input type="email" ng-model="email" />
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" ng-model="password" />
+      </md-input-container>
     </md-content>
     <!------------END email and password area------------>
 
     <!-- button click to sign up -->
     <md-content layout="row" layout-align="center">
-        <md-button ng-click="signUp()" class="md-raised md-accent">sign up</md-button>
+      <md-button ng-click="signUp()" class="md-raised md-accent">sign up</md-button>
     </md-content>
     <!------------END button click to sign up------------>
-</form>
-<!------------END Signup area------------>
+  </form>
+  <!------------END Signup area------------>
 
-<!-- login area -->
-<form ng-hide="isLogin" name="loginForm" class="md-whiteframe-z2" layout="column">
+  <!-- login area -->
+  <form ng-hide="isLogin" name="loginForm" class="md-whiteframe-z2" layout="column">
     <md-content layout="column" layout-align="center">
-        <h1 class="md-display-3">Log in</h1>
-        <!-- email and password area -->
-        <md-input-container>
-            <label>Email</label>
-            <input type="email" ng-model="email" />
-        </md-input-container>
-        <md-input-container>
-            <label>Password</label>
-            <input type="password" ng-model="password" />
-        </md-input-container>
+      <h1 class="md-display-3">Log in</h1>
+      <!-- email and password area -->
+      <md-input-container>
+        <label>Email</label>
+        <input type="email" ng-model="email" />
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" ng-model="password" />
+      </md-input-container>
     </md-content>
     <!------------END email and password area------------>
 
     <!-- button click to sign up -->
     <md-content layout="row" layout-sm="column" layout-align="center">
-        <md-button ng-click="signIn()" class="md-raised md-accent">Login</md-button>
-        <md-button ng-click="isSignup =!isSignup" class="md-raised">Sign up</md-button>
-        <md-button ng-click="authGoogle()" md-theme="google" class="md-raised md-accent"><i class="fa fa-google-plus"></i> Log in with Google</md-button>
+      <md-button ng-click="signIn()" class="md-raised md-accent">Login</md-button>
+      <md-button ng-click="isSignup =!isSignup" class="md-raised">Sign up</md-button>
+      <md-button ng-click="authGoogle()" md-theme="google" class="md-raised md-accent"><i class="fa fa-google-plus"></i> Log in with Google</md-button>
     </md-content>
     <!------------END button click to sign up------------>
 
     <!-- error -->
     <md-content ng-show="announce">{{announce}}</md-content>
     <!------------END error------------>
-</form>
-<!------------END login area------------>
+  </form>
+  <!------------END login area------------>
 
-<!-- logout area -->
-<div ng-show="isLogin">
+  <!-- logout area -->
+  <div ng-show="isLogin">
     <md-button ng-click="logout()" class="md-raised md-accent">Logout</md-button>
-</div>
-<!------------END logout area------------>
+  </div>
+  <!------------END logout area------------>
 </md-content>

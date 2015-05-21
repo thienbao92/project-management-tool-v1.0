@@ -6,15 +6,15 @@
 angular.module('myApp.services', [])
 
 .factory('firebaseUrl', function () {
-    var url = 'https://managementtool.firebaseio.com/users/' ;
+    var url = 'https://managementtool.firebaseio.com/users/';
     return url
-})// END ref
+  }) // END ref
 
 
 .factory('firebaseRef', function ($rootScope, firebaseUrl) {
-	return function(arrayData) {
-        var uid = $rootScope.id;
-		var ref = new Firebase(firebaseUrl+uid+'/'+arrayData);
-        return ref;
-	}	
+  return function (arrayData) {
+    var uid = $rootScope.id;
+    var ref = new Firebase(firebaseUrl + uid + '/' + arrayData);
+    return ref;
+  }
 })

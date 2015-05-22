@@ -1,45 +1,30 @@
-<!-- Signup area -->
-<div ng-show="isSignup">
-    <h1>Sign up</h1>
-    <!-- email and password area -->
-        email: <input type="email" ng-model="email" />
-    <br>
-    Password: <input type="password" ng-model="password" />
-    <br>
-    <!------------END email and password area------------>
-
-    <!-- button click to sign up -->
-    <button ng-click="signUp()">sign up</button>
-    <!------------END button click to sign up------------>
-</div>
-<!------------END Signup area------------>
-
 <!-- login area -->
 <div ng-hide="isLogin">
-<h1>Sign in</h1>
-    <!-- email and password area -->
-        email: <input type="email" ng-model="email" />
-    <br>
-    Password: <input type="password" ng-model="password" />
-    <br>
-    <!------------END email and password area------------>
+  <h1>Sign in</h1>
+  <!-- email and password area -->
+  email:
+  <input type="email" ng-model="email" />
+  <br> Password:
+  <input type="password" ng-model="password" />
+  <br>
+  <!------------END email and password area------------>
 
-    <!-- button click to sign up -->
-    <button ng-click="signIn()">Login</button>
-    <button ng-click="isSignup =!isSignup">Sign up</button>
-    <button ng-click="authGoogle()">Login with Google account</button>
-    <!------------END button click to sign up------------>
+  <!-- button click to sign up -->
+  <button ng-click="signIn()">Login</button>
+  <a ui-sref="authentication.signUp">Sign up</a>
+  <button ng-click="authGoogle()">Login with Google account</button>
+  <!------------END button click to sign up------------>
 
-    <!-- error -->
-    <p>{{announce}}</p>
-    <!------------END error------------>
+  <!-- error -->
+  <p>{{announce}}</p>
+  <!------------END error------------>
 </div>
 <!------------END login area------------>
 
+
+
 <!-- logout area -->
 <div ng-show="isLogin">
-<button ng-click="logout()">Logout</button>
+  <button ng-click="logout()">Logout</button>
 </div>
 <!------------END logout area------------>
-
-

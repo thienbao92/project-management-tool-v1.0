@@ -25,58 +25,78 @@ angular.module('myApp', [
 
 .config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/main");
+  $urlRouterProvider.otherwise("/main");
 
-    //set up states
+  //set up states
 
-    $stateProvider
-    //error page
-        .state('error', {
-        url: "/error",
-        templateUrl: "/shared_template/404.html"
+  $stateProvider
+  //error page
+    .state('error', {
+    url: "/error",
+    templateUrl: "/shared_template/404.html"
+  })
+
+  //authentication
+  .state('authentication', {
+    url: "/auth",
+    templateUrl: "authentication/auth.html",
+    controller: 'authCtrl'
+  })
+
+  .state('authentication.logIn', {
+    url: "/login",
+    templateUrl: "authentication/login.html",
+    controller: "authCtrl"
+  })
+
+  .state('authentication.signUp', {
+    url: "/signup",
+    templateUrl: "authentication/signup.html",
+    controller: "authCtrl"
+  })
+
+
+
+
+  .state('authentication.resetPassword', {
+      url: "/signUp",
+      templateUrl: "authentication/resetPassword.html",
+      controller: "authCtrl"
     })
-
-    //authentication
-    .state('authentication', {
-        url: "/auth",
-        templateUrl: "authentication/login.html",
-        controller: 'authCtrl'
-    })
-
     //main page
     .state('main', {
-            url: "/main",
-            views: {
-                '': {
-                    templateUrl: "main/main.html",
-                    controller: "mainCtrl"
-                },
-                'profile@main': {
-                    templateUrl: "profile/profile.html",
-                    controller: "profileCtrl"
-                },
-                'org@main': {
-                    templateUrl: "organization/organization.html",
-                    controller: "orgCtrl"
-                }
-            }
-        })
-        //profile page
-        .state('board', {
-            url: "/board",
-            views: {
-                '': {
-                    templateUrl: "board/board.html"
-                },
-                'list@board': {
-                    templateUrl: "list/list.html",
-                    controller: "listCtrl"
-                },
-                'timeline@board': {
-                    templateUrl: "timeline/timeline.html",
-                    controller: "timelineCtrl"
-                }
-            }
+      url: "/main",
+      views: {
+        '': {
+          templateUrl: "main/main.html",
+          controller: "mainCtrl"
+        },
+        'profile@main': {
+          templateUrl: "profile/profile.html",
+          controller: "profileCtrl"
+        },
+        'org@main': {
+          templateUrl: "organization/organization.html",
+          controller: "orgCtrl"
+        }
+      }
+    })
+    //profile page
+    .state('board', {
+      url: "/board",
+      views: {
+        '': {
+          templateUrl: "board/board.html"
+        },
+        'list@board': {
+          templateUrl: "list/list.html",
+          controller: "listCtrl"
+        },
+        'timeline@board': {
+          templateUrl: "timeline/timeline.html",
+          controller: "timelineCtrl"
+        }
+      }
 
-        })
+    })
 })

@@ -1,11 +1,11 @@
 /**
-* main.Controller Module
-*
-* Description
-*/
+ * main.Controller Module
+ *
+ * Description
+ */
 
 angular.module('main.Controller', [])
 
-.controller('mainCtrl', function ($scope) {
+.controller('mainCtrl', function ($scope, $state) {
 
-})//End mainCtrl
+  }) //End mainCtrl

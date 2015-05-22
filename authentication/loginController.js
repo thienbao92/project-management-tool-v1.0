@@ -14,12 +14,9 @@ angular.module('login.Controller', [])
         $scope.auth.$createUser({
           email: $scope.email,
           password: $scope.password
-        }).then(function () {
-          $scope.isSignup = false;
-          alert("singup successfully");
-        }).error(function () {
-          elert("unable to signup")
-        })
+        });
+
+        $state.go("authentication.logIn");
       } //end function signUp
 
 

@@ -13,7 +13,7 @@ angular.module('login.Services', [])
   }) // END firebaseAuth
 
 //run function
-.run(function ($rootScope, firebaseAuth) {
+.run(function ($rootScope, firebaseAuth, $state) {
 
     $rootScope.auth = firebaseAuth;
 
@@ -26,9 +26,9 @@ angular.module('login.Services', [])
           $rootScope.isLogin = true;
 
         } else {
-          console.log("Logged out");
+          console.log("Logged out or have not logged in");
           $rootScope.isLogin = false;
-
+          $state.go('authentication.logIn');
         }
       }) //END rootScope function
   }) //END run function

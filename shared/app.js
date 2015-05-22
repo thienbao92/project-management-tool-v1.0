@@ -97,6 +97,5 @@ angular.module('myApp', [
           controller: "timelineCtrl"
         }
       }
-
     })
 })

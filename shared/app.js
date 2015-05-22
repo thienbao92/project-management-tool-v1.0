@@ -101,7 +101,6 @@ angular.module('myApp', [
     })
 })
 
->>>>>>> upstream/master
 .config(function ($mdThemingProvider) {
   var lightBlueWhite = $mdThemingProvider.extendPalette('light-blue', {
     'contrastDefaultColor': 'light'

@@ -4,6 +4,7 @@
  * Description
  */
 angular.module('myApp', [
+    'ngMaterial',
 //shared JS
     'myApp.services',
 //controllers
@@ -98,4 +99,22 @@ angular.module('myApp', [
         }
       }
     })
+})
+
+.config(function ($mdThemingProvider) {
+  var lightBlueWhite = $mdThemingProvider.extendPalette('light-blue', {
+    'contrastDefaultColor': 'light'
+  });
+
+  $mdThemingProvider.definePalette('light-blue-white', lightBlueWhite);
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue-grey')
+    .accentPalette('light-blue-white')
+    .backgroundPalette('blue-grey', {
+      'default': '50',
+      'hue-1': '500',
+    });
+
+  $mdThemingProvider.theme('google')
+    .accentPalette('red')
 })

@@ -1,0 +1,14 @@
+.login-bg {
+  position: absolute;
+  z-index: 0;
+  overflow: visible; }
+
+form {
+  position: relative;
+  z-index: 2; }
+  form md-content {
+    padding: 2em; }
+    form md-content h1 {
+      text-align: center; }
+
+/*# sourceMappingURL=login.css.map */

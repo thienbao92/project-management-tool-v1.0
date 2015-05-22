@@ -3,28 +3,41 @@
 
 <head>
   <title>Project management tool v1.0</title>
+
+  <link rel="stylesheet" href="dist/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+
+  <link rel="stylesheet" href="shared/app.css">
+  <link rel="stylesheet" href="authentication/login.css">
+  <link rel="stylesheet" href="navigation/navigation.css">
 </head>
 
 <body>
-
   <!-- navigation area -->
   <div ng-include src="'navigation/navigation.html'"></div>
   <!------------END navigation area------------>
 
   <!-- Route view -->
-  <div ui-view></div>
+  <div ui-view layout-fill></div>
   <!------------END Route view------------>
 
 
 
   <!-- Angular JS library -->
-  <script src="dist/angular.min.js"></script>
+  <script src="dist/angular/angular.min.js"></script>
   <!------------END Angular JS library------------>
 
 
   <!-- Angular UI router -->
   <script src="dist/angular-ui-router.min.js"></script>
   <!------------END Angular UI router------------>
+
+  <!-- Angular Material Dependencies -->
+  <script src="dist/angular-animate/angular-animate.min.js"></script>
+  <script src="dist/angular-aria/angular-aria.min.js"></script>
+  <script src="dist/angular-material/angular-material.min.js"></script>
+  <!------------END Angular Material Dependencies------------>
 
   <!-- Firebase and angular Fire -->
   <!-- Firebase -->

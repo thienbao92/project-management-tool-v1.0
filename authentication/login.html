@@ -1,34 +1,35 @@
 <!-- login area -->
-<div ng-hide="isLogin">
-  <h1>Sign in</h1>
-  <!-- email and password area -->
-  email:
-  <input type="email" ng-model="email" />
-  <br> Password:
-  <input type="password" ng-model="password" />
-  <br>
+<form ng-hide="isLogin" name="loginForm" class="md-whiteframe-z2" layout="column">
+  <md-content layout="column" layout-align="center">
+    <h1 class="md-display-3">Log in</h1>
+    <!-- email and password area -->
+    <md-input-container>
+      <label>Email</label>
+      <input type="email" ng-model="email" />
+    </md-input-container>
+    <md-input-container>
+      <label>Password</label>
+      <input type="password" ng-model="password" />
+    </md-input-container>
+  </md-content>
   <!------------END email and password area------------>
 
   <!-- button click to sign up -->
-  <button ng-click="signIn()">Login</button>
-  <a ui-sref="authentication.signUp">Sign up</a>
-  <button ng-click="authGoogle()">Login with Google account</button>
-  <br>
-  <a ui-sref="authentication.resetPassword">Forgot your password?</a>
+  <md-content layout="row" layout-sm="column" layout-align="center">
+    <md-button ng-click="signIn()" class="md-raised md-accent">Login</md-button>
+    <md-button ui-sref="authentication.signUp" class="md-raised">Sign up</md-button>
+    <md-button ng-click="authGoogle()" md-theme="google" class="md-raised md-accent"><i class="fa fa-google-plus"></i> Log in with Google</md-button>
+  </md-content>
   <!------------END button click to sign up------------>
 
   <!-- error -->
-  <p>{{announce}}</p>
+  <md-content ng-show="announce">{{announce}}</md-content>
   <!------------END error------------>
-</div>
+</form>
 <!------------END login area------------>
-
-
 
 <!-- logout area -->
 <div ng-show="isLogin">
-  <button ng-click="logout()">Logout</button>
+  <md-button ng-click="logout()" class="md-raised md-accent">Logout</md-button>
 </div>
 <!------------END logout area------------>
-
-<div ui-view></div>

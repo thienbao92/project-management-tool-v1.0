@@ -1,17 +1,24 @@
 <!-- Signup area -->
-<div>
-  <h1>Sign up</h1>
-  <!-- email and password area -->
-  email:
-  <input type="email" ng-model="email" />
-  <br> Password:
-  <input type="password" ng-model="password" />
-  <br>
+<form name="signupForm" class="md-whiteframe-z2">
+  <md-content layout="column" layout-align="center">
+    <h1 class="md-display-3">Sign up</h1>
+    <!-- email and password area -->
+    <md-input-container>
+      <label>Email</label>
+      <input type="email" ng-model="email" />
+    </md-input-container>
+    <md-input-container>
+      <label>Password</label>
+      <input type="password" ng-model="password" />
+    </md-input-container>
+  </md-content>
   <!------------END email and password area------------>
 
   <!-- button click to sign up -->
-  <button ng-click="signUp()">sign up</button>
-  <a ui-sref="authentication.logIn">Cancel</a>
+  <md-content layout="row" layout-align="center">
+    <md-button ng-click="signUp()" class="md-raised md-accent">sign up</md-button>
+    <md-button ui-sref="authentication.logIn">Cancel</md-button>
+  </md-content>
   <!------------END button click to sign up------------>
-</div>
+</form>
 <!------------END Signup area------------>

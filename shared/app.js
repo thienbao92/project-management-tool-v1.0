@@ -40,12 +40,32 @@ angular.module('myApp', [
   //authentication
   .state('authentication', {
     url: "/auth",
-    templateUrl: "authentication/login.html",
+    templateUrl: "authentication/auth.html",
     controller: 'authCtrl'
   })
 
-  //main page
-  .state('main', {
+  .state('authentication.logIn', {
+    url: "/login",
+    templateUrl: "authentication/login.html",
+    controller: "authCtrl"
+  })
+
+  .state('authentication.signUp', {
+    url: "/signup",
+    templateUrl: "authentication/signup.html",
+    controller: "authCtrl"
+  })
+
+
+
+
+  .state('authentication.resetPassword', {
+      url: "/signUp",
+      templateUrl: "authentication/resetPassword.html",
+      controller: "authCtrl"
+    })
+    //main page
+    .state('main', {
       url: "/main",
       views: {
         '': {
@@ -78,10 +98,10 @@ angular.module('myApp', [
           controller: "timelineCtrl"
         }
       }
-
     })
 })
 
+>>>>>>> upstream/master
 .config(function ($mdThemingProvider) {
   var lightBlueWhite = $mdThemingProvider.extendPalette('light-blue', {
     'contrastDefaultColor': 'light'
@@ -98,4 +118,4 @@ angular.module('myApp', [
 
   $mdThemingProvider.theme('google')
     .accentPalette('red')
-});
+})

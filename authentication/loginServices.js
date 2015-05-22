@@ -13,7 +13,7 @@ angular.module('login.Services', [])
   }) // END firebaseAuth
 
 //run function
-.run(function ($rootScope, firebaseAuth) {
+.run(function ($rootScope, firebaseAuth, $state) {
 
     $rootScope.auth = firebaseAuth;
 
@@ -21,13 +21,14 @@ angular.module('login.Services', [])
         if (authData) {
           console.log("Logged in as:", authData.uid);
           $rootScope.id = authData.uid;
+
           //$rootScope.googleName = authData.google.displayName;
           $rootScope.isLogin = true;
 
         } else {
-          console.log("Logged out");
+          console.log("Logged out or have not logged in");
           $rootScope.isLogin = false;
-
+          $state.go('authentication.logIn');
         }
       }) //END rootScope function
   }) //END run function

@@ -1,8 +1,34 @@
-<input type="text" ng-model="addText" />
-<button ng-click="addProfile()">add Profile</button>
-
 <div ng-repeat="x in profile">
 
-    {{x.text}}
+  <p>{{x.firstName}}</p>
+  <!-- Edit profile area -->
 
+  <div ng-show="editProfile">
+
+    <input type="text" ng-model="x.firstName" ng-change="profile.$save(x)" />
+    <input type="text" ng-model="x.lastName" ng-change="profile.$save(x)" />
+    <button ng-hide="passwordArea" ng-click="passwordArea = !passwordArea">Change password</button>
+
+    <div ng-show="passwordArea">
+      <!-- Change Password -->
+      Type email:
+      <input type="email" ng-model="email" />
+      <br> Old password:
+      <input type="password" ng-model="oldPassword" />
+      <br> New password:
+      <input type="password" ng-model="newPassword" />
+      <button ng-click="changePassword()">Change Password</button>
+      <button ng-click="passwordArea = !passwordArea">Cancel</button>
+
+
+      <!------------END Change Password------------>
+    </div>
+    <button ng-click="editProfile = !editProfile">Done</button>
+    <!------------END Edit profile area------------>
+
+  </div>
+
+  <div ng-hide="editProfile">
+    <button ng-click="editProfile = !editProfile">Edit profile</button>
+  </div>
 </div>

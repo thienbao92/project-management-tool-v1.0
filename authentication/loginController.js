@@ -32,14 +32,14 @@ angular.module('login.Controller', [])
         })
       } //end function signIn
 
-    $scope.logout = function () {
+    $rootScope.logout = function () {
         $scope.auth.$unauth();
       } //end function logout
 
     $scope.authGoogle = function () {
         $scope.auth.$authWithOAuthPopup("google").then(function (authData) {
           console.log("Logged in as:", authData.uid);
-          console.log($scope.googleName);
+          $state.go('main');
         }).catch(function (error) {
           console.error("Authentication failed:", error);
         });

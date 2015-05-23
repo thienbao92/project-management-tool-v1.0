@@ -26,6 +26,7 @@ angular.module('myApp', [
 
 .config(function ($stateProvider, $urlRouterProvider) {
 
+  $urlRouterProvider.when('', 'main');
   $urlRouterProvider.otherwise("/main");
 
   //set up states

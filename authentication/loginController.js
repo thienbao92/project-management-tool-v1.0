@@ -6,7 +6,7 @@
 
 angular.module('login.Controller', [])
 
-.controller('authCtrl', function ($scope, $rootScope, firebaseAuth, $state) {
+.controller('authCtrl', function ($scope, $rootScope, firebaseAuth, $state, firebaseRefNoId, $firebaseArray) {
     //show signup form if value = true
     $scope.isSignup = false;
 
@@ -14,7 +14,18 @@ angular.module('login.Controller', [])
         $scope.auth.$createUser({
           email: $scope.email,
           password: $scope.password
-        });
+        }).then(function (data) {
+          alert("signup successfully");
+
+          //Add initial profile
+          var ref = firebaseRefNoId("profile", data.uid);
+          $scope.profile = $firebaseArray(ref);
+          $scope.profile.$add({
+            firstName: $scope.firstName
+          })
+
+          // End initial profile
+        })
 
         $state.go("authentication.logIn");
       } //end function signUp
@@ -38,7 +49,24 @@ angular.module('login.Controller', [])
 
     $scope.authGoogle = function () {
         $scope.auth.$authWithOAuthPopup("google").then(function (authData) {
-          console.log("Logged in as:", authData.uid);
+          console.log("Logged in as:", authData.uid, authData.google.displayName);
+
+          //Add initial profile
+          var ref = firebaseRefNoId("profile", authData.uid);
+          $scope.profile = $firebaseArray(ref);
+
+          //console.log($scope.profile);
+          if ($scope.profile.firstName == 'undefined') {
+            $scope.profile.$add({
+              firstName: authData.google.displayName
+            })
+          } else {
+            console.log("firstName has been added");
+          }
+
+          // End initial profile
+
+
           $state.go('main');
         }).catch(function (error) {
           console.error("Authentication failed:", error);

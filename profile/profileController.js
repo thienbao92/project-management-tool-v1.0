@@ -12,6 +12,7 @@ angular.module('profile.Controller', [])
 
   $scope.profile = $firebaseArray(ref);
 
+
   $scope.addProfile = function () {
       $scope.profile.$add({
         text: $scope.addText

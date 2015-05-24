@@ -1,0 +1,22 @@
+@import "../dist/material-colors/colors";
+
+.org {
+  margin-top: 2em;
+}
+
+.projects {
+  md-grid-tile figure {
+    padding: 0.5em;
+    background-color: #fff;
+    md-grid-tile-header {
+      padding: 0.5em;
+    }
+    p {
+      padding-right: 0.5em;
+    }
+  }
+
+  .projects__add {
+
+  }
+}

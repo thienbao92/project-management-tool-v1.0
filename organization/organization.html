@@ -1,19 +1,72 @@
-this is organization
-<md-content layout="column">
   <!-- organization list -->
-  <section>
+  <section layout-padding class="org">
     <!-- organization header -->
     <md-subheader>Organization name</md-subheader>
 
     <!-- projects list -->
-    <md-list layout="row">
-      <!-- projects item -->
-      <md-list-item layout="column" layout-align="start start">
-        <h1>Project name</h1>
-        <div layout="row" layout-align="start center" style="width: 100%;">
-          <p>Progress</p><md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
-        </div>
-      </md-list-item>
-    </md-list>
+    <md-grid-list md-cols="4" md-gutter="1em" md-row-height="10em" class="projects">
+      <!-- projects items -->
+      <md-grid-tile>
+        <md-grid-tile-header>Project name</md-grid-tile-header>
+        <p>Progress</p>
+        <md-progress-linear md-mode="determinate" value="60" class="md-accent"></md-progress-linear>
+      </md-grid-tile>
+
+      <md-grid-tile>
+        <md-grid-tile-header>Project name</md-grid-tile-header>
+        <p>Progress</p>
+        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+      </md-grid-tile>
+
+      <md-grid-tile>
+        <md-grid-tile-header>Project name</md-grid-tile-header>
+        <p>Progress</p>
+        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+      </md-grid-tile>
+
+      <md-grid-tile>
+        <md-grid-tile-header>Project name</md-grid-tile-header>
+        <p>Progress</p>
+        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+      </md-grid-tile>
+
+      <md-grid-tile class="projects__add">
+        <md-button class="md-raised md-primary">Add project</md-button>
+      </md-grid-tile>
+      <!-- END projects item -->
+    </md-grid-list>
   </section>
-</md-content>
+
+  <section layout-padding class="org">
+    <!-- organization header -->
+    <md-subheader>Organization name</md-subheader>
+
+    <!-- projects list -->
+    <md-grid-list md-cols="4" md-gutter="1em" md-row-height="10em" class="projects">
+      <!-- projects items -->
+      <md-grid-tile>
+        <md-grid-tile-header>Project name</md-grid-tile-header>
+        <p>Progress</p>
+        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+      </md-grid-tile>
+
+      <md-grid-tile>
+        <md-grid-tile-header>Project name</md-grid-tile-header>
+        <p>Progress</p>
+        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+      </md-grid-tile>
+
+      <md-grid-tile>
+        <md-grid-tile-header>Project name</md-grid-tile-header>
+        <p>Progress</p>
+        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+      </md-grid-tile>
+
+      <md-grid-tile class="projects__add">
+        <md-button class="md-raised md-primary">Add project</md-button>
+      </md-grid-tile>
+      <!-- END projects item -->
+    </md-grid-list>
+  </section>
+  <!-- END organization list -->
+  <md-button class="md-raised md-accent">Add organization</md-button>

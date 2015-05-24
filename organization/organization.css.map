@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,IAAK;EACH,UAAU,EAAE,GAAG;;AAIf,6BAAoB;EAClB,OAAO,EAAE,KAAK;EACd,gBAAgB,EAAE,IAAI;EACtB,iDAAoB;IAClB,OAAO,EAAE,KAAK;EAEhB,+BAAE;IACA,aAAa,EAAE,KAAK",
+"sources": ["organization.scss"],
+"names": [],
+"file": "organization.css"
+}

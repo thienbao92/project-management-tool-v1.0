@@ -1,33 +1,39 @@
+<md-content class="org">
   <!-- organization list -->
-  <section layout-padding class="org">
+  <section layout-padding class="org__item">
     <!-- organization header -->
-    <md-subheader>Organization name</md-subheader>
+    <md-subheader>
+      <h1 class="md-title">
+        Organization name
+        <md-button class="md-icon-button" style="font-size: 20px"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
+      </h1>
+    </md-subheader>
 
     <!-- projects list -->
-    <md-grid-list md-cols="4" md-gutter="1em" md-row-height="10em" class="projects">
+    <md-grid-list md-cols="4" md-gutter="3em" md-row-height="10em" class="projects">
       <!-- projects items -->
       <md-grid-tile>
-        <md-grid-tile-header>Project name</md-grid-tile-header>
-        <p>Progress</p>
-        <md-progress-linear md-mode="determinate" value="60" class="md-accent"></md-progress-linear>
+        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
+        <p class="md-caption">Progress</p>
+        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
       </md-grid-tile>
 
       <md-grid-tile>
-        <md-grid-tile-header>Project name</md-grid-tile-header>
-        <p>Progress</p>
-        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
+        <p class="md-caption">Progress</p>
+        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
       </md-grid-tile>
 
       <md-grid-tile>
-        <md-grid-tile-header>Project name</md-grid-tile-header>
-        <p>Progress</p>
-        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
+        <p class="md-caption">Progress</p>
+        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-accent"></md-progress-linear>
       </md-grid-tile>
 
       <md-grid-tile>
-        <md-grid-tile-header>Project name</md-grid-tile-header>
-        <p>Progress</p>
-        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
+        <p class="md-caption">Progress</p>
+        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
       </md-grid-tile>
 
       <md-grid-tile class="projects__add">
@@ -37,29 +43,34 @@
     </md-grid-list>
   </section>
 
-  <section layout-padding class="org">
+  <section layout-padding class="org__item">
     <!-- organization header -->
-    <md-subheader>Organization name</md-subheader>
+    <md-subheader>
+      <h1 class="md-title">
+        Organization name
+        <md-button class="md-icon-button" style="font-size: 20px"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
+      </h1>
+    </md-subheader>
 
     <!-- projects list -->
-    <md-grid-list md-cols="4" md-gutter="1em" md-row-height="10em" class="projects">
+    <md-grid-list md-cols="4" md-gutter="3em" md-row-height="10em" class="projects">
       <!-- projects items -->
       <md-grid-tile>
-        <md-grid-tile-header>Project name</md-grid-tile-header>
-        <p>Progress</p>
-        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
+        <p class="md-caption">Progress</p>
+        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
       </md-grid-tile>
 
       <md-grid-tile>
-        <md-grid-tile-header>Project name</md-grid-tile-header>
-        <p>Progress</p>
-        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
+        <p class="md-caption">Progress</p>
+        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
       </md-grid-tile>
 
       <md-grid-tile>
-        <md-grid-tile-header>Project name</md-grid-tile-header>
-        <p>Progress</p>
-        <md-progress-linear md-mode="determinate" value="60"></md-progress-linear>
+        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
+        <p class="md-caption">Progress</p>
+        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
       </md-grid-tile>
 
       <md-grid-tile class="projects__add">
@@ -69,4 +80,5 @@
     </md-grid-list>
   </section>
   <!-- END organization list -->
-  <md-button class="md-raised md-accent">Add organization</md-button>
+  <md-button class="md-raised md-accent org__add">Add organization</md-button>
+</md-content>

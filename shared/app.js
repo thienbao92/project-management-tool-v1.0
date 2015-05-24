@@ -117,5 +117,11 @@ angular.module('myApp', [
     });
 
   $mdThemingProvider.theme('google')
-    .accentPalette('red')
+    .accentPalette('red');
+
+  $mdThemingProvider.theme('progress-state')
+    .primaryPalette('green')
+    .accentPalette('yellow', {
+      'default': '600'
+    });
 })

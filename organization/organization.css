@@ -1,12 +1,12 @@
-.org {
+.org .org__item, .org .org__add {
   margin-top: 2em; }
 
 .projects md-grid-tile figure {
-  padding: 0.5em;
   background-color: #fff; }
   .projects md-grid-tile figure md-grid-tile-header {
+    background-color: #fff;
+    color: inherit; }
+  .projects md-grid-tile figure md-progress-linear, .projects md-grid-tile figure md-grid-tile-header, .projects md-grid-tile figure p {
     padding: 0.5em; }
-  .projects md-grid-tile figure p {
-    padding-right: 0.5em; }
 
 /*# sourceMappingURL=organization.css.map */

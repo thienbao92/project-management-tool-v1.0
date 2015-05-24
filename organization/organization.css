@@ -1,5 +1,5 @@
 .org .org__item, .org .org__add {
-  margin-top: 2em; }
+  margin: 1em 0; }
 
 .projects md-grid-tile figure {
   background-color: #fff; }

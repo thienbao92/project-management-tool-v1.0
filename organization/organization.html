@@ -4,8 +4,9 @@
     <!-- organization header -->
     <md-subheader>
       <h1 class="md-title">
-        Organization name
-        <md-button class="md-icon-button" style="font-size: 20px"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
+        <!-- input organization name -->
+        <input type="text" placeholder="{{orgName}}" ng-show="showInput" ng-model="orgName"><span ng-hide="showInput">{{orgName}}</span>
+        <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
       </h1>
     </md-subheader>
 

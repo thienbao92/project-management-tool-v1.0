@@ -3,24 +3,38 @@
   <button ng-click="addProfile()">add</button>
 </div>
 
-<div ng-repeat="x in profile">
+<div ng-repeat="x in profile" layout="column" layout-align="start center">
 
-  <p>{{x.firstName}}</p>
-  <!-- Edit profile area -->
+  <md-card layout="column" layout-align="start center" class="profile" md-theme="white-bg">
 
-  <div ng-show="editProfile">
+    <img class="profile__avatar" ng-src="../img/avatar.png" />
 
-    <input type="text" ng-model="x.firstName" ng-change="profile.$save(x)" />
-    <input type="text" ng-model="x.lastName" ng-change="profile.$save(x)" />
+    <md-card-content>
+      <p class="md-subhead">{{x.firstName}}</p>
+    </md-card-content>
+
+    <!-- Edit profile area -->
+
+    <div ng-show="editProfile" layout="column" layout-align="start center">
+
+      <md-input-container>
+        <label>First name</label>
+        <input type="text" ng-model="x.firstName" ng-change="profile.$save(x)" />
+      </md-input-container>
+      <md-input-container>
+        <label>Last name</label>
+        <input type="text" ng-model="x.lastName" ng-change="profile.$save(x)" />
+      </md-input-container>
 
 
-    <!------------END Change Password------------>
-    <button ng-click="editProfile = !editProfile">Done</button>
-    <!------------END Edit profile area------------>
+      <!------------END Change Password------------>
+      <md-button ng-click="editProfile = !editProfile" class="md-accent">Done</md-button>
+      <!------------END Edit profile area------------>
 
-  </div>
+    </div>
 
-  <div ng-hide="editProfile">
-    <button ng-click="editProfile = !editProfile">Edit profile</button>
-  </div>
+    <div ng-hide="editProfile" class="md-actions">
+      <md-button ng-click="editProfile = !editProfile" class="md-accent">Edit profile</md-button>
+    </div>
+  </md-card>
 </div>

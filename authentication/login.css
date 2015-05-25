@@ -1,11 +1,7 @@
-.login-bg {
-  position: absolute;
-  z-index: 0;
-  overflow: visible; }
-
 form {
   position: relative;
-  z-index: 2; }
+  z-index: 2;
+  min-width: 500px; }
   form md-content {
     padding: 2em; }
     form md-content h1 {

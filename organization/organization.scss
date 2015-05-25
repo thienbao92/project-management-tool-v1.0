@@ -1,0 +1,36 @@
+@import "../dist/material-colors/colors";
+
+.org {
+  .org__item {
+    margin: 1em 0;
+  }
+
+  .org__add {
+    @extend .org__item;
+  }
+}
+
+.projects {
+  md-grid-tile figure {
+    background-color: #fff;
+
+    md-grid-tile-header {
+      @extend md-progress-linear;
+      background-color: #fff;
+
+      color: inherit;
+    }
+
+    p {
+      @extend md-progress-linear;
+    }
+
+    md-progress-linear {
+      padding: 0.5em;
+    }
+  }
+
+  .projects__add {
+
+  }
+}

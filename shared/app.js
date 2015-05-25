@@ -116,6 +116,9 @@ angular.module('myApp', [
       'hue-1': '500',
     });
 
+  $mdThemingProvider.theme('white-bg')
+    .backgroundPalette('grey');
+
   $mdThemingProvider.theme('google')
     .accentPalette('red');
 

@@ -3,11 +3,13 @@
   <section layout-padding class="org__item">
     <!-- organization header -->
     <md-subheader>
-      <h1 class="md-title">
+      <form>
+        <h1 class="md-title">
         <!-- input organization name -->
         <input type="text" placeholder="{{orgName}}" ng-show="showInput" ng-model="orgName"><span ng-hide="showInput">{{orgName}}</span>
         <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
       </h1>
+      </form>
     </md-subheader>
 
     <!-- projects list -->

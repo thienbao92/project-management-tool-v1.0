@@ -43,9 +43,9 @@ angular.module('login.Controller', [])
         })
       } //end function signIn
 
-    $rootScope.logout = function () {
-        $scope.auth.$unauth();
-      } //end function logout
+    //    $rootScope.logout = function () {
+    //        $scope.auth.$unauth();
+    //      } //end function logout
 
     $scope.authGoogle = function () {
         $scope.auth.$authWithOAuthPopup("google").then(function (authData) {
@@ -55,17 +55,18 @@ angular.module('login.Controller', [])
           var ref = firebaseRefNoId("profile", authData.uid);
           $scope.profile = $firebaseArray(ref);
 
-          //console.log($scope.profile);
-          if ($scope.profile.firstName == 'undefined') {
-            $scope.profile.$add({
-              firstName: authData.google.displayName
-            })
-          } else {
-            console.log("firstName has been added");
-          }
+          ref.once('value', function (data) {
+            if (data.numChildren() == 0) {
+              $scope.profile.$add({
+                firstName: authData.google.displayName
+              })
+            } else {
+              console.log("obj is more than one");
+            }
 
-          // End initial profile
-
+          }, function (err) {
+            console.log(err);
+          })
 
           $state.go('main');
         }).catch(function (error) {

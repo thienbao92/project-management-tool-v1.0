@@ -17,6 +17,12 @@ angular.module('login.Services', [])
 
     $rootScope.auth = firebaseAuth;
 
+
+    $rootScope.logout = function () {
+        $rootScope.auth.$unauth();
+      } //end logout function
+
+
     $rootScope.auth.$onAuth(function (authData) {
         if (authData) {
           console.log("Logged in as:", authData.uid);

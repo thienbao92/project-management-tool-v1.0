@@ -43,9 +43,9 @@ angular.module('login.Controller', [])
         })
       } //end function signIn
 
-    $rootScope.logout = function () {
-        $scope.auth.$unauth();
-      } //end function logout
+    //    $rootScope.logout = function () {
+    //        $scope.auth.$unauth();
+    //      } //end function logout
 
     $scope.authGoogle = function () {
         $scope.auth.$authWithOAuthPopup("google").then(function (authData) {

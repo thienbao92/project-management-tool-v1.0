@@ -19,6 +19,7 @@ angular.module('organization.Controller', [])
       })
     }; //end function addOrg
 
+
     //add project area
 
     $scope.projectData = {};

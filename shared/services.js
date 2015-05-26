@@ -22,7 +22,7 @@ angular.module('myApp.services', [])
 
 .factory('firebaseRefNoId', function ($rootScope, firebaseUrl) {
   return function (arrayData, uid) {
-    var ref = new Firebase(firebaseUrl + uid + '/' + arrayData);
+    var ref = new Firebase(firebaseUrl + '/users/' + uid + '/' + arrayData);
     return ref;
   }
 })

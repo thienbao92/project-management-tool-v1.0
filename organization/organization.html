@@ -1,6 +1,6 @@
 <md-content class="org">
   <!-- organization list -->
-  <section layout-padding class="org__item" ng-repeat="org in organization">
+  <section layout-padding class="org__item" ng-repeat="org in organization | filter: {owner: id}">
     <!-- organization header -->
     <md-subheader>
       <form>

@@ -7,6 +7,7 @@ angular.module('myApp', [
     'ngMaterial',
 //shared JS
     'myApp.services',
+    'organization.services',
 //controllers
     'list.Controller',
     'login.Controller',
@@ -18,7 +19,7 @@ angular.module('myApp', [
     'task.Controller',
     'timeline.Controller',
     'navigation.Controller',
-    'organization.services',
+
 //plugin dependecies
     'ui.router',
 //angularfire

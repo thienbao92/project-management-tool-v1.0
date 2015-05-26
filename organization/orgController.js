@@ -1,11 +1,15 @@
 /**
-* organization.Controller Module
-*
-* Description
-*/
+ * organization.Controller Module
+ *
+ * Description
+ */
 
 angular.module('organization.Controller', [])
 
-.controller('orgCtrl', function ($scope) {
 
-})//End orgCtrl
+
+.controller('orgCtrl', function ($scope, firebaseOrg) {
+
+    console.log(firebaseOrg);
+
+  }) //End orgCtrl

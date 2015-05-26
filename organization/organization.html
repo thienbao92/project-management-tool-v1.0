@@ -6,7 +6,7 @@
       <form>
         <h1 class="md-title">
         <!-- input organization name -->
-        <input type="text" placeholder="{{orgName}}" ng-show="showInput" ng-model="orgName"><span ng-hide="showInput">{{orgName}}</span>
+        <input type="text" ng-show="showInput" ng-model="orgName"><span ng-hide="showInput">{{orgName}}</span>
         <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
       </h1>
       </form>
@@ -16,7 +16,9 @@
     <md-grid-list md-cols="4" md-gutter="3em" md-row-height="10em" class="projects">
       <!-- projects items -->
       <md-grid-tile>
-        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
+        <md-grid-tile-header class="md-subhead" layout-align="row">
+          <input type="text" ng-model="projectName">{{projectName}}
+        </md-grid-tile-header>
         <p class="md-caption">Progress</p>
         <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
       </md-grid-tile>

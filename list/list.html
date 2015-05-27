@@ -1,1 +1,29 @@
-this is list area
+<div ng-repeat="list in list |filter: {project: projectId}">
+  <p>{{list.listName}}</p>
+
+  <div ng-repeat="x in task|filter: {listId: list.$id}">
+
+    <div>
+      <md-button class="md-primary" ng-click=" changeLocationPath(x.$id);showAdvanced($event);">
+        {{x.taskName}}
+      </md-button>
+    </div>
+  </div>
+
+  <md-input-container>
+    <label>Add new task</label>
+    <input type="text" ng-model="data.taskName" ng-model-options="{ updateOn: 'blur' }" />
+  </md-input-container>
+  <md-button ng-click="addTask(list.$id); data.taskName =''; ">Add task</md-button>
+
+
+</div>
+
+<md-button ng-hide="openList" ng-click="openList = !openList ">Add list</md-button>
+
+<div ng-show="openList">
+
+  <input type="text" ng-model="data.listName" />
+  <md-button ng-click="addList(); openList = !openList ">Add list</md-button>
+
+</div>

@@ -1,1 +1,10 @@
-this is task area
+<md-dialog>
+
+  <div ng-repeat="x in task | filter: {$id : getId}">
+    {{x.taskName}}
+
+  </div>
+  <div class="md-actions">
+    <md-button ng-click="closeDialog()">Close</md-button>
+  </div>
+</md-dialog>

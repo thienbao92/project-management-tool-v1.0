@@ -88,7 +88,7 @@ angular.module('myApp', [
         }
       }
     })
-    //profile page
+    //board page
     .state('board', {
       url: "/board/:projectId",
       views: {
@@ -103,7 +103,14 @@ angular.module('myApp', [
           templateUrl: "timeline/timeline.html",
           controller: "timelineCtrl"
         }
+
       }
+    })
+    .state('task', {
+      url: "/task/:taskId",
+      templateUrl: "task/task.html",
+      controller: "taskCtrl",
+
     })
 })
 

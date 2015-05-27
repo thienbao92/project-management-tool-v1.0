@@ -7,11 +7,14 @@ angular.module('myApp', [
     'ngMaterial',
 //shared JS
     'myApp.services',
+
+  //services
     'organization.services',
+    'list.Services',
+  'login.Services',
 //controllers
     'list.Controller',
     'login.Controller',
-    'login.Services',
     'board.Controller',
     'main.Controller',
     'organization.Controller',
@@ -87,7 +90,7 @@ angular.module('myApp', [
     })
     //profile page
     .state('board', {
-      url: "/board",
+      url: "/board/:projectId",
       views: {
         '': {
           templateUrl: "board/board.html"

@@ -1,12 +1,13 @@
 <md-content class="org">
   <!-- organization list -->
   <section layout-padding class="org__item">
+<!--  <section layout-padding class="org__item" ng-repeat="org in organization | filter: {owner: id}">-->
     <!-- organization header -->
     <md-subheader>
       <form>
         <h1 class="md-title">
         <!-- input organization name -->
-        <input type="text" ng-show="showInput" ng-model="orgName"><span ng-hide="showInput">{{orgName}}</span>
+        <input type="text" ng-show="showInput" show-focus="showInput" ng-model="org.name"><span ng-hide="showInput">{{org.name}}</span>
         <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
       </h1>
       </form>
@@ -15,75 +16,47 @@
     <!-- projects list -->
     <md-grid-list md-cols="4" md-gutter="3em" md-row-height="10em" class="projects">
       <!-- projects items -->
-      <md-grid-tile>
-        <md-grid-tile-header class="md-subhead" layout-align="row">
-          <input type="text" ng-model="projectName">{{projectName}}
+      <md-grid-tile ng-repeat="x in org.project">
+        <md-grid-tile-header class="md-subhead">
+          <input type="text" ng-model="x.projectName">{{x.projectName}}
         </md-grid-tile-header>
         <p class="md-caption">Progress</p>
         <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
       </md-grid-tile>
 
-      <md-grid-tile>
-        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
+      <md-grid-tile >
+        <md-grid-tile-header class="md-subhead" ng-click="inputShowed = true">
+          <input type="text" ng-model="x.projectName" show-focus="inputShowed" ng-show="inputShowed" ng-blur="inputShowed = false"><span ng-hide="inputShowed" ng-click="inputShowed = true" class="projects__title">{{x.projectName}}</span>
+        </md-grid-tile-header>
         <p class="md-caption">Progress</p>
         <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
       </md-grid-tile>
 
-      <md-grid-tile>
-        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
-        <p class="md-caption">Progress</p>
-        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-accent"></md-progress-linear>
-      </md-grid-tile>
-
-      <md-grid-tile>
-        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
-        <p class="md-caption">Progress</p>
-        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
-      </md-grid-tile>
 
       <md-grid-tile class="projects__add">
-        <md-button class="md-raised md-primary">Add project</md-button>
+
+        <md-button class="md-raised md-primary" ng-hide="openProjectInput" ng-click="openProjectInput = !openProjectInput">Add project</md-button>
+        <!-- Project input area -->
+        <div ng-show="openProjectInput">
+          <input type="text" ng-model="projectData.name" />
+          <md-button class="md-raised md-primary" ng-click="openProjectInput =!openProjectInput ; addProject(org.$id)"> Add project</md-button>
+          <md-button ng-click="openProjectInput =!openProjectInput">Cancel</md-button>
+        </div>
+        <!------------END Project input area------------>
       </md-grid-tile>
       <!-- END projects item -->
     </md-grid-list>
+
+
+
   </section>
 
-  <section layout-padding class="org__item">
-    <!-- organization header -->
-    <md-subheader>
-      <h1 class="md-title">
-        Organization name
-        <md-button class="md-icon-button" style="font-size: 20px"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
-      </h1>
-    </md-subheader>
+  <md-button class="md-raised md-accent org__add" ng-hide="openOrgInput" ng-click="openOrgInput = !openOrgInput">Add organization</md-button>
 
-    <!-- projects list -->
-    <md-grid-list md-cols="4" md-gutter="3em" md-row-height="10em" class="projects">
-      <!-- projects items -->
-      <md-grid-tile>
-        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
-        <p class="md-caption">Progress</p>
-        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
-      </md-grid-tile>
+  <div ng-show="openOrgInput">
+    <input type="text" ng-model="orgName" />
+    <md-button class="md-raised md-accent org__add" ng-click="openOrgInput =!openOrgInput ; addOrg()">Add Organization</md-button>
+    <md-button class="md-raised md-dangerous org__add" ng-click="openOrgInput =!openOrgInput">Cancel</md-button>
+  </div>
 
-      <md-grid-tile>
-        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
-        <p class="md-caption">Progress</p>
-        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
-      </md-grid-tile>
-
-      <md-grid-tile>
-        <md-grid-tile-header class="md-subhead">Project name</md-grid-tile-header>
-        <p class="md-caption">Progress</p>
-        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
-      </md-grid-tile>
-
-      <md-grid-tile class="projects__add">
-        <md-button class="md-raised md-primary">Add project</md-button>
-      </md-grid-tile>
-      <!-- END projects item -->
-    </md-grid-list>
-  </section>
-  <!-- END organization list -->
-  <md-button class="md-raised md-accent org__add">Add organization</md-button>
 </md-content>

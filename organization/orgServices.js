@@ -15,6 +15,7 @@ angular.module('organization.services', [])
 
 .factory('firebaseProject', function (firebaseUrl, $firebaseArray) {
 
+
     var ref = new Firebase(firebaseUrl + '/project');
     var project = $firebaseArray(ref);
     return project;
@@ -24,6 +25,7 @@ angular.module('organization.services', [])
     //        var project = $firebaseArray(ref);
     //        return project;
     //      } //End function
+
 
 
 

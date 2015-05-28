@@ -6,6 +6,16 @@
 
 angular.module('organization.Controller', [])
 
+.directive('showFocus', function ($timeout) {
+  return function (scope, element, attrs) {
+    scope.$watch(attrs.showFocus,
+      function (newValue) {
+        $timeout(function () {
+          newValue && element.focus();
+        });
+      }, true);
+  };
+})
 
 
 .controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject) {
@@ -19,6 +29,7 @@ angular.module('organization.Controller', [])
       })
     }; //end function addOrg
 
+
     console.log($scope.organization);
     //add project area
 
@@ -31,6 +42,5 @@ angular.module('organization.Controller', [])
           org: uid
         })
       } //end function addProject
-
 
   }) //End orgCtrl

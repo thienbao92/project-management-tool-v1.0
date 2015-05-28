@@ -8,10 +8,12 @@ angular.module('myApp', [
 //shared JS
     'myApp.services',
 
+
   //services
     'organization.services',
     'list.Services',
   'login.Services',
+
 //controllers
     'list.Controller',
     'login.Controller',

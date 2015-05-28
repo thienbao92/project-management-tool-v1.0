@@ -1,12 +1,19 @@
 <md-content class="org">
   <!-- organization list -->
+
   <section layout-padding class="org__item" ng-repeat="org in organization | filter: {owner: id}">
+
+
+
+
     <!-- organization header -->
     <md-subheader>
       <form>
         <h1 class="md-title">
         <!-- input organization name -->
-        <input type="text" placeholder="{{org.name}}" ng-show="showInput" ng-model="orgName"><span ng-hide="showInput">{{org.name}}</span>
+
+        <input type="text" ng-show="showInput" show-focus="showInput" ng-model="orgName"><span ng-hide="showInput">{{org.name}}</span>
+
 
         <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
       </h1>
@@ -17,8 +24,13 @@
     <md-grid-list md-cols="4" md-gutter="3em" md-row-height="10em" class="projects">
       <!-- projects items -->
 
+
       <md-grid-tile ng-repeat="x in project |filter:{org: org.$id} ">
-        <md-grid-tile-header class="md-subhead">{{x.projectName}}</md-grid-tile-header>
+        <md-grid-tile-header class="md-subhead" ng-click="inputShowed = true">
+          <input type="text" ng-model="x.projectName" show-focus="inputShowed" ng-show="inputShowed" ng-blur="inputShowed = false" />
+          <span ng-hide="inputShowed" ng-click="inputShowed = true" class="projects__title">{{x.projectName}}</span>
+        </md-grid-tile-header>
+
         <p class="md-caption">Progress</p>
 
         <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
@@ -28,7 +40,6 @@
         </md-grid-tile-footer>
 
       </md-grid-tile>
-
 
 
       <md-grid-tile class="projects__add">

@@ -6,7 +6,7 @@
 
 angular.module('list.Controller', [])
 
-.controller('listCtrl', function ($scope, $stateParams, firebaseList, firebaseTask, $mdDialog, $rootScope, $location) {
+.controller('listCtrl', function ($scope, $stateParams, firebaseList, firebaseTask, $mdDialog, $rootScope, $location, $state) {
   //get stateparams ID
   $scope.projectId = $stateParams.projectId;
 
@@ -41,11 +41,11 @@ angular.module('list.Controller', [])
 
   }
 
-  $scope.changeLocationPath = function (id) {
-
-      $location.url('/task/' + id);
-
-    } //end function getTaskId
+  $scope.goToTask = function (id) {
+      $state.go('task', {
+        taskId: id
+      });
+    } //end function goToTask
 
 
 })

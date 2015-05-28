@@ -4,7 +4,7 @@
   <div ng-repeat="x in task|filter: {listId: list.$id}">
 
     <div>
-      <md-button class="md-primary" ng-click=" changeLocationPath(x.$id);showAdvanced($event);">
+      <md-button class="md-primary" ng-click=" goToTask(x.$id)">
         {{x.taskName}}
       </md-button>
     </div>

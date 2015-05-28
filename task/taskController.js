@@ -17,9 +17,10 @@ angular.module('task.Controller', [])
 
     };
 
-    $scope.task = firebaseTask;
-    $scope.getId = $stateParams.taskId;
-    console.log($stateParams.taskId);
+    $scope.taskId = $stateParams.taskId;
 
+    console.log($scope.taskId);
+    $scope.task = firebaseTask;
+    console.log($scope.task);
 
   }) //End taskCtrl

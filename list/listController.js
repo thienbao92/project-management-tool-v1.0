@@ -6,7 +6,11 @@
 
 angular.module('list.Controller', [])
 
-.controller('listCtrl', function ($scope, $stateParams, firebaseList, firebaseTask, $mdDialog, $rootScope, $location, $state) {
+.controller('listCtrl', function ($scope, $stateParams, firebaseList, firebaseTask, $mdDialog, $rootScope, $location, $state, getDate) {
+
+
+
+
   //get stateparams ID
   $scope.projectId = $stateParams.projectId;
 
@@ -25,21 +29,19 @@ angular.module('list.Controller', [])
   //End list modification area
   $scope.task = firebaseTask;
 
-  $scope.addTask = function (uid) {
+  var date = moment().format();
+
+  $scope.addTask = function (uid, nameOfList) {
       $scope.task.$add({
         taskName: $scope.data.taskName,
-        listId: uid
+        listId: uid,
+        listName: nameOfList,
+        startDate: date,
+        endDate: date
+
       })
     } //end function addTask
 
-  $scope.showAdvanced = function ($event) {
-    $mdDialog.show({
-      controller: 'taskCtrl',
-      templateUrl: 'task/task.html',
-      //  targetEvent: $event,
-    });
-
-  }
 
   $scope.goToTask = function (id) {
       $state.go('task', {

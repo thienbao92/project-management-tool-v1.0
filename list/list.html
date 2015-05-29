@@ -14,7 +14,7 @@
     <label>Add new task</label>
     <input type="text" ng-model="data.taskName" ng-model-options="{ updateOn: 'blur' }" />
   </md-input-container>
-  <md-button ng-click="addTask(list.$id); data.taskName =''; ">Add task</md-button>
+  <md-button ng-click="addTask(list.$id, list.listName); data.taskName =''; ">Add task</md-button>
 
 
 </div>

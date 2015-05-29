@@ -1,3 +1,26 @@
-<div ng-repeat="x in task |filter : {$id: taskId }">
-  {{x.taskName}}
+<div ng-repeat="task in task |filter : {$id: taskId }">
+
+  <!-- common information -->
+  {{task.taskName}} {{task.listName}} {{task.startDate}} {{task.endDate}}
+
+  <!------------END common information------------>
+
+  <!-- Check list area -->
+  <div ng-repeat="checkList in task.checkList">
+
+
+
+  </div>
+  <!--END Check list area-->
+
+  <!-- message Area -->
+  <div ng-repeat="msg in task.message">
+
+
+
+  </div>
+  <!--END message Area-->
+
+
+
 </div>

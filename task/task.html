@@ -25,14 +25,17 @@
   <!------------END common information------------>
 
   <!-- Check list area -->
-  <div ng-repeat="cl in task.checklist">
-
-
+  <div ng-repeat="cl in checklist">
+    <input type="checkbox" ng-model="cl.isDone" ng-change="checklist.$save(cl)" /> {{cl.text}}
 
   </div>
   <br>
+
+  <p>Number of Check list: {{total}}</p>
+
+
   <input type="text" ng-model="data.text" />
-  <md-button ng-click="addChecklist()">Add Check list</md-button>
+  <md-button ng-click="addChecklist(); data.text=''">Add Check list</md-button>
   <!--END Check list area-->
 
   <!-- message Area -->

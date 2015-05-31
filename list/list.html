@@ -1,29 +1,39 @@
-<div ng-repeat="list in list |filter: {project: projectId}">
-  <p>{{list.listName}}</p>
+<h1 layout-padding class="md-headline" ng-repeat="project in projects |filter: {'$id': projectId}">{{project.projectName}}</h1>
 
-  <div ng-repeat="x in task|filter: {listId: list.$id}">
+<div layout="row" style="flex-wrap: wrap">
+  <md-list flex="20" ng-repeat="list in list |filter: {project: projectId}" layout="column" layout-margin layout-padding class="tasks-list">
+    <md-card md-theme="{{ list.listTheme }}" class="md-hue-1">
+      <h1 layout-padding layout-margin class="md-subhead">{{list.listName}}</h1>
 
-    <div>
-      <md-button class="md-primary" ng-click=" goToTask(x.$id)">
-        {{x.taskName}}
-      </md-button>
-    </div>
+      <md-list-item ng-repeat="x in task|filter: {listId: list.$id}" class="tasks-list__item">
+
+        <md-card ng-click=" goToTask(x.$id)" flex layout-padding md-theme="default">
+          <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
+          <p>{{x.taskName}}</p>
+        </md-card>
+      </md-list-item>
+
+      <md-list-item class="tasks-list__item">
+        <md-card flex layout-padding md-theme="default">
+          <md-input-container>
+            <label>Add new task</label>
+            <input type="text" ng-model="data.taskName" ng-model-options="{ updateOn: 'blur' }" />
+          </md-input-container>
+        </md-card>
+      </md-list-item>
+
+      <md-button ng-click="addTask(list.$id, list.listName); data.taskName =''; ">Add task</md-button>
+    </md-card>
+  </md-list>
+
+  <div>
+    <md-button ng-hide="openList" ng-click="openList = !openList ">Add list</md-button>
   </div>
 
-  <md-input-container>
-    <label>Add new task</label>
-    <input type="text" ng-model="data.taskName" ng-model-options="{ updateOn: 'blur' }" />
-  </md-input-container>
-  <md-button ng-click="addTask(list.$id, list.listName); data.taskName =''; ">Add task</md-button>
+  <div ng-show="openList">
 
+    <input type="text" ng-model="data.listName" />
+    <md-button ng-click="addList(); openList = !openList ">Add list</md-button>
 
-</div>
-
-<md-button ng-hide="openList" ng-click="openList = !openList ">Add list</md-button>
-
-<div ng-show="openList">
-
-  <input type="text" ng-model="data.listName" />
-  <md-button ng-click="addList(); openList = !openList ">Add list</md-button>
-
+  </div>
 </div>

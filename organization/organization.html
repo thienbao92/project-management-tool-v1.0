@@ -3,17 +3,13 @@
 
   <section layout-padding class="org__item" ng-repeat="org in organization | filter: {owner: id}">
 
-
-
-
     <!-- organization header -->
     <md-subheader>
       <form>
         <h1 class="md-title">
         <!-- input organization name -->
 
-        <input type="text" ng-show="showInput" show-focus="showInput" ng-model="orgName"><span ng-hide="showInput">{{org.name}}</span>
-
+        <input type="text" ng-show="showInput" show-focus="showInput" ng-model="orgName" placeholder="{{org.name}}"><span ng-hide="showInput">{{org.name}}</span>
 
         <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
       </h1>
@@ -41,7 +37,6 @@
 
       </md-grid-tile>
 
-
       <md-grid-tile class="projects__add">
 
         <md-button class="md-raised md-primary" ng-hide="openProjectInput" ng-click="openProjectInput = !openProjectInput">Add project</md-button>
@@ -55,8 +50,6 @@
       </md-grid-tile>
       <!-- END projects item -->
     </md-grid-list>
-
-
 
   </section>
 

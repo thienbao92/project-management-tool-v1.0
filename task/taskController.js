@@ -6,21 +6,38 @@
 
 angular.module('task.Controller', [])
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams) {
+.factory('firebaseCheckList', function (firebaseUrl, $firebaseArray) {
+
+    return function (TaskId) {
+        var url = firebaseUrl + '/task/' + TaskId + '/checklist';
+        var ref = new Firebase(url);
+        var checklist = $firebaseArray(ref);
+        return checklist
+      } //End function
+  }) // END firebaseCheckList
 
 
-    $scope.closeDialog = function () {
-      // Easily hides most recent dialog shown...
-      // no specific instance reference is needed.
-      $mdDialog.hide();
-      history.back();
+.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList) {
 
-    };
 
     $scope.taskId = $stateParams.taskId;
 
-    console.log($scope.taskId);
     $scope.task = firebaseTask;
-    console.log($scope.task);
 
+    $scope.close = function () {
+      history.back();
+    };
+
+    //Check list function area
+    $scope.checklist = firebaseCheckList($stateParams.taskId);
+    $scope.data = {};
+    $scope.addChecklist = function () {
+        $scope.checklist.$add({
+          text: $scope.data.text,
+          isDone: false
+        })
+      } //end function addChecklist
+
+
+    //End check list function area
   }) //End taskCtrl

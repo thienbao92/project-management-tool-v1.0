@@ -1,16 +1,38 @@
-<div ng-repeat="task in task |filter : {$id: taskId }">
+<div ng-repeat="x in task |filter: {$id : taskId }">
 
   <!-- common information -->
-  {{task.taskName}} {{task.listName}} {{task.startDate}} {{task.endDate}}
+  {{x.taskName}} {{x.listName}}
+  <br>
+
+  <label>End date</label>
+
+  <input type="text" ng-model="x.taskName" ng-change="task.$save(x)" />
+
+  <datepicker date-format="dd/MM/yyyy">
+    <input type="text" ng-model="x.startDate" ng-change="task.$save(x)">
+  </datepicker>
+  <label>End date</label>
+  <datepicker date-format="dd/MM/yyyy">
+    <input type="text" ng-model="x.endDate" ng-change="task.$save(x)">
+  </datepicker>
+
+  <!-- button area -->
+  <br>
+  <md-button ng-click="close()">Close</md-button>
+  <md-button ng-click="task.$remove(x);close()">Delete</md-button>
+  <!--END button area-->
 
   <!------------END common information------------>
 
   <!-- Check list area -->
-  <div ng-repeat="checkList in task.checkList">
+  <div ng-repeat="cl in task.checklist">
 
 
 
   </div>
+  <br>
+  <input type="text" ng-model="data.text" />
+  <md-button ng-click="addChecklist()">Add Check list</md-button>
   <!--END Check list area-->
 
   <!-- message Area -->

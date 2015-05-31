@@ -1,7 +1,7 @@
 <h1 layout-padding class="md-headline" ng-repeat="project in projects |filter: {'$id': projectId}">{{project.projectName}}</h1>
 
-<div layout="row" style="flex-wrap: wrap">
-  <md-list flex="20" ng-repeat="list in list |filter: {project: projectId}" layout="column" layout-margin layout-padding class="tasks-list">
+<div layout="row" class="list-container">
+  <md-list flex="20" ng-repeat="list in list |filter: {project: projectId}" layout="column" layout-padding class="tasks-list">
     <md-card md-theme="{{ list.listTheme }}" class="md-hue-1">
       <h1 layout-padding layout-margin class="md-subhead">{{list.listName}}</h1>
 

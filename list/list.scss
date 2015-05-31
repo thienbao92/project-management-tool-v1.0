@@ -1,5 +1,9 @@
 @import "../dist/material-colors/colors";
 
+.list-container {
+  flex-wrap: wrap;
+}
+
 .tasks-list {
 
   .tasks-list__item {

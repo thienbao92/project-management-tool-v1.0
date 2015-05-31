@@ -6,7 +6,7 @@
 
 angular.module('list.Controller', [])
 
-.controller('listCtrl', function ($scope, $stateParams, firebaseList, firebaseTask, firebaseProject, $mdDialog, $rootScope, $location, $state, getDate) {
+.controller('listCtrl', function ($scope, $stateParams, firebaseList, firebaseTask, firebaseProject, $mdDialog, $rootScope, $location, $state, getDate, $filter) {
 
 
   $scope.projects = firebaseProject;
@@ -29,18 +29,22 @@ angular.module('list.Controller', [])
 
   //End list modification area
   $scope.task = firebaseTask;
+  $scope.date = getDate;
 
-  var d = new Date();
-  var date = d.toJSON();
-  console.log(date);
+  //$scope.date = $filter('date')(new Date(), 'dd/MM/yyyy');
 
+  //date time area
+  //  var parser = datetime("yyyy-MM-dd");
+  //  var date = parser.parse("2015-01-30");
+  //  console.log(date);
+  //END date time are
   $scope.addTask = function (uid, nameOfList) {
       $scope.task.$add({
         taskName: $scope.data.taskName,
         listId: uid,
         listName: nameOfList,
-        startDate: date,
-        endDate: date
+        startDate: $scope.date,
+        endDate: $scope.date
 
       })
     } //end function addTask

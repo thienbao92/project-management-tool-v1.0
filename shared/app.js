@@ -5,6 +5,8 @@
  */
 angular.module('myApp', [
     'ngMaterial',
+    'angularMoment',
+  '720kb.datepicker',
 //shared JS
     'myApp.services',
 

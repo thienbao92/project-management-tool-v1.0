@@ -142,3 +142,26 @@ angular.module('myApp', [
       'default': '600'
     });
 })
+
+.directive('jsonDate', function ($filter) {
+  return {
+    restrict: 'A',
+    require: 'ngModel',
+    link: function (scope, element, attrs, ngModel) {
+
+      //format text going to user (model to view)
+      ngModel.$formatters.push(function (value) {
+        var date = $filter('stringToDate')(value);
+        return date.toString();
+      });
+
+      //format text from the user (view to model)
+      ngModel.$parsers.push(function (value) {
+        var date = new Date(value);
+        if (!isNaN(date.getTime())) {
+          return moment(date).format();
+        }
+      });
+    }
+  }
+})

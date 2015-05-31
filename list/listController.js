@@ -29,7 +29,9 @@ angular.module('list.Controller', [])
   //End list modification area
   $scope.task = firebaseTask;
 
-  var date = moment().format();
+  var d = new Date();
+  var date = d.toJSON();
+  console.log(date);
 
   $scope.addTask = function (uid, nameOfList) {
       $scope.task.$add({

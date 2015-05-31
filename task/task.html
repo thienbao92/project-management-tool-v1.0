@@ -1,8 +1,14 @@
 <div ng-repeat="task in task |filter : {$id: taskId }">
 
   <!-- common information -->
-  {{task.taskName}} {{task.listName}} {{task.startDate}} {{task.endDate}}
+  {{task.taskName}} {{task.listName}}
+  <br>
 
+  <label>start date</label>
+  <input type="date" ng-model="task.startDate" ng-change="task.$save(task)" />
+
+  <label>End date</label>
+  <input type="text" ng-model="task.endDate" ng-change="task.$save(task)" />
   <!------------END common information------------>
 
   <!-- Check list area -->

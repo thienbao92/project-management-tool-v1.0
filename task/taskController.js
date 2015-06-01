@@ -17,7 +17,7 @@ angular.module('task.Controller', [])
   }) // END firebaseCheckList
 
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList) {
+.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseUrl, $firebaseArray) {
 
 
     $scope.taskId = $stateParams.taskId;
@@ -29,14 +29,32 @@ angular.module('task.Controller', [])
     };
 
     //Check list function area
+    $scope.total;
+
     $scope.checklist = firebaseCheckList($stateParams.taskId);
+
+    $scope.checklist.$watch(function () {
+
+      $scope.checklist.$loaded().then(function (x) {
+        $scope.total = x.length;
+      })
+
+    });
+
+
     $scope.data = {};
     $scope.addChecklist = function () {
         $scope.checklist.$add({
-          text: $scope.data.text,
-          isDone: false
+          text: $scope.data.text
         })
       } //end function addChecklist
+
+
+
+
+    angular.forEach($scope.checklist, function (value, key) {
+      total += value.text;
+    })
 
 
     //End check list function area

@@ -12,11 +12,20 @@ angular.module('login.Services', [])
     return auth;
   }) // END firebaseAuth
 
+.factory('firebaseUser', function (firebaseUrl, $firebaseArray) {
+    var url = firebaseUrl + '/users';
+    var ref = new Firebase(url);
+    var users = $firebaseArray(ref);
+    return users;
+  }) // END firbaseUser
+
+
+
 //run function
-.run(function ($rootScope, firebaseAuth, $state) {
+.run(function ($rootScope, firebaseAuth, $state, firebaseUser) {
 
     $rootScope.auth = firebaseAuth;
-
+    $rootScope.users = firebaseUser;
 
     $rootScope.logout = function () {
         $rootScope.auth.$unauth();

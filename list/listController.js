@@ -38,10 +38,12 @@ angular.module('list.Controller', [])
   //  var date = parser.parse("2015-01-30");
   //  console.log(date);
   //END date time are
-  $scope.addTask = function (uid, nameOfList) {
+  $scope.addTask = function (uid, projectId, organizationId, nameOfList) {
       $scope.task.$add({
         taskName: $scope.data.taskName,
         listId: uid,
+        projectId: projectId,
+        organizationId: organizationId,
         listName: nameOfList,
         startDate: $scope.date,
         endDate: $scope.date

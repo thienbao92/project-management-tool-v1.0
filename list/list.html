@@ -1,6 +1,6 @@
-<h1 layout-padding class="md-headline" ng-repeat="project in projects |filter: {'$id': projectId}">{{project.projectName}}</h1>
-
-<div layout="row" style="flex-wrap: wrap">
+<div layout="row" style="flex-wrap: wrap" ng-repeat="project in projects |filter: {'$id': projectId}">
+  <h1 layout-padding class="md-headline">{{project.projectName}}</h1>
+  <br>
   <md-list flex="20" ng-repeat="list in list |filter: {project: projectId}" layout="column" layout-margin layout-padding class="tasks-list">
     <md-card md-theme="{{ list.listTheme }}" class="md-hue-1">
       <h1 layout-padding layout-margin class="md-subhead">{{list.listName}}</h1>
@@ -22,7 +22,7 @@
         </md-card>
       </md-list-item>
 
-      <md-button ng-click="addTask(list.$id, list.listName); data.taskName =''; ">Add task</md-button>
+      <md-button ng-click="addTask(list.$id, list.project,project.org, list.listName); data.taskName =''; ">Add task</md-button>
     </md-card>
   </md-list>
 

@@ -1,9 +1,12 @@
 <h1 layout-padding class="md-headline" ng-repeat="project in projects |filter: {'$id': projectId}">{{project.projectName}}</h1>
 
 <div layout="row" class="list-container">
-  <md-list flex="20" ng-repeat="list in list |filter: {project: projectId}" layout="column" layout-padding class="tasks-list">
-    <md-card md-theme="{{ list.listTheme }}" class="md-hue-1">
-      <h1 layout-padding layout-margin class="md-subhead">{{list.listName}}</h1>
+  <md-list flex="20" ng-repeat="list in lists |filter: {project: projectId}" layout="column" layout-padding class="tasks-list">
+    <md-card md-theme="{{ list.listTheme }}">
+      <h1 layout-padding layout-margin class="md-subhead">
+        {{list.listName}}
+        <md-button ng-click="lists.$remove(list)">X</md-button>
+      </h1>
 
       <md-list-item ng-repeat="x in task|filter: {listId: list.$id}" class="tasks-list__item">
 

@@ -16,11 +16,11 @@ angular.module('list.Controller', [])
 
   //get list data from firebase
 
-  $scope.list = firebaseList;
+  $scope.lists = firebaseList;
   $scope.data = {};
 
   $scope.addList = function () {
-      $scope.list.$add({
+      $scope.lists.$add({
         listName: $scope.data.listName,
         listTheme: $scope.getListTheme(),
         project: $stateParams.projectId
@@ -87,31 +87,26 @@ angular.module('list.Controller', [])
 
   $mdThemingProvider.theme('list-bg-1')
     .backgroundPalette('purple', {
-      'default': '50',
-      'hue-1': '200',
+      'default': '200',
     });
 
   $mdThemingProvider.theme('list-bg-2')
     .backgroundPalette('teal', {
-      'default': '50',
-      'hue-1': '300',
+      'default': '300',
     });
 
   $mdThemingProvider.theme('list-bg-3')
     .backgroundPalette('lime', {
-      'default': '50',
-      'hue-1': '300',
+      'default': '300',
     });
 
   $mdThemingProvider.theme('list-bg-4')
     .backgroundPalette('orange', {
-      'default': '50',
-      'hue-1': '300',
+      'default': '300',
     });
 
   $mdThemingProvider.theme('list-bg-5')
     .backgroundPalette('brown', {
-      'default': '50',
-      'hue-1': '300',
+      'default': '300',
     });
 })

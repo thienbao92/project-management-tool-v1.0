@@ -1,64 +1,75 @@
-<div ng-repeat="x in task |filter: {$id : taskId }">
+<md-content layout="column" ng-repeat="x in task |filter: {$id : taskId }" style="min-height: 90%">
 
   <!-- common information -->
-  {{x.taskName}} {{x.listName}}
-  <br>
+  <md-content layout-padding>
+    <span>{{x.listName}}</span>
+    <input type="text" ng-model="x.taskName" ng-change="task.$save(x)" />
+  </md-content>
 
-  <label>End date</label>
-
-  <input type="text" ng-model="x.taskName" ng-change="task.$save(x)" />
-
-  <datepicker date-format="dd/MM/yyyy">
-    <input type="text" ng-model="x.startDate" ng-change="task.$save(x)">
-  </datepicker>
-  <label>End date</label>
-  <datepicker date-format="dd/MM/yyyy">
-    <input type="text" ng-model="x.endDate" ng-change="task.$save(x)">
-  </datepicker>
-
-  <!-- button area -->
-  <br>
-  <md-button ng-click="close()">Close</md-button>
-  <md-button ng-click="task.$remove(x);close()">Delete</md-button>
-  <!--END button area-->
+  <div layout="row" layout-padding>
+    <label>Start date</label>
+    <div class="datepicker-container">
+      <datepicker date-format="dd/MM/yyyy">
+        <input type="text" ng-model="x.startDate" ng-change="task.$save(x)">
+      </datepicker>
+    </div>
+    <label>End date</label>
+    <div class="datepicker-container">
+      <datepicker date-format="dd/MM/yyyy">
+        <input type="text" ng-model="x.endDate" ng-change="task.$save(x)">
+      </datepicker>
+    </div>
+  </div>
 
   <!------------END common information------------>
 
   <!-- Check list area -->
-  <div ng-repeat="cl in checklist">
-    <input type="checkbox" ng-model="cl.isDone" ng-change="checklist.$save(cl)" /> {{cl.text}}
+  <md-content layout-padding>
+    <div ng-repeat="cl in checklist">
+      <md-checkbox ng-model="cl.isDone" ng-change="checklist.$save(cl)" class="md-primary">
+        {{cl.text}}
+      </md-checkbox>
+    </div>
+    <br>
 
-  </div>
-  <br>
+    <p>Number of Check list: {{total}}</p>
+    <p>percentage: {{percentage}}</p>
+    <md-progress-linear class="md-accent" md-mode="determinate" value="{{percentage}}"></md-progress-linear>
 
-  <p>Number of Check list: {{total}}</p>
-  <p>percentage: {{percentage}}</p>
-  <md-progress-linear class="md-accent" md-mode="determinate" value="{{percentage}}"></md-progress-linear>
+    <input type="text" ng-model="data.text" />
+    <md-button ng-click="addChecklist(); data.text=''">Add Check list</md-button>
+    <!--END Check list area-->
 
-  <input type="text" ng-model="data.text" />
-  <md-button ng-click="addChecklist(); data.text=''">Add Check list</md-button>
-  <!--END Check list area-->
+    <!-- Member area -->
+    <input type="text" ng-model="searchUser" />
 
-  <!-- Member area -->
-  <input type="text" ng-model="searchUser" />
+    <!--END Member area-->
+    <div ng-repeat="user in users | filter:searchUser ">
 
-  <!--END Member area-->
-  <div ng-repeat="user in users | filter:searchUser ">
+      <div ng-repeat="userProfile in user.profile">
+        {{userProfile.firstName}} {{user.$id}}
+        <md-button ng-click="addMember(user.$id, x.organizationId, x.projectId, x.listId, x.$id)">Add member</md-button>
 
-    <div ng-repeat="userProfile in user.profile">
-      {{userProfile.firstName}} {{user.$id}}
-      <md-button ng-click="addMember(user.$id, x.organizationId, x.projectId, x.listId, x.$id)">Add member</md-button>
+      </div>
+    </div>
+    <!-- message Area -->
+    <div ng-repeat="msg in task.message">
+
+
 
     </div>
-  </div>
-  <!-- message Area -->
-  <div ng-repeat="msg in task.message">
+    <!--END message Area-->
+  </md-content>
+
+  <span flex></span>
+  <!-- button area -->
+  <md-toolbar class="toolbar--bottom">
+    <div class="md-toolbar-tools">
+      <md-button ng-click="close()" class="md-raised">Close</md-button>
+      <md-button ng-click="task.$remove(x);close()" class="md-raised md-warn">Delete</md-button>
+    </div>
+  </md-toolbar>
+  <!--END button area-->
 
 
-
-  </div>
-  <!--END message Area-->
-
-
-
-</div>
+</md-content>

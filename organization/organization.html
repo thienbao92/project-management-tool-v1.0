@@ -9,7 +9,7 @@
         <h1 class="md-title">
         <!-- input organization name -->
 
-        <input type="text" ng-show="showInput" show-focus="showInput" ng-model="org.name"><span ng-hide="showInput">{{org.name}}</span>
+        <input type="text" ng-show="showInput" show-focus="showInput" ng-model="org.name" ng-blur="organization.$save(org)"><span ng-hide="showInput">{{org.name}}</span>
 
         <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
       </h1>
@@ -23,7 +23,7 @@
 
       <md-grid-tile ng-repeat="x in project |filter:{org: org.$id} ">
         <md-grid-tile-header class="md-subhead" ng-click="inputShowed = true">
-          <input type="text" ng-model="x.projectName" show-focus="inputShowed" ng-show="inputShowed" ng-blur="inputShowed = false" />
+          <input type="text" ng-model="x.projectName" show-focus="inputShowed" ng-show="inputShowed" ng-blur="inputShowed = false; project.$save(x)" />
           <span ng-hide="inputShowed" ng-click="inputShowed = true" class="projects__title">{{x.projectName}}</span>
         </md-grid-tile-header>
 

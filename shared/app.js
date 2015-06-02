@@ -7,11 +7,14 @@ angular.module('myApp', [
     'ngMaterial',
 //shared JS
     'myApp.services',
+
+  //services
     'organization.services',
+    'list.Services',
+  'login.Services',
 //controllers
     'list.Controller',
     'login.Controller',
-    'login.Services',
     'board.Controller',
     'main.Controller',
     'organization.Controller',
@@ -85,9 +88,9 @@ angular.module('myApp', [
         }
       }
     })
-    //profile page
+    //board page
     .state('board', {
-      url: "/board",
+      url: "/board/:projectId",
       views: {
         '': {
           templateUrl: "board/board.html"
@@ -100,7 +103,14 @@ angular.module('myApp', [
           templateUrl: "timeline/timeline.html",
           controller: "timelineCtrl"
         }
+
       }
+    })
+    .state('task', {
+      url: "/task/:taskId",
+      templateUrl: "task/task.html",
+      controller: "taskCtrl",
+
     })
 })
 

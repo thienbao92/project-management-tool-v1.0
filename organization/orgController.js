@@ -10,10 +10,10 @@ angular.module('organization.Controller', [])
   return function (scope, element, attrs) {
     scope.$watch(attrs.showFocus,
       function (newValue) {
-        $timeout(function() {
-            newValue && element.focus();
+        $timeout(function () {
+          newValue && element.focus();
         });
-      },true);
+      }, true);
   };
 })
 
@@ -28,14 +28,17 @@ angular.module('organization.Controller', [])
       })
     }; //end function addOrg
 
-
+    console.log($scope.organization);
     //add project area
 
     $scope.projectData = {};
+    $scope.project = firebaseProject;
+
     $scope.addProject = function (uid) {
-        $scope.project = firebaseProject(uid);
         $scope.project.$add({
-          projectName: $scope.projectData.name
+          projectName: $scope.projectData.name,
+          org: uid
         })
       } //end function addProject
+
   }) //End orgCtrl

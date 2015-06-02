@@ -14,17 +14,15 @@ angular.module('organization.services', [])
   }) // END firebaseOrg
 
 .factory('firebaseProject', function (firebaseUrl, $firebaseArray) {
-    //
-    //    var ref = new Firebase(firebaseUrl + '/project');
-    //    var project = $firebaseArray(ref);
-    //    return project;
 
-    return function (id) {
-        var ref = new Firebase(firebaseUrl + '/organization/' + id + '/project');
-        var project = $firebaseArray(ref);
-        return project;
-      } //End function
+    var ref = new Firebase(firebaseUrl + '/project');
+    var project = $firebaseArray(ref);
+    return project;
 
-
+    //    return function (id) {
+    //        var ref = new Firebase(firebaseUrl + '/organization/' + id + '/project');
+    //        var project = $firebaseArray(ref);
+    //        return project;
+    //      } //End function
 
   }) // END firebaseProject

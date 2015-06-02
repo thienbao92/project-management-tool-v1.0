@@ -1,1 +1,3 @@
-this is task area
+<div ng-repeat="x in task |filter : {$id: taskId }">
+  {{x.taskName}}
+</div>

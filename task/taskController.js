@@ -16,8 +16,18 @@ angular.module('task.Controller', [])
       } //End function
   }) // END firebaseCheckList
 
+.factory('firebaseMember', function (firebaseUrl, $firebaseArray) {
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseUrl, $firebaseArray) {
+    return function (id, field) {
+        var url = firebaseUrl + '/' + field + '/' + id + '/member';
+        var ref = new Firebase(url);
+        var members = $firebaseArray(ref);
+        return members;
+      } //End function
+  }) // END firebaseMember
+
+
+.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseUrl, $firebaseArray, firebaseMember) {
 
 
     $scope.taskId = $stateParams.taskId;
@@ -29,19 +39,22 @@ angular.module('task.Controller', [])
     };
 
     //Check list function area
-    $scope.total;
 
     $scope.checklist = firebaseCheckList($stateParams.taskId);
 
     $scope.checklist.$watch(function () {
-
-      $scope.checklist.$loaded().then(function (x) {
-        $scope.total = x.length;
+      $scope.checklist.$loaded().then(function (checklists) {
+        $scope.total = checklists.length;
+        $scope.count = 0;
+        angular.forEach(checklists, function (cl) {
+          if (cl.isDone) {
+            $scope.count += 1;
+          }
+        })
+        $scope.percentage = ($scope.count / $scope.total) * 100;
       })
 
     });
-
-
     $scope.data = {};
     $scope.addChecklist = function () {
         $scope.checklist.$add({
@@ -49,13 +62,39 @@ angular.module('task.Controller', [])
         })
       } //end function addChecklist
 
-
-
-
-    angular.forEach($scope.checklist, function (value, key) {
-      total += value.text;
-    })
-
-
     //End check list function area
+
+    // member function area
+
+    function member(field, id) {
+      field.$add({
+        member: id
+      }).then(function (data) {
+        console.log(data);
+      })
+    };
+
+    $scope.addMember = function (userId, orgId, projectId, listId, taskId) {
+        $scope.memberOrg = firebaseMember(orgId, 'organization');
+        $scope.memberProject = firebaseMember(projectId, 'project');
+        $scope.memberList = firebaseMember(listId, 'list');
+        $scope.memberTask = firebaseMember(taskId, 'task');
+
+        //        $scope.memberTask.$add({
+        //          member: userId
+        //        }).then(function (data) {
+        //          console.log(data);
+        //        })
+
+        member($scope.memberOrg, userId);
+        member($scope.memberProject, userId);
+        member($scope.memberList, userId);
+        member($scope.memberTask, userId);
+
+
+
+      } //end function addMember
+      //END member function area
+
+
   }) //End taskCtrl

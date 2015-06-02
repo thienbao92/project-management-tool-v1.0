@@ -2,8 +2,8 @@
 
   <!-- common information -->
   <md-content layout-padding>
-  <span>{{x.listName}}</span>
-  <input type="text" ng-model="x.taskName" ng-change="task.$save(x)" />
+    <span>{{x.listName}}</span>
+    <input type="text" ng-model="x.taskName" ng-change="task.$save(x)" />
   </md-content>
 
   <div layout="row" layout-padding>
@@ -33,12 +33,25 @@
     <br>
 
     <p>Number of Check list: {{total}}</p>
-
+    <p>percentage: {{percentage}}</p>
+    <md-progress-linear class="md-accent" md-mode="determinate" value="{{percentage}}"></md-progress-linear>
 
     <input type="text" ng-model="data.text" />
     <md-button ng-click="addChecklist(); data.text=''">Add Check list</md-button>
     <!--END Check list area-->
 
+    <!-- Member area -->
+    <input type="text" ng-model="searchUser" />
+
+    <!--END Member area-->
+    <div ng-repeat="user in users | filter:searchUser ">
+
+      <div ng-repeat="userProfile in user.profile">
+        {{userProfile.firstName}} {{user.$id}}
+        <md-button ng-click="addMember(user.$id, x.organizationId, x.projectId, x.listId, x.$id)">Add member</md-button>
+
+      </div>
+    </div>
     <!-- message Area -->
     <div ng-repeat="msg in task.message">
 

@@ -17,6 +17,7 @@ angular.module('organization.Controller', [])
   };
 })
 
+
 .controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject) {
 
     $scope.organization = firebaseOrg;
@@ -27,6 +28,7 @@ angular.module('organization.Controller', [])
         owner: $scope.id
       })
     }; //end function addOrg
+
 
     console.log($scope.organization);
     //add project area

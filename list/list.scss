@@ -1,0 +1,14 @@
+@import "../dist/material-colors/colors";
+
+.list-container {
+  flex-wrap: wrap;
+}
+
+.tasks-list {
+
+  .tasks-list__item {
+    align-items: stretch;
+    flex: initial;
+    color: $md-grey-800;
+  }
+}

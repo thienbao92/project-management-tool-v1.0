@@ -1,5 +1,6 @@
 <md-content class="org">
   <!-- organization list -->
+
   <section layout-padding class="org__item" ng-repeat="org in organization | filter: {owner: id}">
 
     <!-- organization header -->
@@ -8,7 +9,9 @@
         <h1 class="md-title">
         <!-- input organization name -->
 
-        <input type="text" ng-show="showInput" show-focus="showInput" ng-model="orgName"><span ng-hide="showInput">{{org.name}}</span>
+        <input type="text" ng-show="showInput" show-focus="showInput" ng-model="org.name" ng-blur="organization.$save(org)">
+        <span ng-hide="showInput">{{org.name}}{{org.member.member}}</span>
+
         <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
       </h1>
       </form>
@@ -18,15 +21,16 @@
     <md-grid-list md-cols="4" md-gutter="3em" md-row-height="10em" class="projects">
       <!-- projects items -->
 
+
       <md-grid-tile ng-repeat="x in project |filter:{org: org.$id} ">
         <md-grid-tile-header class="md-subhead" ng-click="inputShowed = true">
-          <input type="text" ng-model="x.projectName" show-focus="inputShowed" ng-show="inputShowed" ng-blur="inputShowed = false" />
+          <input type="text" ng-model="x.projectName" show-focus="inputShowed" ng-show="inputShowed" ng-blur="inputShowed = false; project.$save(x)" />
           <span ng-hide="inputShowed" ng-click="inputShowed = true" class="projects__title">{{x.projectName}}</span>
         </md-grid-tile-header>
 
-        <p class="md-caption">Progress</p>
 
-        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
+
+        <!--        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>-->
         <br>
         <md-grid-tile-footer>
           <md-button href="#/board/{{x.$id}}">show details</md-button>
@@ -47,8 +51,6 @@
       </md-grid-tile>
       <!-- END projects item -->
     </md-grid-list>
-
-
 
   </section>
 

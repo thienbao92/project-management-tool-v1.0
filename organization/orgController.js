@@ -26,19 +26,40 @@ angular.module('organization.Controller', [])
     console.log(userId);
     var ref = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember');
 
-    ref.on("value", function (snapshot) {
-      var groupArray = new Array();
 
-      snapshot.forEach(function (data) {
-        groupArray.push(data.key());
-        //        console.log();
+    //thu nghiem load org data
+    $scope.organization.$loaded(function () {
 
+        ref.on("value", function (snapshot) {
+            var groupArray = new Array();
 
-      })
-      console.log(groupArray);
-    })
+            snapshot.forEach(function (data) {
+              groupArray.push(data.key());
 
 
+            })
+            console.log(groupArray);
+
+
+            var getOrgValue = new Array();
+            angular.forEach($scope.organization, function (org) {
+
+                angular.forEach(groupArray, function (groupId) {
+                  if (org.$id === groupId) {
+                    getOrgValue.push(org);
+                    console.log(getOrgValue);
+                    $scope.getOrg = getOrgValue;
+                  }
+                })
+
+
+
+              }) //end forEach
+
+          }) // end ref on function
+      }) // End $load function
+
+    //Endthu nghiem load org data
 
 
 

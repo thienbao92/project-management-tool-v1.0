@@ -16,6 +16,16 @@ angular.module('task.Controller', [])
       } //End function
   }) // END firebaseCheckList
 
+.factory('firebaseChat', function (firebaseUrl, $firebaseArray) {
+
+    return function (TaskId) {
+        var url = firebaseUrl + '/task/' + TaskId + '/chat';
+        var ref = new Firebase(url);
+        var chat = $firebaseArray(ref);
+        return chat
+      } //End function
+  }) // END firebaseChat
+
 .factory('firebaseMember', function (firebaseUrl, $firebaseArray) {
 
     return function (id, field) {
@@ -27,7 +37,7 @@ angular.module('task.Controller', [])
   }) // END firebaseMember
 
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseUrl, $firebaseArray, firebaseMember) {
+.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember) {
 
 
     $scope.taskId = $stateParams.taskId;
@@ -95,6 +105,15 @@ angular.module('task.Controller', [])
 
       } //end function addMember
       //END member function area
+      //Chat-message area
+    $scope.messages = firebaseChat($stateParams.taskId);
+    $scope.sendMsg = function () {
+        $scope.messages.$add({
+          message: $scope.data.msg,
+          sender: $scope.id
+        })
+      } //end function sendMsg
 
+    //END chat-message area
 
   }) //End taskCtrl

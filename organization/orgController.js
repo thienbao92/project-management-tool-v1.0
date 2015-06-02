@@ -18,14 +18,29 @@ angular.module('organization.Controller', [])
 })
 
 
-.controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject) {
+.controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject, firebaseGroupMember, firebaseUrl) {
 
     $scope.organization = firebaseOrg;
+    $scope.groupMember = firebaseGroupMember;
+
+    var ref = new Firebase(firebaseUrl + '/groupMember/');
+
+    function addToIndex(id) {
+      ref.child(id).set(true);
+    }
 
     $scope.addOrg = function () {
       $scope.organization.$add({
         name: $scope.orgName,
         owner: $scope.id
+      }).then(function (data) {
+        var orgId = data.key();
+        addToIndex(orgId);
+
+        //        $scope.groupMember.$add({
+        //          organizationId: orgId,
+        //          member: $scope.id
+        //        })
       })
     }; //end function addOrg
 

@@ -7,10 +7,13 @@
     <!-- lists array -->
     <md-list flex="20" ng-repeat="list in lists |filter: {project: projectId}" layout="column" layout-padding class="tasks-list">
       <md-card md-theme="{{ list.listTheme }}">
-        <h1 layout-padding layout-margin class="md-subhead">
-        {{list.listName}}
-        <md-button ng-click="lists.$remove(list)">X</md-button>
-      </h1>
+        <div class="list__header" layout="row">
+          <h1 layout-padding layout-margin class="md-subhead">{{list.listName}}</h1>
+          <span flex></span>
+          <md-button ng-click="lists.$remove(list)" class="md-icon-button">
+            <md-icon md-font-icon="fa fa-ellipsis-v" class="md-subhead"></md-icon>
+          </md-button>
+        </div>
 
         <md-list-item ng-repeat="x in task|filter: {listId: list.$id}" class="tasks-list__item">
 
@@ -20,8 +23,8 @@
           </md-card>
         </md-list-item>
 
-        <md-list-item class="tasks-list__item">
-          <md-card flex layout-padding md-theme="default">
+        <md-list-item layout="column" class="tasks-list__item">
+          <md-card layout-padding md-theme="default">
             <md-input-container>
               <label>Add new task</label>
               <input type="text" ng-model="data.taskName" ng-model-options="{ updateOn: 'blur' }" />

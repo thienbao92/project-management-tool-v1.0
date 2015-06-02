@@ -61,7 +61,7 @@ angular.module('list.Controller', [])
   var paletteNumber = 0;
 
   $scope.getListTheme = function () {
-    paletteNumber = (paletteNumber + 1) % 5;
+    paletteNumber = (paletteNumber + 1) % 6;
 
     switch (paletteNumber) {
     case 1:
@@ -76,8 +76,11 @@ angular.module('list.Controller', [])
     case 4:
       return 'list-bg-4';
       break;
-    default:
+    case 5:
       return 'list-bg-5';
+      break;
+    default:
+      return 'list-bg-default';
     }
   }
 
@@ -87,26 +90,31 @@ angular.module('list.Controller', [])
 
   $mdThemingProvider.theme('list-bg-1')
     .backgroundPalette('purple', {
-      'default': '200',
+      'default': '500',
     });
 
   $mdThemingProvider.theme('list-bg-2')
     .backgroundPalette('teal', {
-      'default': '300',
+      'default': '500',
     });
 
   $mdThemingProvider.theme('list-bg-3')
-    .backgroundPalette('lime', {
-      'default': '300',
+    .backgroundPalette('blue', {
+      'default': '500',
     });
 
   $mdThemingProvider.theme('list-bg-4')
-    .backgroundPalette('orange', {
-      'default': '300',
+    .backgroundPalette('deep-orange', {
+      'default': '500',
     });
 
   $mdThemingProvider.theme('list-bg-5')
-    .backgroundPalette('brown', {
-      'default': '300',
+    .backgroundPalette('pink', {
+      'default': '500',
+    });
+
+  $mdThemingProvider.theme('list-bg-default')
+    .backgroundPalette('blue-grey', {
+      'default': '500',
     });
 })

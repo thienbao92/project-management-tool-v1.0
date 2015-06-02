@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA,eAAgB;EACd,SAAS,EAAE,IAAI;;AAKf,6BAAkB;EAChB,WAAW,EAAE,OAAO;EACpB,IAAI,EAAE,OAAO;EACb,KAAK,ECwPK,OAAO",
+"mappings": "AAEA,eAAgB;EACd,SAAS,EAAE,IAAI;;AAIf,wBAAW;EACT,KAAK,EAAE,IAAI;EAEX,gCAAQ;IACN,KAAK,EAAE,OAAO;;AAKpB,WAAY;EACV,KAAK,EAAE,IAAI;EAEX,6BAAkB;IAChB,WAAW,EAAE,OAAO;IACpB,IAAI,EAAE,OAAO;IACb,KAAK,EC6OK,OAAO",
 "sources": ["list.scss","../dist/material-colors/colors.scss"],
 "names": [],
 "file": "list.css"

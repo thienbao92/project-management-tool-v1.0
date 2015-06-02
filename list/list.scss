@@ -4,7 +4,18 @@
   flex-wrap: wrap;
 }
 
+.list__header {
+  .md-button {
+    color: #fff;
+
+    md-icon {
+      color: inherit;
+    }
+  }
+}
+
 .tasks-list {
+  color: #fff;
 
   .tasks-list__item {
     align-items: stretch;

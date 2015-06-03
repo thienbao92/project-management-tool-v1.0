@@ -1,7 +1,7 @@
 <md-content class="org">
   <!-- organization list -->
 
-  <section layout-padding class="org__item" ng-repeat="org in organization | filter: {owner: id}">
+  <section layout-padding class="org__item" ng-repeat="org in organization |orgFilterTest:filteredArray ">
 
     <!-- organization header -->
     <md-subheader>
@@ -10,9 +10,10 @@
         <!-- input organization name -->
 
         <input type="text" ng-show="showInput" show-focus="showInput" ng-model="org.name" ng-blur="organization.$save(org)">
-        <span ng-hide="showInput">{{org.name}}{{org.member.member}}</span>
+        <span ng-hide="showInput">{{org.name}}</span>
 
         <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
+          <md-button ng-click="removeOrg(org.$id)">Remove</md-button>
       </h1>
       </form>
     </md-subheader>

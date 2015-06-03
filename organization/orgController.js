@@ -26,26 +26,26 @@ angular.module('organization.Controller', [])
     var ref = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember');
 
 
-    //load org data and filter by
 
-    $scope.organization.$loaded(function () {
+
+    //load org data and filter by
+    $scope.getOrg = [];
+    $scope.organization.$loaded().then(function (orgData) {
         var getOrgValue = new Array();
 
         ref.on("value", function (snapshot) {
 
             snapshot.forEach(function (data) {
-                angular.forEach($scope.organization, function (org) {
+                angular.forEach(orgData, function (org) {
                     if (org.$id === data.key()) {
-                      getOrgValue.push(org); //Push to array
-                      $scope.getOrg = getOrgValue;
+                      $scope.getOrg.push(org); //Push to array
+
                     }
                   }) //end forEach organization
               }) // end forEach snapshot
           }) // end ref on function
-
       }) // End $load function
-
-    //Endthu nghiem load org data
+      //Endthu nghiem load org data
 
 
 

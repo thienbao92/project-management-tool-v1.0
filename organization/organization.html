@@ -1,7 +1,7 @@
 <md-content class="org">
   <!-- organization list -->
 
-  <section layout-padding class="org__item" ng-repeat="org in getOrg">
+  <section layout-padding class="org__item" ng-repeat="org in getOrg track by $index">
 
     <!-- organization header -->
     <md-subheader>

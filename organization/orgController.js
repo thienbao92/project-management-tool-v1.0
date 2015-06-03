@@ -28,16 +28,18 @@ angular.module('organization.Controller', [])
 
 
     //thu nghiem load org data
+
     $scope.organization.$loaded(function () {
 
+        var groupArray = new Array();
         ref.on("value", function (snapshot) {
-            var groupArray = new Array();
 
             snapshot.forEach(function (data) {
               groupArray.push(data.key());
 
 
             })
+
             console.log(groupArray);
 
 
@@ -57,6 +59,7 @@ angular.module('organization.Controller', [])
               }) //end forEach
 
           }) // end ref on function
+
       }) // End $load function
 
     //Endthu nghiem load org data

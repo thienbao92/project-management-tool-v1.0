@@ -13,7 +13,7 @@
         <span ng-hide="showInput">{{org.name}}</span>
 
         <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
-          <md-button ng-click="removeOrg()"></md-button>
+          <md-button ng-click="removeOrg(org.$id)">Remove</md-button>
       </h1>
       </form>
     </md-subheader>

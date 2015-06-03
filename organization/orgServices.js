@@ -33,7 +33,7 @@ angular.module('organization.services', [])
       userRef.child(groupId).set(true);
     } //End function addMemberToGroup
 
-  this.remove = function (groupId, memberId) {
+  this.removeOrg = function (groupId, memberId) {
       var ref = new Firebase(firebaseUrl + '/groupMember/' + groupId + '/member');
       var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember');
       var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/');

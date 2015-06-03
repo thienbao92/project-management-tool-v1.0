@@ -67,7 +67,7 @@ angular.module('organization.Controller', [])
     }; //end function addOrg
 
     $scope.removeOrg = function (orgId) {
-        organization.remove(orgId, $scope.id);
+        organization.removeOrg(orgId, $scope.id);
       } //end function removeOrg
 
 

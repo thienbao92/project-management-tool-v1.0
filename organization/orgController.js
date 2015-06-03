@@ -20,43 +20,26 @@ angular.module('organization.Controller', [])
 
 .controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject, firebaseUrl, organization) {
 
-    $scope.organization = firebaseOrg;
 
     var userId = $scope.id;
     var ref = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember');
-
-
-
+    var orgRef = new Firebase(firebaseUrl + '/organization');
 
     //load org data and filter by
     $scope.getOrg = [];
-    $scope.organization.$loaded().then(function (orgData) {
-        var getOrgValue = new Array();
 
-        ref.on("value", function (snapshot) {
+    ref.on("child_added", function (snapshot) {
 
-            ref.endAt().limit(1).on('child_added', function (lastData) {
-              console.log(lastData.key());
-            })
-
-
-            snapshot.forEach(function (data) {
-                angular.forEach(orgData, function (org) {
-                    if (org.$id === data.key()) {
-                      $scope.getOrg.push(org); //Push to array
-                      console.log($scope.getOrg);
-
-
-                    }
-                  }) //end forEach organization
-              }) // end forEach snapshot
-          }) // end ref on function
-      }) // End $load function
+        orgRef.orderByKey().equalTo(snapshot.key()).on("child_added", function (data) {
+          $scope.getOrg.push(data.val());
+          console.log($scope.getOrg);
+        })
+      }) // end ref on function
       //Endthu nghiem load org data
 
 
 
-
+    $scope.organization = firebaseOrg;
 
     $scope.addOrg = function () {
       $scope.organization.$add({
@@ -68,6 +51,10 @@ angular.module('organization.Controller', [])
 
       })
     }; //end function addOrg
+
+    $scope.removeOrg = function (orgId) {
+        organization.remove(orgId, $scope.id);
+      } //end function removeOrg
 
 
     //add project area

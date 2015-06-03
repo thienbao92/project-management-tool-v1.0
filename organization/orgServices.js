@@ -17,12 +17,24 @@ angular.module('organization.services', [])
 
 
   this.addMemberToGroup = function (groupId, memberId) {
-  var ref = new Firebase(firebaseUrl + '/groupMember/' + groupId + '/member');
-  var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember');
-  var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/');
+      var ref = new Firebase(firebaseUrl + '/groupMember/' + groupId + '/member');
+      var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember');
+      var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/');
       groupMemberRef.child(groupId).set(true);
       ref.child(memberId).set(true);
       userRef.child(groupId).set(true);
+    } //End function addMemberToGroup
+
+  this.remove = function (groupId, memberId) {
+      var ref = new Firebase(firebaseUrl + '/groupMember/' + groupId + '/member');
+      var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember');
+      var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/');
+      var orgRef = new Firebase(firebaseUrl + '/organization');
+
+      orgRef.child(groupId).remove();
+      groupMemberRef.child(groupId).remove();
+      ref.child(memberId).remove();
+      userRef.child(groupId).remove();
     } //End function addMemberToGroup
 })
 

@@ -13,11 +13,6 @@ angular.module('organization.services', [])
     return organization;
   }) // END firebaseOrg
 
-.factory('firebaseGroupMember', function (firebaseUrl, $firebaseArray) {
-    var ref = new Firebase(firebaseUrl + '/groupMember');
-    var group = $firebaseArray(ref);
-    return group;
-  }) // END firebaseOrg
 
 .factory('firebaseProject', function (firebaseUrl, $firebaseArray) {
 

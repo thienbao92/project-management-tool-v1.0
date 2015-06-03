@@ -18,10 +18,10 @@ angular.module('organization.Controller', [])
 })
 
 
-.controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject, firebaseGroupMember, firebaseUrl, organization) {
+.controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject, firebaseUrl, organization) {
 
     $scope.organization = firebaseOrg;
-    $scope.groupMember = firebaseGroupMember;
+
     var userId = $scope.id;
     console.log(userId);
     var ref = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember');
@@ -76,10 +76,6 @@ angular.module('organization.Controller', [])
         var orgId = data.key();
         organization.addMemberToGroup(orgId, $scope.id);
 
-        //        $scope.groupMember.$add({
-        //          organizationId: orgId,
-        //          member: $scope.id
-        //        })
       })
     }; //end function addOrg
 

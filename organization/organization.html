@@ -19,11 +19,11 @@
     </md-subheader>
 
     <!-- projects list -->
-    <md-grid-list md-cols="4" md-gutter="3em" md-row-height="10em" class="projects">
+    <md-grid-list ng-init="projects = getProjects(org.$id)" md-cols="4" md-gutter="3em" md-row-height="10em" class="projects">
       <!-- projects items -->
 
 
-      <md-grid-tile ng-repeat="x in project |filter:{org: org.$id} ">
+      <md-grid-tile ng-repeat="x in projects ">
         <md-grid-tile-header class="md-subhead" ng-click="inputShowed = true">
           <input type="text" ng-model="x.projectName" show-focus="inputShowed" ng-show="inputShowed" ng-blur="inputShowed = false; project.$save(x)" />
           <span ng-hide="inputShowed" ng-click="inputShowed = true" class="projects__title">{{x.projectName}}</span>

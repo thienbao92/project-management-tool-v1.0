@@ -27,32 +27,20 @@ angular.module('organization.Controller', [])
 
     $scope.orgUser = $firebaseArray(ref);
     $scope.filteredArray = [new Array()];
-    $scope.orgUser.$loaded().then(function (userGroup) {
-      angular.forEach(userGroup, function (value) {
-
-
-
-      })
-
-    })
 
     ref.on("value", function (snapshot) {
       snapshot.forEach(function (value) {
-
         $scope.filteredArray.push(value.key());
-        console.log($scope.filteredArray);
+
       })
     })
 
 
-
-
-
-
-    $scope.test = ["-JqsNbnuM7ghg5Xs7yFS", "-JqsNgJgqjtYsGgbZqjX"];
-
-
-
+    $scope.makeTest = function () {
+      $scope.test = ["-JqsNbnuM7ghg5Xs7yFS", "-JqsNgJgqjtYsGgbZqjX"];
+      return test;
+    }
+    console.log($scope.makeTest);
 
     $scope.organization = firebaseOrg;
     $scope.addOrg = function () {
@@ -74,12 +62,20 @@ angular.module('organization.Controller', [])
     //add project area
 
     $scope.projectData = {};
-    $scope.project = firebaseProject;
+
+    $scope.getProjects = function (id) {
+        var ref = new Firebase(firebaseUrl + '/project/' + id);
+        var array = $firebaseArray(ref);
+        return array;
+      } //end function getProject
+
 
     $scope.addProject = function (uid) {
-        $scope.project.$add({
-          projectName: $scope.projectData.name,
-          org: uid
+
+        $scope.projects = firebaseProject(uid);
+
+        $scope.projects.$add({
+          projectName: $scope.projectData.name
         })
       } //end function addProject
 

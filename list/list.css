@@ -1,16 +1,23 @@
 .list-container {
   flex-wrap: wrap; }
 
-.list__header .md-button {
+.list {
   color: #fff; }
-  .list__header .md-button md-icon {
+  .list .list__header .md-button {
     color: inherit; }
-
-.tasks-list {
-  color: #fff; }
-  .tasks-list .tasks-list__item {
+    .list .list__header .md-button md-icon {
+      color: inherit; }
+  .list .list__toolbar * {
+    color: #fff; }
+  .list .list__item {
     align-items: stretch;
     flex: initial;
     color: #424242; }
+
+.list__colorpicker__option {
+  height: inherit;
+  width: inherit;
+  margin: 0;
+  color: transparent; }
 
 /*# sourceMappingURL=list.css.map */

@@ -5,3 +5,11 @@ body {
 
   color: $md-grey-800;
 }
+
+.slide-down.ng-hide {
+  transform: scaleY(0);
+}
+.slide-down.ng-hide-add.ng-hide-add-active,
+.slide-down.ng-hide-remove.ng-hide-remove-active {
+  transition: all linear 0.2s;
+}

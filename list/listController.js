@@ -58,12 +58,11 @@ angular.module('list.Controller', [])
       });
     } //end function goToTask
 
-  var paletteNumber = 0;
+  $scope.paletteNumber = 0;
 
-  $scope.getListTheme = function () {
-    paletteNumber = (paletteNumber + 1) % 6;
+  $scope.getListTheme = function (value) {
 
-    switch (paletteNumber) {
+    switch (value) {
     case 1:
       return 'list-bg-1';
       break;

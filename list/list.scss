@@ -4,22 +4,33 @@
   flex-wrap: wrap;
 }
 
-.list__header {
-  .md-button {
-    color: #fff;
-
-    md-icon {
-      color: inherit;
-    }
-  }
-}
-
-.tasks-list {
+.list {
   color: #fff;
 
-  .tasks-list__item {
+  .list__header {
+    .md-button {
+      color: inherit;
+
+      md-icon {
+        color: inherit;
+      }
+    }
+  }
+
+  .list__toolbar * {
+    color: #fff;
+  }
+
+  .list__item {
     align-items: stretch;
     flex: initial;
     color: $md-grey-800;
   }
+}
+
+.list__colorpicker__option {
+  height: inherit;
+  width: inherit;
+  margin: 0;
+  color: rgba(0,0,0,0);
 }

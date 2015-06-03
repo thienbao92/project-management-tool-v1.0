@@ -7,10 +7,18 @@
 angular.module('organization.services', [])
 
 
+
 .factory('firebaseOrg', function (firebaseUrl, $firebaseArray) {
+
+
+
     var ref = new Firebase(firebaseUrl + '/organization');
+    //var query = ref.orderByKey().equalTo(filterArray);
     var organization = $firebaseArray(ref);
     return organization;
+
+
+
   }) // END firebaseOrg
 
 .service('organization', function (firebaseUrl) {
@@ -53,3 +61,26 @@ angular.module('organization.services', [])
 
 
   }) // END firebaseProject
+
+.filter('orgFilterTest', function (firebaseOrg) {
+  return function (orgs, tags) {
+    var filtered = [];
+    //    return orgs.filter(function (org) {
+    //      for (var i in org.$id) {
+    //        if (firebaseOrg.$indexFor(i) != -1) {
+    //          return false;
+    //        }
+    //      }
+    //      return true;
+    //    })
+
+    angular.forEach(orgs, function (org) {
+      if (tags.indexOf(org.$id) != -1) {
+        filtered.push(org)
+      }
+
+    })
+
+    return filtered;
+  };
+})

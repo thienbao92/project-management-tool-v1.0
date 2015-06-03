@@ -35,10 +35,17 @@ angular.module('organization.Controller', [])
 
         ref.on("value", function (snapshot) {
 
+            ref.endAt().limit(1).on('child_added', function (lastData) {
+              console.log(lastData.key());
+            })
+
+
             snapshot.forEach(function (data) {
                 angular.forEach(orgData, function (org) {
                     if (org.$id === data.key()) {
                       $scope.getOrg.push(org); //Push to array
+                      console.log($scope.getOrg);
+
 
                     }
                   }) //end forEach organization

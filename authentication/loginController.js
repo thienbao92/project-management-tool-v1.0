@@ -60,9 +60,7 @@ angular.module('login.Controller', [])
               $scope.profile.$add({
                 firstName: authData.google.displayName
               })
-            } else {
-              console.log("obj is more than one");
-            }
+            } else {}
 
           }, function (err) {
             console.log(err);

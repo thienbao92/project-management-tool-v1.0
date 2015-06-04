@@ -6,17 +6,14 @@
 
 angular.module('list.Controller', [])
 
-.controller('listCtrl', function ($scope, $stateParams, firebaseList, firebaseTask, firebaseProject, $mdDialog, $rootScope, $location, $state, getDate, $filter) {
-
-
-  $scope.projects = firebaseProject;
-
-  //get stateparams ID
-  $scope.projectId = $stateParams.projectId;
+.controller('listCtrl', function ($scope, $stateParams, getProjectName, firebaseList, firebaseTask, firebaseProject, $mdDialog, $rootScope, $location, $state, getDate, $filter) {
 
   //get list data from firebase
 
-  $scope.lists = firebaseList;
+  $scope.projects = getProjectName($stateParams.orgId, $stateParams.projectId);
+
+
+  $scope.lists = firebaseList($stateParams.projectId);
   $scope.data = {};
 
   $scope.addList = function () {

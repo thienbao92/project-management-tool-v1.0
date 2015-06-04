@@ -1,47 +1,48 @@
-<div ng-repeat="project in projects |filter: {'$id': projectId}">
+<div ng-repeat="project in projects">
   <h1 layout-padding class="md-headline">{{project.projectName}}</h1>
+</div>
 
-  <!-- lists area -->
-  <div layout="row" class="list-container">
 
-    <!-- lists array -->
-    <md-list flex="20" ng-repeat="list in lists |filter: {project: projectId}" layout="column" layout-padding class="tasks-list">
-      <md-card md-theme="{{ list.listTheme }}">
-        <h1 layout-padding layout-margin class="md-subhead">
+<!-- lists area -->
+<div layout="row" class="list-container">
+
+  <!-- lists array -->
+  <md-list flex="20" ng-repeat="list in lists" layout="column" layout-padding class="tasks-list">
+    <md-card md-theme="{{ list.listTheme }}">
+      <h1 layout-padding layout-margin class="md-subhead">
         {{list.listName}}
         <md-button ng-click="lists.$remove(list)">X</md-button>
       </h1>
 
-        <md-list-item ng-repeat="x in task|filter: {listId: list.$id}" class="tasks-list__item">
+      <md-list-item ng-repeat="x in task|filter: {listId: list.$id}" class="tasks-list__item">
 
-          <md-card ng-click=" goToTask(x.$id)" flex layout-padding md-theme="default">
-            <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
-            <p>{{x.taskName}}</p>
-          </md-card>
-        </md-list-item>
+        <md-card ng-click=" goToTask(x.$id)" flex layout-padding md-theme="default">
+          <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
+          <p>{{x.taskName}}</p>
+        </md-card>
+      </md-list-item>
 
-        <md-list-item class="tasks-list__item">
-          <md-card flex layout-padding md-theme="default">
-            <md-input-container>
-              <label>Add new task</label>
-              <input type="text" ng-model="data.taskName" ng-model-options="{ updateOn: 'blur' }" />
-            </md-input-container>
-          </md-card>
-        </md-list-item>
+      <md-list-item class="tasks-list__item">
+        <md-card flex layout-padding md-theme="default">
+          <md-input-container>
+            <label>Add new task</label>
+            <input type="text" ng-model="data.taskName" ng-model-options="{ updateOn: 'blur' }" />
+          </md-input-container>
+        </md-card>
+      </md-list-item>
 
-        <md-button ng-click="addTask(list.$id, list.project,project.org, list.listName); data.taskName =''; ">Add task</md-button>
-      </md-card>
-    </md-list>
-    <!-- END lists array -->
+      <md-button ng-click="addTask(list.$id, list.project,project.org, list.listName); data.taskName =''; ">Add task</md-button>
+    </md-card>
+  </md-list>
+  <!-- END lists array -->
 
-    <div>
-      <md-button ng-hide="openList" ng-click="openList = !openList ">Add list</md-button>
-    </div>
-
-    <div ng-show="openList">
-      <input type="text" ng-model="data.listName" />
-      <md-button ng-click="addList(); openList = !openList ">Add list</md-button>
-    </div>
+  <div>
+    <md-button ng-hide="openList" ng-click="openList = !openList ">Add list</md-button>
   </div>
-  <!-- END list area -->
+
+  <div ng-show="openList">
+    <input type="text" ng-model="data.listName" />
+    <md-button ng-click="addList(); openList = !openList ">Add list</md-button>
+  </div>
 </div>
+<!-- END list area -->

@@ -93,7 +93,7 @@ angular.module('myApp', [
     })
     //board page
     .state('board', {
-      url: "/board/:projectId",
+      url: "/board/:orgId/:projectId",
       views: {
         '': {
           templateUrl: "board/board.html"

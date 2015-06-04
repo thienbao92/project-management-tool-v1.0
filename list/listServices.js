@@ -8,11 +8,23 @@ angular.module('list.Services', [])
 
 .factory('firebaseList', function (firebaseUrl, $firebaseArray) {
 
-    var url = firebaseUrl + '/list';
-    var ref = new Firebase(url);
-    var list = $firebaseArray(ref);
-    return list
+    return function (projectId) {
+
+      var ref = new Firebase(firebaseUrl + '/list' + projectId);
+      var list = $firebaseArray(ref);
+      return list
+    }
   }) // END firebaseList
+
+.factory('getProjectName', function (firebaseUrl, $firebaseArray) {
+    return function (orgId, projectId) {
+      var ref = new Firebase(firebaseUrl + '/project/' + orgId);
+      var query = ref.orderByKey().equalTo(projectId);
+      var project = $firebaseArray(query);
+      return project;
+    }
+
+  }) // END getProjectName
 
 .factory('firebaseTask', function (firebaseUrl, $firebaseArray) {
 

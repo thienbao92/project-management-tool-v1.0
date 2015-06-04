@@ -88,4 +88,4 @@ angular.module('organization.services', [])
       })
       return filtered;
     };
-  }) // END orgFilterTest
+  }) // END filterByUserId

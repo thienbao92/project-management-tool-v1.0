@@ -20,7 +20,7 @@
 
   </div>
   <p>The line</p>
-  <div ng-repeat="user in users">
+  <div ng-repeat="user in users | filterByUserId:projectMemberArray">
 
     {{user.$id}}
 

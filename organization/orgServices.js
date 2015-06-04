@@ -42,37 +42,22 @@ angular.module('organization.services', [])
     } //End function addMemberToGroup
 })
 
-
 .factory('firebaseProject', function (firebaseUrl, $firebaseArray) {
-
     return function (uId) {
-
       var ref = new Firebase(firebaseUrl + '/project/' + uId);
       var array = $firebaseArray(ref);
       return array;
     }
-
   }) // END firebaseProject
 
 .filter('orgFilterTest', function (firebaseOrg) {
-  return function (orgs, tags) {
-    var filtered = [];
-    //    return orgs.filter(function (org) {
-    //      for (var i in org.$id) {
-    //        if (firebaseOrg.$indexFor(i) != -1) {
-    //          return false;
-    //        }
-    //      }
-    //      return true;
-    //    })
-
-    angular.forEach(orgs, function (org) {
-      if (tags.indexOf(org.$id) != -1) {
-        filtered.push(org)
-      }
-
-    })
-
-    return filtered;
-  };
-})
+    return function (orgs, tags) {
+      var filtered = [];
+      angular.forEach(orgs, function (org) {
+        if (tags.indexOf(org.$id) != -1) {
+          filtered.push(org)
+        }
+      })
+      return filtered;
+    };
+  }) // END orgFilterTest

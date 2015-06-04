@@ -16,7 +16,7 @@ angular.module('organization.services', [])
 .service('organization', function (firebaseUrl) {
 
   this.addMemberToGroup = function (groupId, memberId) {
-      var ref = new Firebase(firebaseUrl + '/groupMember/' + groupId + '/member');
+      var ref = new Firebase(firebaseUrl + '/groupMember/' + groupId);
       var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember');
       var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/');
       var projectRef = new Firebase(firebaseUrl + '/project');

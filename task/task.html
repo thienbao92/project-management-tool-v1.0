@@ -1,22 +1,22 @@
-<md-content layout="column" ng-repeat="x in task |filter: {$id : taskId }" style="min-height: 90%">
+<md-content layout="column" ng-repeat="task in tasks" style="min-height: 90%">
 
   <!-- common information -->
   <md-content layout-padding>
     <span>{{x.listName}}</span>
-    <input type="text" ng-model="x.taskName" ng-change="task.$save(x)" />
+    <input type="text" ng-model="task.taskName" ng-change="tasks.$save(task)" />
   </md-content>
 
   <div layout="row" layout-padding>
     <label>Start date</label>
     <div class="datepicker-container">
       <datepicker date-format="dd/MM/yyyy">
-        <input type="text" ng-model="x.startDate" ng-change="task.$save(x)">
+        <input type="text" ng-model="task.startDate" ng-change="tasks.$save(task)">
       </datepicker>
     </div>
     <label>End date</label>
     <div class="datepicker-container">
       <datepicker date-format="dd/MM/yyyy">
-        <input type="text" ng-model="x.endDate" ng-change="task.$save(x)">
+        <input type="text" ng-model="task.endDate" ng-change="tasks.$save(task)">
       </datepicker>
     </div>
   </div>

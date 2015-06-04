@@ -9,6 +9,7 @@ angular.module('myApp', [
   '720kb.datepicker',
 //shared JS
     'myApp.services',
+  'task.Services',
 
   //services
     'organization.services',
@@ -110,7 +111,7 @@ angular.module('myApp', [
       }
     })
     .state('task', {
-      url: "/task/:taskId",
+      url: "/task/:listId/:taskId",
       templateUrl: "task/task.html",
       controller: "taskCtrl",
 

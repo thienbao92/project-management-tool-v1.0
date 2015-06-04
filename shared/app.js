@@ -97,7 +97,8 @@ angular.module('myApp', [
       url: "/board/:orgId/:projectId",
       views: {
         '': {
-          templateUrl: "board/board.html"
+          templateUrl: "board/board.html",
+          controller: "boardCtrl"
         },
         'list@board': {
           templateUrl: "list/list.html",

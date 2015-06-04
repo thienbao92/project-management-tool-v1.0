@@ -28,11 +28,37 @@ angular.module('list.Services', [])
 
 .factory('firebaseTask', function (firebaseUrl, $firebaseArray) {
 
-    var url = firebaseUrl + '/task';
-    var ref = new Firebase(url);
-    var task = $firebaseArray(ref);
-    return task
+    return function (listId) {
+
+      var ref = new Firebase(firebaseUrl + '/task/' + listId);
+      var task = $firebaseArray(ref);
+      return task
+    }
+
   }) // END firebaseList
+
+
+.service('task', function (firebaseUrl) {
+    this.addTaskParent = function (listId) {
+      var ref = new Firebase(firebaseUrl + '/task');
+
+      ref.child(listId).set(true);
+    }
+
+    this.addTaskComponents = function (taskId) {
+        var taskMemberRef = new Firebase(firebaseUrl + '/taskMember');
+        var taskConversationRef = new Firebase(firebaseUrl + '/taskConversation');
+        var taskCheckListRef = new Firebase(firebaseUrl + '/taskCheckList');
+
+        taskMemberRef.child(taskId).set(true);
+        taskConversationRef.child(taskId).set(true);
+        taskCheckListRef.child(taskId).set(true);
+
+      } //End function
+
+
+
+  }) // END service task
 
 .run(function ($rootScope, $urlRouter) {
   $rootScope.$on('$locationChangeSuccess', function (evt) {

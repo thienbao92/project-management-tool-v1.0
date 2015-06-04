@@ -6,7 +6,7 @@
 
 angular.module('list.Controller', [])
 
-.controller('listCtrl', function ($scope, $stateParams, getProjectName, firebaseList, firebaseTask, firebaseProject, $mdDialog, $rootScope, $location, $state, getDate, $filter) {
+.controller('listCtrl', function ($scope, $stateParams, getProjectName, firebaseList, task, firebaseTask, firebaseProject, $mdDialog, $rootScope, $location, $state, getDate, $filter) {
 
   //get list data from firebase
 
@@ -21,12 +21,20 @@ angular.module('list.Controller', [])
         listName: $scope.data.listName,
         listTheme: $scope.getListTheme(),
         project: $stateParams.projectId
+      }).then(function (data) {
+        var listId = data.key();
+        task.addTaskParent(listId);
       })
     } //end function addList
 
   //End list modification area
   $scope.task = firebaseTask;
   $scope.date = getDate;
+
+  $scope.tasks = function (listId) {
+    var tasks = firebaseTask(listId);
+    return tasks;
+  }
 
   //$scope.date = $filter('date')(new Date(), 'dd/MM/yyyy');
 
@@ -35,15 +43,18 @@ angular.module('list.Controller', [])
   //  var date = parser.parse("2015-01-30");
   //  console.log(date);
   //END date time are
-  $scope.addTask = function (uid, projectId, organizationId, nameOfList) {
-      $scope.task.$add({
+  $scope.addTask = function (listId) {
+
+      $scope.tasks = firebaseTask(listId);
+
+      $scope.tasks.$add({
         taskName: $scope.data.taskName,
-        listId: uid,
-        projectId: projectId,
-        organizationId: organizationId,
-        listName: nameOfList,
         startDate: $scope.date,
         endDate: $scope.date
+      }).then(function (data) {
+        var taskId = data.key();
+        task.addTaskComponents(taskId);
+
 
       })
     } //end function addTask

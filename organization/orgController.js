@@ -18,7 +18,7 @@ angular.module('organization.Controller', [])
 })
 
 
-.controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject, firebaseUrl, organization, $firebaseArray) {
+.controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject, firebaseUrl, organization, $firebaseArray, projectServices) {
 
 
     //get value from User
@@ -65,6 +65,17 @@ angular.module('organization.Controller', [])
         return array;
       } //end function getProject
 
+    $scope.getProjectFilter = function (orgId) {
+        $scope.projectFilterArray = [];
+        var ref = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId);
+
+        ref.on("value", function (snapshot) {
+          snapshot.forEach(function (value) {
+            $scope.projectFilterArray.push(value.key());
+          })
+        })
+
+      } //end function testInit
 
     $scope.projectData = {};
     $scope.addProject = function (uid) {
@@ -72,9 +83,15 @@ angular.module('organization.Controller', [])
 
         $scope.projects.$add({
           projectName: $scope.projectData.name
+        }).then(function (data) {
+          var projectId = data.key();
+          projectServices.addMemberToProject(projectId, $scope.id, uid);
         })
       } //end function addProject
 
-    //END project area
+    $scope.removeProjectIdFromUser = function (id) {
+        projectServices.removeMemberFromProject(id, $scope.id);
+      } //end function removeProjectIdFromUser
+      //END project area
 
   }) //End orgCtrl

@@ -42,6 +42,27 @@ angular.module('organization.services', [])
     } //End function addMemberToGroup
 })
 
+.service('projectServices', function (firebaseUrl) {
+
+  this.addMemberToProject = function (projectId, memberId, orgId) {
+
+      var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember/' + orgId);
+
+      userRef.child(projectId).set(true);
+    } //End function
+
+  this.removeMemberFromProject = function (projectId, memberId) {
+
+      var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember');
+
+      userRef.child(projectId).remove();
+    } //End function
+
+
+})
+
+
+
 .factory('firebaseProject', function (firebaseUrl, $firebaseArray) {
     return function (uId) {
       var ref = new Firebase(firebaseUrl + '/project/' + uId);
@@ -50,7 +71,7 @@ angular.module('organization.services', [])
     }
   }) // END firebaseProject
 
-.filter('orgFilterTest', function (firebaseOrg) {
+.filter('filterByUserId', function () {
     return function (orgs, tags) {
       var filtered = [];
       angular.forEach(orgs, function (org) {

@@ -48,9 +48,9 @@ angular.module('organization.services', [])
 
       var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember/' + orgId);
 
-      var projectMemberRef = new Firebase(firebaseUrl + '/projectMember');
+      var projectMemberRef = new Firebase(firebaseUrl + '/projectMember/' + projectId);
 
-      projectMemberRef.child(projectId).set(true);
+      projectMemberRef.child(memberId).set(true);
 
       userRef.child(projectId).set(true);
     } //End function

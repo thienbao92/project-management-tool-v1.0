@@ -51,11 +51,6 @@ angular.module('list.Controller', [])
         taskName: $scope.data.taskName,
         startDate: $scope.date,
         endDate: $scope.date
-      }).then(function (data) {
-        var taskId = data.key();
-        task.addTaskComponents(taskId);
-
-
       })
     } //end function addTask
 

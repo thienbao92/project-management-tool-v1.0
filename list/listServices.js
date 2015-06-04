@@ -45,26 +45,7 @@ angular.module('list.Services', [])
       ref.child(listId).set(true);
     }
 
-    this.addTaskComponents = function (taskId) {
-        var taskMemberRef = new Firebase(firebaseUrl + '/taskMember');
-        var taskConversationRef = new Firebase(firebaseUrl + '/taskConversation');
-        var taskCheckListRef = new Firebase(firebaseUrl + '/taskCheckList');
-
-        taskMemberRef.child(taskId).set(true);
-        taskConversationRef.child(taskId).set(true);
-        taskCheckListRef.child(taskId).set(true);
-
-      } //End function
 
 
 
   }) // END service task
-
-.run(function ($rootScope, $urlRouter) {
-  $rootScope.$on('$locationChangeSuccess', function (evt) {
-    // Halt state change from even starting
-    evt.preventDefault();
-    // Perform custom logic
-
-  })
-});

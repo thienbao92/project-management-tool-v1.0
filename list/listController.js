@@ -58,7 +58,6 @@ angular.module('list.Controller', [])
       });
     } //end function goToTask
 
-  $scope.paletteNumber = 0;
 
   $scope.getListTheme = function (value) {
 

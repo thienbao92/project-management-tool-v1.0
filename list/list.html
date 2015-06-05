@@ -16,9 +16,17 @@
         </div>
 
         <div layout="row" layout-align="space-around center" ng-show="showListToolbar" class="list__toolbar slide-down">
-          <md-select placeholder="Choose color" ng-model="paletteNumber" class="list__colorpicker" ng-change="list.listTheme = getListTheme(2); lists.$save(list)">
+<!--
+          <md-select placeholder="Choose color" ng-model="paletteNumber" class="list__colorpicker" ng-change="list.listTheme = getListTheme(paletteNumber); lists.$save(list)">
             <md-option ng-repeat="i in [1,2,3,4,5]" value="{{i}}"><md-card md-theme="list-bg-{{i}}" class="list__colorpicker__option">Choose color</md-card></md-option>
           </md-select>
+-->
+<!--
+          <select ng-model="paletteNumber" ng-change="list.listTheme = getListTheme(paletteNumber); lists.$save(list)">
+            <option ng-repeat="i in [1,2,3,4,5]" value="{{i}}">{{i}}</option>
+          </select>
+-->
+          <input type="number" min="0" max="5" ng-model="paletteNumber" ng-change="list.listTheme = getListTheme(paletteNumber); lists.$save(list)">
           <md-button ng-click="lists.$remove(list)" class="md-icon-button">
             <md-icon md-font-icon="fa fa-times" class="md-headline"></md-icon>
           </md-button>

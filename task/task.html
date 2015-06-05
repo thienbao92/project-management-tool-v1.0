@@ -1,62 +1,83 @@
 <md-content layout="column" ng-repeat="x in task |filter: {$id : taskId }" style="min-height: 90%">
 
   <!-- common information -->
-  <md-content layout-padding>
-    <span>{{x.listName}}</span>
-    <input type="text" ng-model="x.taskName" ng-change="task.$save(x)" />
-  </md-content>
-
-  <div layout="row" layout-padding>
-    <label>Start date</label>
-    <div class="datepicker-container">
-      <datepicker date-format="dd/MM/yyyy">
-        <input type="text" ng-model="x.startDate" ng-change="task.$save(x)">
-      </datepicker>
-    </div>
-    <label>End date</label>
-    <div class="datepicker-container">
-      <datepicker date-format="dd/MM/yyyy">
-        <input type="text" ng-model="x.endDate" ng-change="task.$save(x)">
-      </datepicker>
-    </div>
+  <div layout-padding layout="row">
+    <md-card layout-padding class="md-hue-1">{{x.listName}}</md-card>
+    <input type="text" ng-model="x.taskName" ng-change="task.$save(x)" class="md-headline" />
   </div>
 
-  <!------------END common information------------>
+  <div layout="row" layout-padding>
+    <div flex="75">
+      <div layout="row">
+        <label>Start date</label>
+        <div class="datepicker-container">
+          <datepicker date-format="dd/MM/yyyy">
+            <input type="text" ng-model="x.startDate" ng-change="task.$save(x)">
+          </datepicker>
+        </div>
+        <label>End date</label>
+        <div class="datepicker-container">
+          <datepicker date-format="dd/MM/yyyy">
+            <input type="text" ng-model="x.endDate" ng-change="task.$save(x)">
+          </datepicker>
+        </div>
+      </div>
 
-  <!-- Check list area -->
-  <md-content layout-padding>
-    <div ng-repeat="cl in checklist">
-      <md-checkbox ng-model="cl.isDone" ng-change="checklist.$save(cl)" class="md-primary">
-        {{cl.text}}
-      </md-checkbox>
+      <!------------END common information------------>
+
+      <md-content layout-padding>
+        <!-- Check list area -->
+        <div ng-repeat="cl in checklist">
+          <md-checkbox ng-model="cl.isDone" ng-change="checklist.$save(cl)" class="md-primary">
+            {{cl.text}}
+          </md-checkbox>
+        </div>
+        <br>
+
+        <p>Number of Check list: {{total}}</p>
+        <md-progress-linear md-theme="progress-state" class="md-primary" md-mode="determinate" value="{{percentage}}"></md-progress-linear>
+
+        <input type="text" ng-model="data.text" />
+        <md-button ng-click="addChecklist(); data.text=''">Add Check list</md-button>
+        <!--END Check list area-->
+
+        <!-- message Area -->
+        <div ng-repeat="msg in messages">
+          {{msg.sender}}:{{msg.message}}
+        </div>
+
+        <div>
+          <input type="text" ng-model="data.msg" />
+          <md-button ng-click="sendMsg(); data.msg=''">Send</md-button>
+        </div>
+        <!--END message Area-->
+      </md-content>
     </div>
-    <br>
-
-    <p>Number of Check list: {{total}}</p>
-    <p>percentage: {{percentage}}</p>
-    <md-progress-linear class="md-accent" md-mode="determinate" value="{{percentage}}"></md-progress-linear>
-
-    <input type="text" ng-model="data.text" />
-    <md-button ng-click="addChecklist(); data.text=''">Add Check list</md-button>
-    <!--END Check list area-->
 
     <!-- Member area -->
-    <input type="text" ng-model="searchUser" />
-
+    <div flex="25">
+      <h1 class="md-title">Member area</h1>
+      <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="searchUser"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Type email of member to add">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+        </md-item-template>
+        <md-not-found>
+          No matches found for "{{ctrl.searchText}}".
+        </md-not-found>
+      </md-autocomplete>
+    </div>
     <!--END Member area-->
-
-    <!-- message Area -->
-    <div ng-repeat="msg in messages">
-      {{msg.sender}}:{{msg.message}}
-
-
-    </div>
-    <div>
-      <input type="text" ng-model="data.msg" />
-      <md-button ng-click="sendMsg(); data.msg=''">Send</md-button>
-    </div>
-    <!--END message Area-->
-  </md-content>
+  </div>
 
   <span flex>
     </span>

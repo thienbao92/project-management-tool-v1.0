@@ -119,6 +119,7 @@ angular.module('myApp', [
     })
 })
 
+// Theme
 .config(function ($mdThemingProvider) {
   var lightBlueWhite = $mdThemingProvider.extendPalette('light-blue', {
     'contrastDefaultColor': 'light'

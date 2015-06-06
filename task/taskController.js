@@ -55,3 +55,11 @@ angular.module('task.Controller', [])
     //END chat-message area
 
   }) //End taskCtrl
+
+.config(function ($mdThemingProvider) {
+  $mdThemingProvider.theme('message-bg')
+  .backgroundPalette('light-blue', {
+    'default': '200',
+    'hue-1': '500'
+  });
+})

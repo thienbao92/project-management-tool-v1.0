@@ -1,6 +1,24 @@
 .datepicker-container {
   width: 250px; }
 
+datepicker {
+  font-family: inherit !important; }
+  datepicker * {
+    font-family: inherit !important; }
+
+.checklist__list {
+  display: flex;
+  height: 200px;
+  flex-flow: column wrap; }
+
+.message__container {
+  height: 210px;
+  overflow-y: scroll; }
+  .message__container .message__item {
+    width: 40%; }
+    .message__container .message__item.md-hue-1 {
+      color: #fff; }
+
 .toolbar--bottom .md-toolbar-tools {
   justify-content: flex-end; }
 

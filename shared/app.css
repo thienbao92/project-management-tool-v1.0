@@ -9,4 +9,8 @@ body {
 .slide-down.ng-hide-remove.ng-hide-remove-active {
   transition: all linear 0.2s; }
 
+ul li {
+  list-style: outside none none;
+  display: inline block; }
+
 /*# sourceMappingURL=app.css.map */

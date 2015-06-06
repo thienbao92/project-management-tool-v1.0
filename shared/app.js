@@ -9,6 +9,7 @@ angular.module('myApp', [
   '720kb.datepicker',
 //shared JS
     'myApp.services',
+  'task.Services',
 
   //services
     'organization.services',
@@ -93,10 +94,11 @@ angular.module('myApp', [
     })
     //board page
     .state('board', {
-      url: "/board/:projectId",
+      url: "/board/:orgId/:projectId",
       views: {
         '': {
-          templateUrl: "board/board.html"
+          templateUrl: "board/board.html",
+          controller: "boardCtrl"
         },
         'list@board': {
           templateUrl: "list/list.html",
@@ -110,7 +112,7 @@ angular.module('myApp', [
       }
     })
     .state('task', {
-      url: "/task/:taskId",
+      url: "/task/:listId/:taskId",
       templateUrl: "task/task.html",
       controller: "taskCtrl",
 

@@ -18,43 +18,27 @@ angular.module('organization.Controller', [])
 })
 
 
-.controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject, firebaseUrl, organization, $firebaseArray) {
+.controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject, firebaseUrl, organization, $firebaseArray, projectServices) {
 
 
+    //get value from User
+    //functions shows how to get groupId of users in order to get data from organizations
     var userId = $scope.id;
     var ref = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember');
-    var orgRef = new Firebase(firebaseUrl + '/organization');
-
-    $scope.orgUser = $firebaseArray(ref);
-    $scope.filteredArray = [new Array()];
-    $scope.orgUser.$loaded().then(function (userGroup) {
-      angular.forEach(userGroup, function (value) {
 
 
-
-      })
-
-    })
-
+    $scope.filteredArray = []; // declare blank scope array
     ref.on("value", function (snapshot) {
       snapshot.forEach(function (value) {
-
         $scope.filteredArray.push(value.key());
-        console.log($scope.filteredArray);
       })
     })
 
+    //END get value from User
 
-
-
-
-
-    $scope.test = ["-JqsNbnuM7ghg5Xs7yFS", "-JqsNgJgqjtYsGgbZqjX"];
-
-
-
-
+    //Organization area
     $scope.organization = firebaseOrg;
+
     $scope.addOrg = function () {
       $scope.organization.$add({
         name: $scope.orgName,
@@ -70,17 +54,44 @@ angular.module('organization.Controller', [])
         organization.removeOrg(orgId, $scope.id);
       } //end function removeOrg
 
+    //END Organization area
 
     //add project area
 
-    $scope.projectData = {};
-    $scope.project = firebaseProject;
+    //Project area
 
+    $scope.getProjects = function (id) {
+        var array = firebaseProject(id);
+        return array;
+      } //end function getProject
+
+    $scope.getProjectFilter = function (orgId) {
+        $scope.projectFilterArray = [];
+        var ref = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId);
+
+        ref.on("value", function (snapshot) {
+          snapshot.forEach(function (value) {
+            $scope.projectFilterArray.push(value.key());
+          })
+        })
+
+      } //end function testInit
+
+    $scope.projectData = {};
     $scope.addProject = function (uid) {
-        $scope.project.$add({
-          projectName: $scope.projectData.name,
-          org: uid
+        $scope.projects = firebaseProject(uid);
+
+        $scope.projects.$add({
+          projectName: $scope.projectData.name
+        }).then(function (data) {
+          var projectId = data.key();
+          projectServices.addMemberToProject(projectId, $scope.id, uid);
         })
       } //end function addProject
+
+    $scope.removeProjectIdFromUser = function (id) {
+        projectServices.removeMemberFromProject(id, $scope.id);
+      } //end function removeProjectIdFromUser
+      //END project area
 
   }) //End orgCtrl

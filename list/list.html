@@ -1,11 +1,13 @@
-<div ng-repeat="project in projects |filter: {'$id': projectId}">
+<div ng-repeat="project in projects">
   <h1 layout-padding class="md-headline">{{project.projectName}}</h1>
+</div>
 
-  <!-- lists area -->
-  <div layout="row" class="list-container">
+
+<!-- lists area -->
+<div layout="row" class="list-container">
 
     <!-- lists array -->
-    <md-list flex="20" ng-repeat="list in lists |filter: {project: projectId}" layout="column" layout-padding class="list">
+    <md-list flex="20" ng-repeat="list in lists" layout="column" layout-padding class="list">
       <md-card md-theme="{{ list.listTheme }}" md-theme-watch>
         <div layout="row" class="list__header">
           <h1 layout-padding layout-margin class="md-subhead">{{list.listName}}</h1>
@@ -16,25 +18,21 @@
         </div>
 
         <div layout="row" layout-align="space-around center" ng-show="showListToolbar" class="list__toolbar slide-down">
-<!--
-          <md-select placeholder="Choose color" ng-model="paletteNumber" class="list__colorpicker" ng-change="list.listTheme = getListTheme(paletteNumber); lists.$save(list)">
-            <md-option ng-repeat="i in [1,2,3,4,5]" value="{{i}}"><md-card md-theme="list-bg-{{i}}" class="list__colorpicker__option">Choose color</md-card></md-option>
+          <md-select placeholder="Choose color" ng-model="paletteNumber" class="list__colorpicker">
+            <md-option ng-repeat="i in [1,2,3,4,5]" value="{{i}}" ng-click="list.listTheme = getListTheme(i); lists.$save(list)"><md-card md-theme="list-bg-{{i}}" class="list__colorpicker__option">Choose color</md-card></md-option>
           </md-select>
--->
-<!--
-          <select ng-model="paletteNumber" ng-change="list.listTheme = getListTheme(paletteNumber); lists.$save(list)">
-            <option ng-repeat="i in [1,2,3,4,5]" value="{{i}}">{{i}}</option>
-          </select>
--->
-          <input type="number" min="0" max="5" ng-model="paletteNumber" ng-change="list.listTheme = getListTheme(paletteNumber); lists.$save(list)">
+<!--          <input type="number" min="0" max="5" ng-model="paletteNumber" ng-change="list.listTheme = getListTheme(paletteNumber); lists.$save(list)">-->
           <md-button ng-click="lists.$remove(list)" class="md-icon-button">
             <md-icon md-font-icon="fa fa-times" class="md-headline"></md-icon>
           </md-button>
         </div>
 
-        <md-list-item ng-repeat="x in task|filter: {listId: list.$id}" class="list__item">
 
-          <md-card ng-click=" goToTask(x.$id)" flex layout-padding md-theme="default">
+        <!-- task area -->
+        <div layout="column" ng-init="tasks = tasks(list.$id)">
+        <md-list-item ng-repeat="x in tasks" class="list__item">
+
+          <md-card ng-click="goToTask(x.$id, list.$id)" flex layout-padding md-theme="default">
             <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
             <p>{{x.taskName}}</p>
           </md-card>
@@ -49,19 +47,21 @@
           </md-card>
         </md-list-item>
 
-        <md-button ng-click="addTask(list.$id, list.project,project.org, list.listName); data.taskName =''; ">Add task</md-button>
-      </md-card>
-    </md-list>
-    <!-- END lists array -->
+        <md-button ng-click="addTask(list.$id); data.taskName =''; ">Add task</md-button>
+      </div>
+      <!--END task area-->
 
-    <div>
-      <md-button ng-hide="openList" ng-click="openList = !openList ">Add list</md-button>
-    </div>
+    </md-card>
+  </md-list>
+  <!-- END lists array -->
 
-    <div ng-show="openList">
-      <input type="text" ng-model="data.listName" />
-      <md-button ng-click="addList(); openList = !openList ">Add list</md-button>
-    </div>
+  <div>
+    <md-button ng-hide="openList" ng-click="openList = !openList ">Add list</md-button>
   </div>
-  <!-- END list area -->
+
+  <div ng-show="openList">
+    <input type="text" ng-model="data.listName" />
+    <md-button ng-click="addList(); openList = !openList ">Add list</md-button>
+  </div>
 </div>
+<!-- END list area -->

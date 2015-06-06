@@ -6,12 +6,18 @@
 
 angular.module('profile.Controller', [])
 
-.controller('profileCtrl', function ($scope, $firebaseArray, firebaseRef) {
+.factory('firebaseProfile', function (firebaseUrl, $firebaseArray, $rootScope) {
+    var uid = $rootScope.id;
+    var ref = new Firebase(firebaseUrl + '/users/' + uid + '/profile');
+    var profile = $firebaseArray(ref);
+    return profile;
+  }) // END firebaseProfile
 
-  var ref = firebaseRef("profile");
 
-  $scope.profile = $firebaseArray(ref);
 
+.controller('profileCtrl', function ($scope, $firebaseArray, firebaseRef, firebaseProfile) {
+
+  $scope.profile = firebaseProfile;
 
   $scope.addProfile = function () {
       $scope.profile.$add({

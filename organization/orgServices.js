@@ -6,28 +6,22 @@
 
 angular.module('organization.services', [])
 
-
-
 .factory('firebaseOrg', function (firebaseUrl, $firebaseArray) {
-
-
-
     var ref = new Firebase(firebaseUrl + '/organization');
     //var query = ref.orderByKey().equalTo(filterArray);
     var organization = $firebaseArray(ref);
     return organization;
-
-
-
   }) // END firebaseOrg
 
 .service('organization', function (firebaseUrl) {
 
-
   this.addMemberToGroup = function (groupId, memberId) {
-      var ref = new Firebase(firebaseUrl + '/groupMember/' + groupId + '/member');
+      var ref = new Firebase(firebaseUrl + '/groupMember/' + groupId);
       var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember');
       var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/');
+      var projectRef = new Firebase(firebaseUrl + '/project');
+
+      projectRef.child(groupId).set(true);
       groupMemberRef.child(groupId).set(true);
       ref.child(memberId).set(true);
       userRef.child(groupId).set(true);
@@ -38,7 +32,9 @@ angular.module('organization.services', [])
       var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember');
       var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/');
       var orgRef = new Firebase(firebaseUrl + '/organization');
+      var projectRef = new Firebase(firebaseUrl + '/project');
 
+      projectRef.child(groupId).remove();
       orgRef.child(groupId).remove();
       groupMemberRef.child(groupId).remove();
       ref.child(memberId).remove();
@@ -46,41 +42,50 @@ angular.module('organization.services', [])
     } //End function addMemberToGroup
 })
 
+.service('projectServices', function (firebaseUrl) {
+
+  this.addMemberToProject = function (projectId, memberId, orgId) {
+
+      var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember/' + orgId);
+
+      var projectMemberRef = new Firebase(firebaseUrl + '/projectMember/' + projectId);
+      var listRef = new Firebase(firebaseUrl + '/list');
+
+      projectMemberRef.child(memberId).set(true);
+
+      listRef.child(projectId).set(true);
+
+      userRef.child(projectId).set(true);
+    } //End function
+
+  this.removeMemberFromProject = function (projectId, memberId) {
+
+      var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember');
+
+      userRef.child(projectId).remove();
+    } //End function
+
+
+})
+
+
 
 .factory('firebaseProject', function (firebaseUrl, $firebaseArray) {
-
-    var ref = new Firebase(firebaseUrl + '/project');
-    var project = $firebaseArray(ref);
-    return project;
-
-    //    return function (id) {
-    //        var ref = new Firebase(firebaseUrl + '/organization/' + id + '/project');
-    //        var project = $firebaseArray(ref);
-    //        return project;
-    //      } //End function
-
-
+    return function (uId) {
+      var ref = new Firebase(firebaseUrl + '/project/' + uId);
+      var array = $firebaseArray(ref);
+      return array;
+    }
   }) // END firebaseProject
 
-.filter('orgFilterTest', function (firebaseOrg) {
-  return function (orgs, tags) {
-    var filtered = [];
-    //    return orgs.filter(function (org) {
-    //      for (var i in org.$id) {
-    //        if (firebaseOrg.$indexFor(i) != -1) {
-    //          return false;
-    //        }
-    //      }
-    //      return true;
-    //    })
-
-    angular.forEach(orgs, function (org) {
-      if (tags.indexOf(org.$id) != -1) {
-        filtered.push(org)
-      }
-
-    })
-
-    return filtered;
-  };
-})
+.filter('filterByUserId', function () {
+    return function (orgs, tags) {
+      var filtered = [];
+      angular.forEach(orgs, function (org) {
+        if (tags.indexOf(org.$id) != -1) {
+          filtered.push(org)
+        }
+      })
+      return filtered;
+    };
+  }) // END filterByUserId

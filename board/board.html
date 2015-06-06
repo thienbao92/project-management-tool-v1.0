@@ -3,3 +3,27 @@
 </div>
 
 <!--<div ui-view="timeline"></div>-->
+
+<div>
+
+  <p>Add member</p>
+  <input type="text" ng-model="searchUsers" />
+  <div ng-repeat="user in users | filter: searchUsers">
+    <!-- Search users area -->
+
+    <div ng-repeat="name in user.profile ">
+
+
+      <md-button ng-click="addUsers(user.$id)">{{name.firstName}}</md-button>
+    </div>
+    <!--END Search users area-->
+
+  </div>
+  <p>The line</p>
+  <div ng-repeat="user in users | filterByUserId:projectMemberArray">
+
+    {{user.$id}}
+
+
+  </div>
+</div>

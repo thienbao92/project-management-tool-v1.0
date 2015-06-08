@@ -112,7 +112,7 @@ angular.module('myApp', [
       }
     })
     .state('task', {
-      url: "/task/:listId/:taskId",
+      url: "/task/:projectId/:listId/:taskId",
       templateUrl: "task/task.html",
       controller: "taskCtrl",
 

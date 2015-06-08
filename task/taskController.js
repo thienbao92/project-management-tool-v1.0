@@ -6,13 +6,13 @@
 
 angular.module('task.Controller', [])
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, getTask) {
+.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, getTask, getListDetail) {
 
-
+    $scope.listDetail = getListDetail($stateParams.projectId, $stateParams.listId);
     $scope.taskId = $stateParams.taskId;
 
     $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
-    console.log($scope.tasks);
+
     $scope.close = function () {
       history.back();
     };
@@ -29,8 +29,10 @@ angular.module('task.Controller', [])
           if (cl.isDone) {
             $scope.count += 1;
           }
-        })
+        });
+
         $scope.percentage = ($scope.count / $scope.total) * 100;
+
       })
 
     });

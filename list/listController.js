@@ -57,7 +57,8 @@ angular.module('list.Controller', [])
   $scope.goToTask = function (id, idList) {
       $state.go('task', {
         taskId: id,
-        listId: idList
+        listId: idList,
+        projectId: $stateParams.projectId
       });
     } //end function goToTask
 

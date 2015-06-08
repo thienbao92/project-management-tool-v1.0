@@ -1,10 +1,11 @@
 <md-content layout="column" ng-repeat="task in tasks" style="min-height: 90%">
 
   <!-- common information -->
-  <md-content layout-padding>
-    <span>{{x.listName}}</span>
-    <input type="text" ng-model="task.taskName" ng-change="tasks.$save(task)" />
+  <md-content layout-padding ng-repeat="list in listDetail">
+    <span>{{list.listName}}</span>
+
   </md-content>
+  <input type="text" ng-model="task.taskName" ng-change="tasks.$save(task)" />
 
   <div layout="row" layout-padding>
     <label>Start date</label>
@@ -64,7 +65,7 @@
   <md-toolbar class="toolbar--bottom">
     <div class="md-toolbar-tools">
       <md-button ng-click="close()" class="md-raised">Close</md-button>
-      <md-button ng-click="task.$remove(x);close()" class="md-raised md-warn">Delete</md-button>
+      <md-button ng-click="tasks.$remove(task);close()" class="md-raised md-warn">Delete</md-button>
     </div>
   </md-toolbar>
   <!--END button area-->

@@ -2,7 +2,7 @@
 
   <!-- common information -->
   <div layout-padding layout="row">
-    <md-card layout-padding class="md-hue-1">{{task.listName}}</md-card>
+    <md-card layout-padding ng-repeat="list in listDetail" md-theme="{{list.listTheme}}" class="list-name">{{list.listName}}</md-card>
     <input type="text" ng-model="task.taskName" ng-change="tasks.$save(task)" class="md-headline" />
   </div>
 
@@ -88,7 +88,7 @@
   <md-toolbar class="toolbar--bottom">
     <div class="md-toolbar-tools">
       <md-button ng-click="close()" class="md-raised">Close</md-button>
-      <md-button ng-click="task.$remove(x);close()" class="md-raised md-warn">Delete</md-button>
+      <md-button ng-click="tasks.$remove(task);close()" class="md-raised md-warn">Delete</md-button>
     </div>
   </md-toolbar>
   <!--END button area-->

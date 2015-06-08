@@ -59,7 +59,6 @@ angular.module('task.Controller', [])
 .config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('message-bg')
   .backgroundPalette('light-blue', {
-    'default': '200',
-    'hue-1': '500'
+    'default': '100',
   });
 })

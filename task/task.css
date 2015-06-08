@@ -16,8 +16,12 @@ datepicker {
   overflow-y: scroll; }
   .message__container .message__item {
     width: 40%; }
-    .message__container .message__item.md-hue-1 {
-      color: #fff; }
+    .message__container .message__item.message__item--right {
+      align-self: flex-end;
+      flex-direction: row-reverse; }
+      .message__container .message__item.message__item--right md-card {
+        background-color: #03a9f4;
+        color: #fff; }
 
 .toolbar--bottom .md-toolbar-tools {
   justify-content: flex-end; }

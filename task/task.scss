@@ -1,3 +1,5 @@
+@import "../dist/material-colors/colors";
+
 .datepicker-container {
   width: 250px;
 }
@@ -20,8 +22,13 @@ datepicker {
   overflow-y: scroll;
   .message__item {
     width: 40%;
-    &.md-hue-1 {
-      color: #fff;
+    &.message__item--right {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+      md-card {
+        background-color: $md-light-blue-500;
+        color: #fff;
+      }
     }
   }
 }

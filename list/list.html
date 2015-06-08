@@ -23,18 +23,18 @@
             <p>{{x.taskName}}</p>
           </md-card>
         </md-list-item>
-
-        <md-list-item class="tasks-list__item">
-          <md-card flex layout-padding md-theme="default">
-            <md-input-container>
-              <label>Add new task</label>
-              <input type="text" ng-model="data.taskName" ng-model-options="{ updateOn: 'blur' }" />
-            </md-input-container>
-          </md-card>
-        </md-list-item>
-
-        <md-button ng-click="addTask(list.$id); data.taskName =''; ">Add task</md-button>
       </div>
+      <md-list-item class="tasks-list__item">
+        <md-card flex layout-padding md-theme="default">
+          <md-input-container>
+            <label>Add new task</label>
+            <input type="text" ng-model="inputTaskName" ng-model-options="{ updateOn: 'blur' }" />
+          </md-input-container>
+        </md-card>
+      </md-list-item>
+
+      <md-button ng-click="addTask(list.$id, inputTaskName); inputTaskName =''; ">Add task</md-button>
+
       <!--END task area-->
 
     </md-card>
@@ -46,8 +46,8 @@
   </div>
 
   <div ng-show="openList">
-    <input type="text" ng-model="data.listName" />
-    <md-button ng-click="addList(); openList = !openList ">Add list</md-button>
+    <input type="text" ng-model="inputListName" />
+    <md-button ng-click="addList(inputListName); openList = !openList ">Add list</md-button>
   </div>
 </div>
 <!-- END list area -->

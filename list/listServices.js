@@ -10,7 +10,7 @@ angular.module('list.Services', [])
 
     return function (projectId) {
 
-      var ref = new Firebase(firebaseUrl + '/list' + projectId);
+      var ref = new Firebase(firebaseUrl + '/list/' + projectId);
       var list = $firebaseArray(ref);
       return list
     }

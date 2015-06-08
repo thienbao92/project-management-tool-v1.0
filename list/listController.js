@@ -16,11 +16,10 @@ angular.module('list.Controller', [])
   $scope.lists = firebaseList($stateParams.projectId);
   $scope.data = {};
 
-  $scope.addList = function () {
+  $scope.addList = function (inputListName) {
       $scope.lists.$add({
-        listName: $scope.data.listName,
-        listTheme: $scope.getListTheme(),
-        project: $stateParams.projectId
+        listName: inputListName,
+        // listTheme: $scope.getListTheme(),
       }).then(function (data) {
         var listId = data.key();
         task.addTaskParent(listId);
@@ -43,12 +42,12 @@ angular.module('list.Controller', [])
   //  var date = parser.parse("2015-01-30");
   //  console.log(date);
   //END date time are
-  $scope.addTask = function (listId) {
+  $scope.addTask = function (listId, inputTaskName) {
 
-      $scope.tasks = firebaseTask(listId);
+      $scope.addTasks = firebaseTask(listId);
 
-      $scope.tasks.$add({
-        taskName: $scope.data.taskName,
+      $scope.addTasks.$add({
+        taskName: inputTaskName,
         startDate: $scope.date,
         endDate: $scope.date
       })

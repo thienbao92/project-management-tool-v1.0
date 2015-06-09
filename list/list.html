@@ -19,7 +19,7 @@
         <md-list-item ng-repeat="x in tasks" class="tasks-list__item">
 
           <md-card ng-click="goToTask(x.$id, list.$id)" flex layout-padding md-theme="default">
-            <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
+            <md-progress-linear md-mode="determinate" value="{{x.percentOfChecklist}}" md-theme="progress-state" class="md-primary"></md-progress-linear>
             <p>{{x.taskName}}</p>
           </md-card>
         </md-list-item>

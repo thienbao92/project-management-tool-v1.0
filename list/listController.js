@@ -6,7 +6,7 @@
 
 angular.module('list.Controller', [])
 
-.controller('listCtrl', function ($scope, $stateParams, getProjectName, firebaseList, task, firebaseTask, firebaseProject, $mdDialog, $rootScope, $location, $state, getDate, $filter) {
+.controller('listCtrl', function ($scope, $stateParams, getProjectName, firebaseList, task, list, firebaseTask, firebaseProject, $mdDialog, $rootScope, $location, $state, getDate, $filter) {
 
   //get list data from firebase
 
@@ -23,6 +23,7 @@ angular.module('list.Controller', [])
       }).then(function (data) {
         var listId = data.key();
         task.addTaskParent(listId);
+        list.addListToUser($scope.id, $stateParams.orgId, $stateParams.projectId, listId);
       })
     } //end function addList
 

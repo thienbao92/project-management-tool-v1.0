@@ -12,12 +12,15 @@ angular.module('task.Controller', [])
     $scope.taskId = $stateParams.taskId;
 
     $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
-
+    tasksVar = getTask($stateParams.listId, $stateParams.taskId);
     $scope.close = function () {
       history.back();
     };
 
     //Check list function area
+
+
+
 
     $scope.checklist = firebaseCheckList($stateParams.listId, $stateParams.taskId);
 
@@ -31,7 +34,14 @@ angular.module('task.Controller', [])
           }
         });
 
-        $scope.percentage = ($scope.count / $scope.total) * 100;
+        var percentage = ($scope.count / $scope.total) * 100;
+        $scope.percentage = percentage;
+
+        var items = $scope.tasks.$getRecord($stateParams.taskId);
+        items.percentOfChecklist = percentage;
+        $scope.tasks.$save(items).then(function (ref) {
+
+        })
 
       })
 

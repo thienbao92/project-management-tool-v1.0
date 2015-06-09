@@ -119,6 +119,7 @@ angular.module('myApp', [
     })
 })
 
+// Theme
 .config(function ($mdThemingProvider) {
   var lightBlueWhite = $mdThemingProvider.extendPalette('light-blue', {
     'contrastDefaultColor': 'light'
@@ -146,7 +147,40 @@ angular.module('myApp', [
     });
 })
 
-.directive('jsonDate', function ($filter) {
+.config(function ($mdThemingProvider) {
+
+  $mdThemingProvider.theme('list-bg-1')
+    .backgroundPalette('purple', {
+      'default': '500',
+    });
+
+  $mdThemingProvider.theme('list-bg-2')
+    .backgroundPalette('teal', {
+      'default': '500',
+    });
+
+  $mdThemingProvider.theme('list-bg-3')
+    .backgroundPalette('blue', {
+      'default': '500',
+    });
+
+  $mdThemingProvider.theme('list-bg-4')
+    .backgroundPalette('deep-orange', {
+      'default': '500',
+    });
+
+  $mdThemingProvider.theme('list-bg-5')
+    .backgroundPalette('pink', {
+      'default': '500',
+    });
+
+  $mdThemingProvider.theme('list-bg-default')
+    .backgroundPalette('blue-grey', {
+      'default': '500',
+    });
+})
+
+  .directive('jsonDate', function ($filter) {
   return {
     restrict: 'A',
     require: 'ngModel',

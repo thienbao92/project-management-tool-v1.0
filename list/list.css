@@ -1,9 +1,23 @@
 .list-container {
   flex-wrap: wrap; }
 
-.tasks-list .tasks-list__item {
-  align-items: stretch;
-  flex: initial;
-  color: #424242; }
+.list {
+  color: #fff; }
+  .list .list__header .md-button {
+    color: inherit; }
+    .list .list__header .md-button md-icon {
+      color: inherit; }
+  .list .list__toolbar * {
+    color: #fff; }
+  .list .list__item {
+    align-items: stretch;
+    flex: initial;
+    color: #424242; }
+
+.list__colorpicker__option {
+  height: inherit;
+  width: inherit;
+  margin: 0;
+  color: transparent; }
 
 /*# sourceMappingURL=list.css.map */

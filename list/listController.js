@@ -19,7 +19,7 @@ angular.module('list.Controller', [])
   $scope.addList = function (inputListName) {
       $scope.lists.$add({
         listName: inputListName,
-        // listTheme: $scope.getListTheme(),
+        listTheme: 'list-bg-default',
       }).then(function (data) {
         var listId = data.key();
         task.addTaskParent(listId);
@@ -80,12 +80,10 @@ angular.module('list.Controller', [])
       });
     } //end function goToTask
 
-  var paletteNumber = 0;
 
-  $scope.getListTheme = function () {
-    paletteNumber = (paletteNumber + 1) % 5;
+  $scope.getListTheme = function (value) {
 
-    switch (paletteNumber) {
+    switch (value) {
     case 1:
       return 'list-bg-1';
       break;
@@ -98,37 +96,13 @@ angular.module('list.Controller', [])
     case 4:
       return 'list-bg-4';
       break;
-    default:
+    case 5:
       return 'list-bg-5';
+      break;
+    default:
+      return 'list-bg-default';
     }
   }
 
 })
 
-.config(function ($mdThemingProvider) {
-
-  $mdThemingProvider.theme('list-bg-1')
-    .backgroundPalette('purple', {
-      'default': '200',
-    });
-
-  $mdThemingProvider.theme('list-bg-2')
-    .backgroundPalette('teal', {
-      'default': '300',
-    });
-
-  $mdThemingProvider.theme('list-bg-3')
-    .backgroundPalette('lime', {
-      'default': '300',
-    });
-
-  $mdThemingProvider.theme('list-bg-4')
-    .backgroundPalette('orange', {
-      'default': '300',
-    });
-
-  $mdThemingProvider.theme('list-bg-5')
-    .backgroundPalette('brown', {
-      'default': '300',
-    });
-})

@@ -1,7 +1,42 @@
+@import "../dist/material-colors/colors";
+
+.list-name {
+  color: #fff;
+}
+
 .datepicker-container {
   width: 250px;
 }
 
-.toolbar--bottom .md-toolbar-tools{
+datepicker {
+  font-family: inherit !important;
+  & * {
+    font-family: inherit !important;
+  }
+}
+
+.checklist__list {
+  display: flex;
+  height: 200px;
+  flex-flow: column wrap;
+}
+
+.message__container {
+  height: 210px;
+  overflow-y: scroll;
+  .message__item {
+    width: 40%;
+    &.message__item--right {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+      md-card {
+        background-color: $md-light-blue-500;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.toolbar--bottom .md-toolbar-tools {
   justify-content: flex-end;
 }

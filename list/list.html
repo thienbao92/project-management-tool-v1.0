@@ -11,7 +11,7 @@
     <md-card md-theme="{{ list.listTheme }}">
       <h1 layout-padding layout-margin class="md-subhead">
         {{list.listName}}
-        <md-button ng-click="lists.$remove(list)">X</md-button>
+        <md-button ng-click="lists.$remove(list);removeTaskInList(list.$id)">X</md-button>
       </h1>
 
       <!-- task area -->

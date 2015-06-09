@@ -33,6 +33,32 @@ angular.module('organization.services', [])
       var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/');
       var orgRef = new Firebase(firebaseUrl + '/organization');
       var projectRef = new Firebase(firebaseUrl + '/project');
+      var projectUserRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember/' + groupId);
+
+      var projectMemberRef = new Firebase(firebaseUrl + '/projectMember');
+      var taskRef = new Firebase(firebaseUrl + '/task');
+      var listRef = new Firebase(firebaseUrl + '/list');
+      projectUserRef.on("value", function (snapshot) {
+        snapshot.forEach(function (projectId) {
+          var projectId = projectId.key();
+          listRef.child(projectId).remove();
+
+          var projectGroupMemberRef = new Firebase(firebaseUrl + '/projectMember');
+
+          projectGroupMemberRef.child(projectId).remove();
+
+          var listIdInUserProjectRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember/' + groupId + '/' + projectId);
+
+
+          listIdInUserProjectRef.on("value", function (snapshot) {
+            snapshot.forEach(function (listId) {
+              var listId = listId.key();
+              taskRef.child(listId).remove();
+            })
+          })
+
+        })
+      })
 
       projectRef.child(groupId).remove();
       orgRef.child(groupId).remove();

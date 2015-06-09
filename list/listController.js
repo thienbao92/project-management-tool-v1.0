@@ -19,7 +19,7 @@ angular.module('list.Controller', [])
   $scope.addList = function (inputListName) {
       $scope.lists.$add({
         listName: inputListName,
-        // listTheme: $scope.getListTheme(),
+        listTheme: 'list-bg-default',
       }).then(function (data) {
         var listId = data.key();
         task.addTaskParent(listId);

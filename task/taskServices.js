@@ -7,6 +7,17 @@
 angular.module('task.Services', [])
 
 
+.factory('getListDetail', function ($firebaseArray, firebaseUrl) {
+
+    return function (projectId, listId) {
+        var ref = new Firebase(firebaseUrl + '/list/' + projectId);
+        var query = ref.orderByKey().equalTo(listId);
+        var listDetail = $firebaseArray(query);
+        return listDetail;
+      } //End function
+  }) // END getListDetail
+
+
 .factory('getTask', function (firebaseUrl, $firebaseArray) {
 
     return function (listId, taskId) {

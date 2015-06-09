@@ -6,18 +6,21 @@
 
 angular.module('task.Controller', [])
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, getTask) {
+.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, getTask, getListDetail) {
 
-
+    $scope.listDetail = getListDetail($stateParams.projectId, $stateParams.listId);
     $scope.taskId = $stateParams.taskId;
 
     $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
-    console.log($scope.tasks);
+    tasksVar = getTask($stateParams.listId, $stateParams.taskId);
     $scope.close = function () {
       history.back();
     };
 
     //Check list function area
+
+
+
 
     $scope.checklist = firebaseCheckList($stateParams.listId, $stateParams.taskId);
 
@@ -29,8 +32,17 @@ angular.module('task.Controller', [])
           if (cl.isDone) {
             $scope.count += 1;
           }
+        });
+
+        var percentage = ($scope.count / $scope.total) * 100;
+        $scope.percentage = percentage;
+
+        var items = $scope.tasks.$getRecord($stateParams.taskId);
+        items.percentOfChecklist = percentage;
+        $scope.tasks.$save(items).then(function (ref) {
+
         })
-        $scope.percentage = ($scope.count / $scope.total) * 100;
+
       })
 
     });
@@ -59,7 +71,6 @@ angular.module('task.Controller', [])
 .config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('message-bg')
   .backgroundPalette('light-blue', {
-    'default': '200',
-    'hue-1': '500'
+    'default': '100',
   });
 })

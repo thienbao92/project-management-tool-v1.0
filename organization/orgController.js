@@ -92,6 +92,28 @@ angular.module('organization.Controller', [])
     $scope.removeProjectIdFromUser = function (id) {
         projectServices.removeMemberFromProject(id, $scope.id);
       } //end function removeProjectIdFromUser
-      //END project area
+
+    $scope.deleteProject = function (orgId, projectId) {
+        var taskRef = new Firebase(firebaseUrl + '/task');
+        var listRef = new Firebase(firebaseUrl + '/list');
+        var userRef = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId + '/' + projectId);
+        var projectUserRef = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId);
+
+        var projectGroupMemberRef = new Firebase(firebaseUrl + '/projectMember');
+
+        userRef.on("value", function (snapshot) {
+          snapshot.forEach(function (listId) {
+            var listId = listId.key();
+            taskRef.child(listId).remove();
+          })
+        })
+        listRef.child(projectId).remove();
+        projectUserRef.child(projectId).remove();
+        projectGroupMemberRef.child(projectId).remove();
+
+      } //end function deleteProject
+
+
+    //END project area
 
   }) //End orgCtrl

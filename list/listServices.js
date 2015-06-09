@@ -10,7 +10,7 @@ angular.module('list.Services', [])
 
     return function (projectId) {
 
-      var ref = new Firebase(firebaseUrl + '/list' + projectId);
+      var ref = new Firebase(firebaseUrl + '/list/' + projectId);
       var list = $firebaseArray(ref);
       return list
     }
@@ -37,7 +37,6 @@ angular.module('list.Services', [])
 
   }) // END firebaseList
 
-
 .service('task', function (firebaseUrl) {
     this.addTaskParent = function (listId) {
       var ref = new Firebase(firebaseUrl + '/task');
@@ -45,7 +44,14 @@ angular.module('list.Services', [])
       ref.child(listId).set(true);
     }
 
-
-
-
   }) // END service task
+
+.service('list', function (firebaseUrl) {
+  this.addListToUser = function (userId, orgId, projectId, listId) {
+    var ref = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId + '/' + projectId);
+
+    ref.child(listId).set(true);
+
+  }
+  return null;
+})

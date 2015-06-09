@@ -2,7 +2,7 @@
 
   <!-- common information -->
   <div layout-padding layout="row">
-    <md-card layout-padding class="md-hue-1">{{task.listName}}</md-card>
+    <md-card layout-padding ng-repeat="list in listDetail" md-theme="{{list.listTheme}}" class="list-name">{{list.listName}}</md-card>
     <input type="text" ng-model="task.taskName" ng-change="tasks.$save(task)" class="md-headline" />
   </div>
 
@@ -27,7 +27,9 @@
 
       <!-- Check list area -->
       <div layout-padding class="checklist">
-        <md-progress-linear md-theme="progress-state" class="md-primary" md-mode="determinate" value="{{percentage}}"></md-progress-linear>
+        <div style="text-align: center;">{{percentage | number: 0}} %
+          <md-progress-linear md-theme="progress-state" class="md-primary" md-mode="determinate" value="{{percentage}}"></md-progress-linear>
+        </div>
 
         <ul class="checklist__list">
           <li ng-repeat="cl in checklist">
@@ -40,10 +42,7 @@
         <p>Number of Check list: {{total}}</p>
 
         <form class="checklist__add" layout="row">
-          <md-input-container flex>
-            <label>New check list item</label>
-            <input type="text" ng-model="data.text" />
-          </md-input-container>
+          <input type="text" ng-model="data.text" flex placeholder="New check list item" />
           <md-button ng-click="addChecklist(); data.text=''" class="md-raised md-primary">Add to check list</md-button>
         </form>
       </div>
@@ -51,19 +50,19 @@
 
 
       <!-- message Area -->
-      <div class="message" flex layout="column">
-        <div class="message__container">
-          <md-card ng-repeat="msg in messages" layout-align="center start" layout-padding md-theme="message-bg" class="message__item">
-            {{msg.sender}}: {{msg.message}}
+      <div class="message" flex layout="column" layout-padding>
+        <div layout="column" class="message__container">
+          <div ng-repeat="msg in messages" layout="row" class="message__item" ng-class-even=" 'message__item--right' ">
+            <p>{{msg.sender}}</p>
+          <md-card flex layout-padding md-theme="message-bg" >
+            {{msg.message}}
           </md-card>
+          </div>
         </div>
 
         <span flex></span>
-        <form message__send layout="row">
-          <md-input-container flex>
-            <label>Message all</label>
-            <input type="text" ng-model="data.msg" />
-          </md-input-container>
+        <form layout="row" class="message__send">
+          <input type="text" ng-model="data.msg" flex placeholder="Message all" />
           <md-button ng-click="sendMsg(); data.msg=''" class="md-raised md-primary">Send</md-button>
         </form>
       </div>
@@ -89,7 +88,7 @@
   <md-toolbar class="toolbar--bottom">
     <div class="md-toolbar-tools">
       <md-button ng-click="close()" class="md-raised">Close</md-button>
-      <md-button ng-click="task.$remove(x);close()" class="md-raised md-warn">Delete</md-button>
+      <md-button ng-click="tasks.$remove(task);close()" class="md-raised md-warn">Delete</md-button>
     </div>
   </md-toolbar>
   <!--END button area-->

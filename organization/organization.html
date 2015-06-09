@@ -29,12 +29,14 @@
           <span ng-hide="inputShowed" ng-click="inputShowed = true" class="projects__title">{{project.projectName}}</span>
         </md-grid-tile-header>
 
+        <md-grid-tile-body>
+          <md-button ng-click="deleteProject(org.$id,project.$id); projects.$remove(project)">Delete</md-button>
+        </md-grid-tile-body>
 
-
-        <!--        <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>-->
         <br>
         <md-grid-tile-footer>
           <md-button href="#/board/{{org.$id}}/{{project.$id}}">show details</md-button>
+
         </md-grid-tile-footer>
 
       </md-grid-tile>

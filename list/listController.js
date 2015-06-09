@@ -6,7 +6,7 @@
 
 angular.module('list.Controller', [])
 
-.controller('listCtrl', function ($scope, $stateParams, getProjectName, firebaseList, task, firebaseTask, firebaseProject, $mdDialog, $rootScope, $location, $state, getDate, $filter) {
+.controller('listCtrl', function ($scope, $stateParams, getProjectName, firebaseList, task, list, firebaseTask, firebaseProject, $mdDialog, $rootScope, $location, $state, getDate, $filter, firebaseUrl) {
 
   //get list data from firebase
 
@@ -23,8 +23,26 @@ angular.module('list.Controller', [])
       }).then(function (data) {
         var listId = data.key();
         task.addTaskParent(listId);
+        list.addListToUser($scope.id, $stateParams.orgId, $stateParams.projectId, listId);
       })
     } //end function addList
+
+  $scope.removeTaskInList = function (listId) {
+      var userId = $scope.id;
+      var orgId = $stateParams.orgId;
+      var projectId = $stateParams.projectId;
+
+
+      var ref = new Firebase(firebaseUrl + '/task');
+      var userRef = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId + '/' + projectId);
+
+      ref.child(listId).remove();
+      userRef.child(listId).remove();
+    } //end function removeTaskInList
+
+
+
+
 
   //End list modification area
   $scope.task = firebaseTask;

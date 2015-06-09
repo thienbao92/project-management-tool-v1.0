@@ -21,8 +21,7 @@
           <md-select placeholder="Choose color" ng-model="paletteNumber" class="list__colorpicker">
             <md-option ng-repeat="i in [1,2,3,4,5]" value="{{i}}" ng-click="list.listTheme = getListTheme(i); lists.$save(list)"><md-card md-theme="list-bg-{{i}}" class="list__colorpicker__option">Choose color</md-card></md-option>
           </md-select>
-<!--          <input type="number" min="0" max="5" ng-model="paletteNumber" ng-change="list.listTheme = getListTheme(paletteNumber); lists.$save(list)">-->
-          <md-button ng-click="lists.$remove(list)" class="md-icon-button">
+          <md-button ng-click="lists.$remove(list);removeTaskInList(list.$id)" class="md-icon-button">
             <md-icon md-font-icon="fa fa-times" class="md-headline"></md-icon>
           </md-button>
         </div>
@@ -33,7 +32,7 @@
         <md-list-item ng-repeat="x in tasks" class="list__item">
 
           <md-card ng-click="goToTask(x.$id, list.$id)" flex layout-padding md-theme="default">
-            <md-progress-linear md-mode="determinate" value="60" md-theme="progress-state" class="md-primary"></md-progress-linear>
+            <md-progress-linear md-mode="determinate" value="{{x.percentOfChecklist}}" md-theme="progress-state" class="md-primary"></md-progress-linear>
             <p>{{x.taskName}}</p>
           </md-card>
         </md-list-item>

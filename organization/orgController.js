@@ -75,7 +75,20 @@ angular.module('organization.Controller', [])
           })
         })
 
-      } //end function testInit
+        ref.on("child_removed", function (snapshot) {
+          var removedProject = snapshot.key();
+          var index = $scope.projectFilterArray.indexOf(removedProject);
+
+          if (index > -1) {
+            $scope.projectFilterArray.splice(index, 1);
+          }
+
+        })
+
+
+
+
+      } //end function getProjectFilter
 
     $scope.projectData = {};
     $scope.addProject = function (uid) {

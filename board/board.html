@@ -19,11 +19,12 @@
     <!--END Search users area-->
 
   </div>
-  <p>The line</p>
-  <div ng-repeat="user in users | filterByUserId:projectMemberArray">
 
-    {{user.$id}}
+</div>
+<p>Users added</p>
+<div ng-repeat="member in projectMember">
 
+  {{member.$id}}
 
-  </div>
+  <md-button ng-click="removeUsers(member.$id)">Remove Users</md-button>
 </div>

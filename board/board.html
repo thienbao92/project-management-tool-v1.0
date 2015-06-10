@@ -13,10 +13,10 @@
   <!--END Search users area-->
 
 </div>
-<p>Member id</p>
-<div ng-repeat="user in users | filterByUserId:projectMemberArray">
+<p>Users added</p>
+<div ng-repeat="member in projectMember">
 
-  {{user.$id}}
+  {{member.$id}}
 
-
+  <md-button ng-click="removeUsers(member.$id)">Remove Users</md-button>
 </div>

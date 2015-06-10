@@ -53,7 +53,7 @@ angular.module('task.Services', [])
 .factory('firebaseMember', function (firebaseUrl, $firebaseArray) {
 
     return function (id, field) {
-        var url = firebaseUrl + '/' + field + '/' + id + '/member';
+        var url = firebaseUrl + '/' + field + '/' + id ;
         var ref = new Firebase(url);
         var members = $firebaseArray(ref);
         return members;

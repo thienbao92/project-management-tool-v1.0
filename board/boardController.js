@@ -34,10 +34,6 @@ angular.module('board.Controller', [])
 
     $scope.projectMemberArray = [];
 
-
-
-
-
     getProjectMemberRef.on("value", function (snapshot) {
       snapshot.forEach(function (value) {
         $scope.projectMemberArray.push(value.key());

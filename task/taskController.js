@@ -19,8 +19,14 @@ angular.module('task.Controller', [])
 
     //Check list function area
 
-
-
+    var firebaseMembers = firebaseMember($stateParams.projectId, 'projectMember');
+  $scope.projectMemberArray = [];
+  firebaseMembers.$loaded(
+    function() {
+      firebaseMembers.forEach(function(member) {
+        $scope.projectMemberArray.push(member.$id);
+      });
+    });
 
     $scope.checklist = firebaseCheckList($stateParams.listId, $stateParams.taskId);
 

@@ -16,7 +16,7 @@ angular.module('board.Controller', [])
     var getProjectMemberRef = new Firebase(firebaseUrl + '/projectMember/' + projectId);
 
     $scope.projectMember = $firebaseArray(getProjectMemberRef);
-    console.log($scope.projectMember);
+
 
 
 

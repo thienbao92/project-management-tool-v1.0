@@ -52,6 +52,7 @@ angular.module('organization.Controller', [])
 
     $scope.removeOrg = function (orgId) {
         organization.removeOrg(orgId, $scope.id);
+        organization.removeOrgfromMember(orgId);
       } //end function removeOrg
 
     //END Organization area

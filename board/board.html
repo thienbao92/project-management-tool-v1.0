@@ -7,18 +7,10 @@
 <div>
 
   <p>Add member</p>
-  <input type="text" ng-model="searchUsers" />
-  <div ng-repeat="user in users | filter: searchUsers">
-    <!-- Search users area -->
-
-    <div ng-repeat="name in user.profile ">
-
-
-      <md-button ng-click="addUsers(user.$id)">{{name.firstName}}</md-button>
-    </div>
-    <!--END Search users area-->
-
-  </div>
+  <md-autocomplete md-search-text-change="" md-search-text="searchText" md-selected-item-change="addUsers(item.$id)" md-items="item in users | filter: searchText" placeholder="Type email of member to add">
+    <span md-highlight-text="searchText" md-highlight-flags='i' ng-repeat="name in item.profile">{{name.firstName}}</span>
+  </md-autocomplete>
+  <!--END Search users area-->
 
 </div>
 <p>Users added</p>

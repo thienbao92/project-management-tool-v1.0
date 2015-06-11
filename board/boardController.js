@@ -9,7 +9,7 @@ angular.module('board.Controller', [])
 
 
 
-.controller('boardCtrl', function ($scope, $stateParams, firebaseUrl, $firebaseArray) {
+.controller('boardCtrl', function ($rootScope, $scope, $stateParams, firebaseUrl, $firebaseArray, filterUsersByArray) {
 
     var projectId = $stateParams.projectId;
 
@@ -18,7 +18,7 @@ angular.module('board.Controller', [])
     $scope.projectMember = $firebaseArray(getProjectMemberRef);
 
 
-
+    $scope.memberProfiles = filterUsersByArray($scope.projectMember);
 
     $scope.addUsers = function (userId) {
 
@@ -71,6 +71,7 @@ angular.module('board.Controller', [])
       console.log(deletedValue);
     })
 
+
     //Test drag and drop
     $scope.logEvent = function (message, event) {
       console.log(message, '(triggered by the following', event.type, 'event)');
@@ -82,5 +83,6 @@ angular.module('board.Controller', [])
     $scope.log = function (message) {
         console.log(message);
       } //end function log
+
 
   }) //End boardCtrl

@@ -6,7 +6,7 @@
 
 angular.module('task.Controller', [])
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, getTask, getListDetail) {
+.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, filterUsersByArray, getTask, getListDetail) {
 
     $scope.listDetail = getListDetail($stateParams.projectId, $stateParams.listId);
     $scope.taskId = $stateParams.taskId;
@@ -20,6 +20,7 @@ angular.module('task.Controller', [])
     //Check list function area
 
     var firebaseMembers = firebaseMember($stateParams.projectId, 'projectMember');
+
     $scope.projectMemberArray = [];
     firebaseMembers.$loaded(
       function () {
@@ -27,6 +28,9 @@ angular.module('task.Controller', [])
           $scope.projectMemberArray.push(member.$id);
         });
       });
+
+    //$scope.projectMemberArray = filterUsersByArray(firebaseMembers);
+
 
     $scope.checklist = firebaseCheckList($stateParams.listId, $stateParams.taskId);
 
@@ -69,8 +73,10 @@ angular.module('task.Controller', [])
           sender: $scope.id
         })
       } //end function sendMsg
-
-    //END chat-message area
+    $scope.senderIsMe = function (sender) {
+        return ($scope.id == sender);
+      }
+      //END chat-message area
 
 
     //Test change List

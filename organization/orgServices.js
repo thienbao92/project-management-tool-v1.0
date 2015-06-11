@@ -130,3 +130,20 @@ angular.module('organization.services', [])
       return filtered;
     };
   }) // END filterByUserId
+
+.factory('filterUsersByArray', function ($rootScope) {
+  return function (filterArray) {
+    var resultArray = [];
+    filterArray.$loaded(function () {
+      $rootScope.users.$loaded(function () {
+        $rootScope.users.forEach(function (user) {
+          filterArray.forEach(function (member) {
+            if (user.$id == member.$id)
+              resultArray.push(user);
+          });
+        });
+      });
+    });
+    return resultArray;
+  }
+})

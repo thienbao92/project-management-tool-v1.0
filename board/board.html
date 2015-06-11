@@ -14,10 +14,9 @@
 
 </div>
 <p>Users added</p>
-<div ng-repeat="member in projectMember">
 
-  {{member.$id}}
-
+<div ng-repeat="member in memberProfiles">
+  <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
   <md-button ng-click="removeUsers(member.$id)">Remove Users</md-button>
 </div>
 

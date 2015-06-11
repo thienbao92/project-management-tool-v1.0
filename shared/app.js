@@ -7,6 +7,7 @@ angular.module('myApp', [
     'ngMaterial',
     'angularMoment',
   '720kb.datepicker',
+  'dndLists',
 //shared JS
     'myApp.services',
   'task.Services',
@@ -180,7 +181,7 @@ angular.module('myApp', [
     });
 })
 
-  .directive('jsonDate', function ($filter) {
+.directive('jsonDate', function ($filter) {
   return {
     restrict: 'A',
     require: 'ngModel',

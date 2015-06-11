@@ -44,10 +44,10 @@ angular.module('task.Controller', [])
         $scope.percentage = percentage;
 
         var items = $scope.tasks.$getRecord($stateParams.taskId);
-        items.percentOfChecklist = percentage;
-        $scope.tasks.$save(items).then(function (ref) {
 
-        })
+        items.percentOfChecklist = percentage;
+        $scope.tasks.$save(items);
+
 
       })
 

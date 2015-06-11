@@ -6,71 +6,60 @@
 
 angular.module('board.Controller', [])
 
+.controller('boardCtrl', function ($rootScope, $scope, $stateParams, firebaseUrl, $firebaseArray, filterUsersByArray, firebaseUser) {
 
+    //Start get member Array from users directory. Source: loginServices.js
+    $scope.members = firebaseUser;
+    //End get member Array from users directory. Source: loginServices.js
 
-
-.controller('boardCtrl', function ($rootScope, $scope, $stateParams, firebaseUrl, $firebaseArray, filterUsersByArray) {
-
+    //Start get State params
     var projectId = $stateParams.projectId;
+    var orgId = $stateParams.orgId;
+    //End get State params
 
+    //Start projectMemberArray modification
     var getProjectMemberRef = new Firebase(firebaseUrl + '/projectMember/' + projectId);
 
-    $scope.projectMember = $firebaseArray(getProjectMemberRef);
+    $scope.projectMemberArray = [];
 
+    //Start detect when child add
+    getProjectMemberRef.on("child_added", function (snapshot) {
+        var addValue = snapshot.key();
+        console.log("added value " + addValue);
+        $scope.projectMemberArray.push(addValue);
+        console.log($scope.projectMemberArray);
+      })
+      //End detect when child add
 
-    $scope.memberProfiles = filterUsersByArray($scope.projectMember);
+    //Start detect when child removed
+    getProjectMemberRef.on("child_removed", function (snapshot) {
+        var deletedValue = snapshot.key();
+        console.log("deleted value " + deletedValue);
+        var index = $scope.projectMemberArray.indexOf(deletedValue);
+        $scope.projectMemberArray.splice(index, 1);
+      })
+      //End detect when child removed
+
+    //End projectMemberArray modification
 
     $scope.addUsers = function (userId) {
-
-        var orgId = $stateParams.orgId;
         var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/' + orgId);
-        var projectId = $stateParams.projectId;
-        var url = firebaseUrl + '/users/' + userId + '/groupMember/';
-
-
-        var addOrgRef = new Firebase(url);
-        var addProjectRef = new Firebase(url + orgId);
+        var addProjectRef = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId);
 
         groupMemberRef.child(userId).set(true);
         getProjectMemberRef.child(userId).set(true);
-        //addOrgRef.child(orgId).set(true);
         addProjectRef.child(projectId).set(true);
       } //end function addUsers
 
     $scope.removeUsers = function (userId) {
-
-        var orgId = $stateParams.orgId;
         var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/' + orgId);
-        var projectId = $stateParams.projectId;
-        var url = firebaseUrl + '/users/' + userId + '/groupMember/';
-
-
-        var addOrgRef = new Firebase(url);
-        var addProjectRef = new Firebase(url + orgId);
-
+        var addProjectRef = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId);
 
         groupMemberRef.child(userId).remove();
         getProjectMemberRef.child(userId).remove();
-        //addOrgRef.child(orgId).remove();
         addProjectRef.child(projectId).remove();
 
-
-
       } //end function removeUsers
-    $scope.projectMemberArray = [];
-
-
-    getProjectMemberRef.on("value", function (snapshot) {
-      snapshot.forEach(function (value) {
-        $scope.projectMemberArray.push(value.key());
-        $scope.test = value.key();
-      })
-    })
-    getProjectMemberRef.on("child_removed", function (snapshot) {
-      var deletedValue = snapshot.key();
-      console.log(deletedValue);
-    })
-
 
     //Test drag and drop
     $scope.logEvent = function (message, event) {

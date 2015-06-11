@@ -54,9 +54,9 @@
         <div layout="column" class="message__container">
           <div ng-repeat="msg in messages" layout="row" class="message__item" ng-class-even=" 'message__item--right' ">
             <p>{{msg.sender}}</p>
-          <md-card flex layout-padding md-theme="message-bg" >
-            {{msg.message}}
-          </md-card>
+            <md-card flex layout-padding md-theme="message-bg">
+              {{msg.message}}
+            </md-card>
           </div>
         </div>
 
@@ -80,6 +80,7 @@
   <!-- button area -->
   <md-toolbar class="toolbar--bottom">
     <div class="md-toolbar-tools">
+      <md-button ng-click="changeListParent()">Change to other list</md-button>
       <md-button ng-click="close()" class="md-raised">Close</md-button>
       <md-button ng-click="tasks.$remove(task);close()" class="md-raised md-warn">Delete</md-button>
     </div>

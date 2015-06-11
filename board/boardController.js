@@ -57,22 +57,18 @@ angular.module('board.Controller', [])
 
 
       } //end function removeUsers
+$scope.projectMemberArray = [];
 
-    $scope.projectMemberArray = [];
 
-
-    getProjectMemberRef.on("value", function (snapshot) {
-      snapshot.forEach(function (value) {
-        $scope.projectMemberArray.push(value.key());
-        $scope.test = value.key();
-      })
-    })
-    getProjectMemberRef.on("child_removed", function (snapshot) {
+getProjectMemberRef.on("value", function (snapshot) {
+  snapshot.forEach(function (value) {
+    $scope.projectMemberArray.push(value.key());
+    $scope.test = value.key();
+  })
+})
+getProjectMemberRef.on("child_removed", function (snapshot) {
       var deletedValue = snapshot.key();
       console.log(deletedValue);
     })
-
-
-
 
   }) //End boardCtrl

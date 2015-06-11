@@ -20,13 +20,13 @@ angular.module('task.Controller', [])
     //Check list function area
 
     var firebaseMembers = firebaseMember($stateParams.projectId, 'projectMember');
-  $scope.projectMemberArray = [];
-  firebaseMembers.$loaded(
-    function() {
-      firebaseMembers.forEach(function(member) {
-        $scope.projectMemberArray.push(member.$id);
+    $scope.projectMemberArray = [];
+    firebaseMembers.$loaded(
+      function () {
+        firebaseMembers.forEach(function (member) {
+          $scope.projectMemberArray.push(member.$id);
+        });
       });
-    });
 
     $scope.checklist = firebaseCheckList($stateParams.listId, $stateParams.taskId);
 
@@ -72,11 +72,35 @@ angular.module('task.Controller', [])
 
     //END chat-message area
 
+
+    //Test change List
+
+    $scope.changeListParent = function () {
+        var listId = $stateParams.listId;
+        var taskId = $stateParams.taskId;
+        var ref = new Firebase(firebaseUrl + '/task/' + listId + '/' + taskId);
+
+        var newRef = new Firebase(firebaseUrl + '/task/' + '-JrY4LTNoMj_zVqIVIRc');
+
+        ref.on('value', function (snapshot) {
+          var data = snapshot.val();
+          newRef.push(data, function () {
+            ref.remove();
+          });
+        })
+
+      } //end function changeListParent
+
+
+
+    //END test change List
+
+
   }) //End taskCtrl
 
 .config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('message-bg')
-  .backgroundPalette('light-blue', {
-    'default': '100',
-  });
+    .backgroundPalette('light-blue', {
+      'default': '100',
+    });
 })

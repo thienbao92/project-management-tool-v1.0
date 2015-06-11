@@ -9,7 +9,7 @@ angular.module('board.Controller', [])
 
 
 
-.controller('boardCtrl', function ($scope, $stateParams, firebaseUrl, $firebaseArray) {
+.controller('boardCtrl', function ($rootScope, $scope, $stateParams, firebaseUrl, $firebaseArray, filterUsersByArray) {
 
     var projectId = $stateParams.projectId;
 
@@ -18,7 +18,7 @@ angular.module('board.Controller', [])
     $scope.projectMember = $firebaseArray(getProjectMemberRef);
     console.log($scope.projectMember);
 
-
+    $scope.memberProfiles = filterUsersByArray($scope.projectMember);
 
     $scope.addUsers = function (userId) {
 
@@ -71,8 +71,5 @@ angular.module('board.Controller', [])
       var deletedValue = snapshot.key();
       console.log(deletedValue);
     })
-
-
-
 
   }) //End boardCtrl

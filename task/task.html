@@ -52,7 +52,7 @@
       <!-- message Area -->
       <div class="message" flex layout="column" layout-padding>
         <div layout="column" class="message__container">
-          <div ng-repeat="msg in messages" layout="row" class="message__item" ng-class-even=" 'message__item--right' ">
+          <div ng-repeat="msg in messages" layout="row" class="message__item" ng-class="senderIsMe(msg.sender) ? 'message__item--right' : '' ">
             <p>{{msg.sender}}</p>
           <md-card flex layout-padding md-theme="message-bg" >
             {{msg.message}}
@@ -72,7 +72,9 @@
     <!-- Member area -->
     <div flex="25">
       <h1 class="md-title">Member area</h1>
-      <p ng-repeat="member in projectMemberArray">{{member}}</p>
+      <div ng-repeat="member in projectMemberArray">
+        <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
+      </div>
     </div>
     <!--END Member area-->
   </div>

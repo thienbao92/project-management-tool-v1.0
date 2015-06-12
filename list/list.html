@@ -62,7 +62,7 @@
 
   <div ng-show="openList">
     <input type="text" ng-model="inputListName" />
-    <md-button ng-click="addList(inputListName); openList = !openList ">Add list</md-button>
+    <md-button ng-click="addList(inputListName); openList = !openList; inputListName='' ">Add list</md-button>
   </div>
 </div>
 <!-- END list area -->

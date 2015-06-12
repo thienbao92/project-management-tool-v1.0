@@ -19,11 +19,3 @@
   <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
   <md-button ng-click="removeUsers(member.$id)">Remove Users</md-button>
 </div>
-
-<!-- test dragging and dropping -->
-<p dnd-draggable dnd-dragstart="logEvent('tada', event)" dnd-effect-allowed="move">Drag me around</p>
-
-<ul dnd-list="containers" dnd-dragover="log('test')">
-  <li>sdcsics</li>
-</ul>
-<!--END test dragging and dropping-->

@@ -61,17 +61,4 @@ angular.module('board.Controller', [])
 
       } //end function removeUsers
 
-    //Test drag and drop
-    $scope.logEvent = function (message, event) {
-      console.log(message, '(triggered by the following', event.type, 'event)');
-      console.log(event);
-    };
-
-    $scope.containers = {};
-
-    $scope.log = function (message) {
-        console.log(message);
-      } //end function log
-
-
   }) //End boardCtrl

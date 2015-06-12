@@ -86,13 +86,11 @@ angular.module('task.Controller', [])
         var taskId = $stateParams.taskId;
         var ref = new Firebase(firebaseUrl + '/task/' + listId + '/' + taskId);
 
-        var newRef = new Firebase(firebaseUrl + '/task/' + '-JrY4LTNoMj_zVqIVIRc');
+        var newRef = new Firebase(firebaseUrl + '/task/' + '-JraoneUti-4BpHxZVnA');
 
         ref.on('value', function (snapshot) {
           var data = snapshot.val();
-          newRef.push(data, function () {
-            ref.remove();
-          });
+          newRef.push(data);
         })
 
       } //end function changeListParent

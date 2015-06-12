@@ -56,7 +56,6 @@ angular.module('organization.services', [])
               taskRef.child(listId).remove();
             })
           })
-
         })
       })
 

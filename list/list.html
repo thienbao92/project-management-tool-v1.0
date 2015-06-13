@@ -31,9 +31,9 @@
 
       <!-- task area -->
       <div layout="column" ng-init="tasks = tasks(list.$id)">
-        <md-list-item ng-repeat="x in tasks" class="list__item" dnd-draggable="x" dnd-dragstart="movedTaskComponents('tada, I am moving', list.$id, x.$id)" dnd-moved="removeTask()" dnd-effect-allowed="move">
+        <md-list-item ng-repeat="x in tasks" class="list__item">
 
-          <md-card ng-click="goToTask(x.$id, list.$id)" flex layout-padding md-theme="default">
+          <md-card dnd-draggable="x" dnd-dragstart="movedTaskComponents('tada, I am moving', list.$id, x.$id)" dnd-moved="removeTask()" ng-click="goToTask(x.$id, list.$id)" flex layout-padding md-theme="default">
             <md-progress-linear md-mode="determinate" value="{{x.percentOfChecklist}}" md-theme="progress-state" class="md-primary"></md-progress-linear>
             <p>{{x.taskName}}</p>
           </md-card>

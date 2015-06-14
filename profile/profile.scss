@@ -1,17 +1,7 @@
 .profile {
-  min-width: 60%;
-
-  margin-top: 4em;
-  padding: 1em;
-
   .profile__avatar {
-    width: 80%;
-
+    width: 60%;
     border-radius: 50%;
     padding: 1em;
-  }
-
-  md-card-content {
-    padding: 0;
   }
 }

@@ -6,18 +6,16 @@
 
 angular.module('task.Controller', [])
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, filterUsersByArray, getTask, getListDetail) {
+.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, firebaseUser, getTask, getListDetail) {
 
     $scope.listDetail = getListDetail($stateParams.projectId, $stateParams.listId);
     $scope.taskId = $stateParams.taskId;
 
     $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
     tasksVar = getTask($stateParams.listId, $stateParams.taskId);
-    $scope.close = function () {
-      history.back();
-    };
 
     //Check list function area
+    $scope.users = firebaseUser;
 
     var firebaseMembers = firebaseMember($stateParams.projectId, 'projectMember');
 
@@ -28,9 +26,6 @@ angular.module('task.Controller', [])
           $scope.projectMemberArray.push(member.$id);
         });
       });
-
-    //$scope.projectMemberArray = filterUsersByArray(firebaseMembers);
-
 
     $scope.checklist = firebaseCheckList($stateParams.listId, $stateParams.taskId);
 

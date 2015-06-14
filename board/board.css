@@ -1,0 +1,6 @@
+.member-list__item .md-warn {
+  opacity: 0; }
+.member-list__item:hover .md-warn {
+  opacity: 1; }
+
+/*# sourceMappingURL=board.css.map */

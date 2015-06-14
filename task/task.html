@@ -1,37 +1,40 @@
-<md-content layout="column" ng-repeat="task in tasks" style="min-height: 90%">
+<md-content layout="column" ng-repeat="task in tasks" style="min-height: 93%">
 
-  <!-- common information -->
-  <div layout-padding layout="row">
-    <md-card layout-padding ng-repeat="list in listDetail" md-theme="{{list.listTheme}}" class="list-name">{{list.listName}}</md-card>
-    <input type="text" ng-model="task.taskName" ng-change="tasks.$save(task)" class="md-headline" />
-  </div>
+  <div layout="row" flex>
+    <md-content flex layout="column">
 
-  <div layout="row" layout-padding flex>
-    <div flex="75" layout="column">
+      <!-- common information -->
+      <div layout-padding layout="row">
+        <md-card layout-padding ng-repeat="list in listDetail" md-theme="{{list.listTheme}}" class="list-name">{{list.listName}}</md-card>
+        <input type="text" ng-model="task.taskName" ng-change="tasks.$save(task)" class="md-headline" />
+        <md-button ng-click="tasks.$remove(task);close()" class="md-icon-button md-warn">
+          <md-icon md-font-icon="fa fa-times" class="md-headline"></md-icon>
+        </md-button>
+        <md-button ng-click="changeListParent()">Change to other list</md-button>
+      </div>
       <div layout="row" class="task-header">
-        <label>Start date</label>
-        <div class="datepicker-container">
+        <md-input-container class="datepicker-container">
+          <label>Start date</label>
           <datepicker date-format="dd/MM/yyyy">
             <input type="text" ng-model="task.startDate" ng-change="tasks.$save(task)">
           </datepicker>
-        </div>
-        <label>End date</label>
-        <div class="datepicker-container">
+        </md-input-container>
+        <md-input-container class="datepicker-container">
+          <label>End date</label>
           <datepicker date-format="dd/MM/yyyy">
             <input type="text" ng-model="task.endDate" ng-change="tasks.$save(task)">
           </datepicker>
-        </div>
+        </md-input-container>
       </div>
-
       <!------------END common information------------>
 
       <!-- Check list area -->
-      <div layout-padding class="checklist">
+      <div flex layout="column" layout-padding class="checklist">
         <div style="text-align: center;">{{percentage | number: 0}} %
           <md-progress-linear md-theme="progress-state" class="md-primary" md-mode="determinate" value="{{percentage}}"></md-progress-linear>
         </div>
 
-        <ul class="checklist__list">
+        <ul flex class="checklist__list">
           <li ng-repeat="cl in checklist">
             <md-checkbox ng-model="cl.isDone" ng-change="checklist.$save(cl)" class="md-primary">
               {{cl.text}}
@@ -41,53 +44,62 @@
 
         <p>Number of Check list: {{total}}</p>
 
-        <form class="checklist__add" layout="row">
-          <input type="text" ng-model="data.text" flex placeholder="New check list item" />
-          <md-button ng-click="addChecklist(); data.text=''" class="md-raised md-primary">Add to check list</md-button>
+        <form class="checklist__add" layout="row" layout-align="start center">
+          <md-input-container flex>
+            <label>New todos</label>
+            <input type="text" ng-model="data.text" />
+          </md-input-container>
+          <md-button ng-click="addChecklist(); data.text=''" class="md-primary md-icon-button">
+            <md-icon md-font-icon="fa fa-plus" class="md-headline"></md-icon>
+          </md-button>
         </form>
       </div>
       <!--END Check list area-->
 
+    </md-content>
 
-      <!-- message Area -->
-      <div class="message" flex layout="column" layout-padding>
-        <div layout="column" class="message__container">
-          <div ng-repeat="msg in messages" layout="row" class="message__item" ng-class="senderIsMe(msg.sender) ? 'message__item--right' : '' ">
-            <p>{{msg.sender}}</p>
-            <md-card flex layout-padding md-theme="message-bg">
-              {{msg.message}}
-            </md-card>
+    <md-sidenav md-component-id="right" md-is-locked-open="true" class="md-sidenav-right md-whiteframe-z2">
+      <md-content flex layout="column">
+        <md-subheader><span class="md-subhead">Members</span>
+        </md-subheader>
+        <div layout="row" class="member">
+          <div ng-repeat="member in users | filterByUserId: projectMemberArray" layout-padding>
+            <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
           </div>
         </div>
+        <!--END Member area-->
 
-        <span flex></span>
-        <form layout="row" class="message__send">
-          <input type="text" ng-model="data.msg" flex placeholder="Message all" />
-          <md-button ng-click="sendMsg(); data.msg=''" class="md-raised md-primary">Send</md-button>
-        </form>
-      </div>
-      <!--END message Area-->
-    </div>
+        <!-- message Area -->
+        <md-subheader><span class="md-subhead">Messages</span>
+        </md-subheader>
+        <div flex layout="column">
+          <div flex class="message__container">
+            <div layout="column" layout-padding class="message">
+              <div ng-repeat="msg in messages" layout="row" class="message__item" ng-class="senderIsMe(msg.sender) ? 'message__item--right' : '' ">
+                <div ng-repeat="member in users | filterByUserId: msg.sender" ng-hide="senderIsMe(msg.sender)" layout layout-align="center center">
+                  <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
+                </div>
+                <md-card flex layout-padding md-theme="message-bg">
+                  {{msg.message}}
+                </md-card>
+              </div>
+            </div>
+          </div>
 
-    <!-- Member area -->
-    <div flex="25">
-      <h1 class="md-title">Member area</h1>
-      <div ng-repeat="member in projectMemberArray">
-        <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
-      </div>
-    </div>
-    <!--END Member area-->
+          <form layout="row" layout-align="start center" class="message__send" layout-padding>
+            <md-input-container flex>
+              <label>Message all</label>
+              <input type="text" ng-model="data.msg" />
+            </md-input-container>
+            <md-button ng-click="sendMsg(); data.msg=''" class="md-icon-button md-primary">
+              <md-icon md-font-icon="fa fa-paper-plane" class="md-headline"></md-icon>
+            </md-button>
+          </form>
+        </div>
+        <!-- END message area -->
+      </md-content>
+    </md-sidenav>
+
   </div>
-
-  <!-- button area -->
-  <md-toolbar class="toolbar--bottom">
-    <div class="md-toolbar-tools">
-      <md-button ng-click="changeListParent()">Change to other list</md-button>
-      <md-button ng-click="close()" class="md-raised">Close</md-button>
-      <md-button ng-click="tasks.$remove(task);close()" class="md-raised md-warn">Delete</md-button>
-    </div>
-  </md-toolbar>
-  <!--END button area-->
-
 
 </md-content>

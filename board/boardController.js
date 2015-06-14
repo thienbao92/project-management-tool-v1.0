@@ -6,7 +6,7 @@
 
 angular.module('board.Controller', [])
 
-.controller('boardCtrl', function ($rootScope, $scope, $stateParams, firebaseUrl, $firebaseArray, filterUsersByArray, firebaseUser) {
+.controller('boardCtrl', function ($scope, $stateParams, firebaseUrl, $firebaseArray,  firebaseUser) {
 
     //Start get member Array from users directory. Source: loginServices.js
     $scope.members = firebaseUser;

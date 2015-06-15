@@ -1,5 +1,9 @@
-<md-toolbar ng-if="isLogin" layout="row" class="md-whiteframe-z3">
+<md-toolbar ng-if="isLogin" layout="row" class="md-whiteframe-z3" ng-controller="navCtrl">
   <div class="md-toolbar-tools">
+    <md-button ng-click="close()" class="md-icon-button">
+      <md-icon md-font-icon="fa fa-arrow-left" class="md-subhead"></md-icon>
+    </md-button>
+
     <!-- logo -->
     <md-button class="md-icon-button" ui-sref="main">
       COCOON

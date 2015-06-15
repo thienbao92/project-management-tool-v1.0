@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="navigation/navigation.css">
   <link rel="stylesheet" href="organization/organization.css">
   <link rel="stylesheet" href="profile/profile.css">
+  <link rel="stylesheet" href="board/board.css">
   <link rel="stylesheet" href="list/list.css">
   <link rel="stylesheet" href="task/task.css">
 
@@ -25,14 +26,15 @@
 </head>
 
 <body>
+  <md-content layout="column" style="min-height: 100%">
   <!-- navigation area -->
   <div ng-include src="'navigation/navigation.html'"></div>
   <!------------END navigation area------------>
 
   <!-- Route view -->
-  <div ui-view layout-fill style="display: inline"></div>
+  <div ui-view flex layout="column"></div>
   <!------------END Route view------------>
-
+  </md-content>
 
 
   <!-- Angular JS library -->

@@ -1,0 +1,10 @@
+.member-list__item {
+  .md-warn {
+    opacity: 0;
+  }
+  &:hover {
+    .md-warn {
+      opacity: 1;
+    }
+  }
+}

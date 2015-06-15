@@ -1,21 +1,30 @@
-<div ui-view="list">
+<md-content layout="row" style="min-height: 100%">
+  <div flex layout="column" ui-view="list">
 
-</div>
+  </div>
 
-<!--<div ui-view="timeline"></div>-->
+  <!--<div ui-view="timeline"></div>-->
 
-<div>
+  <md-sidenav md-component-id="right" md-is-locked-open="true" class="md-sidenav-right md-whiteframe-z2">
+    <md-content flex layout="column" layout-padding>
+      <!-- member area -->
+      <md-subheader>
+        <span class="md-subhead">Members</span>
+      </md-subheader>
+      <div layout="row" class="member-list" style="flex-wrap: wrap">
+        <div ng-repeat="member in users | filterByUserId: projectMemberArray" layout="column" layout-align="start center" layout-padding class="member-list__item">
+          <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
+          <md-button ng-click="removeUsers(member.$id)" class="md-warn md-icon-button" ><md-icon md-font-icon="fa fa-times" class="md-title"></md-icon></md-button>
+        </div>
+      </div>
 
-  <p>Add member</p>
-  <md-autocomplete md-search-text-change="" md-search-text="searchText" md-selected-item-change="addUsers(item.$id)" md-items="item in users | filter: searchText" placeholder="Type email of member to add">
-    <span md-highlight-text="searchText" md-highlight-flags='i' ng-repeat="name in item.profile">{{name.firstName}}</span>
-  </md-autocomplete>
-  <!--END Search users area-->
+      <md-autocomplete md-search-text-change="" md-search-text="searchText" md-selected-item-change="addUsers(item.$id)" md-items="item in users | filter: searchText" md-floating-label="New member's first name">
+        <span md-highlight-text="searchText" md-highlight-flags='i' ng-repeat="name in item.profile">{{name.firstName}}</span>
+      </md-autocomplete>
+      <!--END Member area-->
 
-</div>
-<p>Users added</p>
-
-<div ng-repeat="member in members | filterByUserId:projectMemberArray">
-  <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
-  <md-button ng-click="removeUsers(member.$id)">Remove Users</md-button>
-</div>
+      <md-subheader>
+        <span class="md-subhead">Activities</span>
+      </md-subheader>
+    </md-content>
+  </md-sidenav>

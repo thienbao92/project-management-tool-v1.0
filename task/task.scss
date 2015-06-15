@@ -5,33 +5,36 @@
 }
 
 .datepicker-container {
-  width: 250px;
-}
-
-datepicker {
-  font-family: inherit !important;
-  & * {
+  datepicker {
+    top: 100%;
     font-family: inherit !important;
+    & * {
+      font-family: inherit !important;
+    }
   }
 }
 
 .checklist__list {
   display: flex;
-  height: 200px;
   flex-flow: column wrap;
 }
 
 .message__container {
-  height: 210px;
+  position: relative;
   overflow-y: scroll;
-  .message__item {
-    width: 40%;
-    &.message__item--right {
-      align-self: flex-end;
-      flex-direction: row-reverse;
-      md-card {
-        background-color: $md-light-blue-500;
-        color: #fff;
+  .message {
+    position: absolute;
+    width: 100%;
+    .message__item {
+      max-width: 65%;
+      align-self: flex-start;
+      &.message__item--right {
+        align-self: flex-end;
+        flex-direction: row-reverse;
+        md-card {
+          background-color: $md-light-blue-500;
+          color: #fff;
+        }
       }
     }
   }

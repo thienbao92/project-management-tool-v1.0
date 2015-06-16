@@ -5,31 +5,30 @@
 </md-toolbar>
 
 <md-content>
-  <!-- day picker -->
-  <div layout="row" layout-align="start center" flex>
-    <md-button>Today</md-button>
-    <div layout="column" layout-align="center start" flex>
-      <md-select placeholder="Month" ng-model="month">
-        <md-option value="1">Jan</md-option>
-        <md-option value="2">Feb</md-option>
-      </md-select>
-    </div>
+  <div gantt-chart ng-begin="scaleBegin" ng-end="scaleEnd" ng-interval="interval"
+           ng-label-title="Label" ng-action-title="Action" ng-format="formatTime(tic)"
+           ng-scroll-left="scrollLeft" class="small-top-margin">
+
+        <div gantt-row ng-repeat="row in data | filter:search | orderBy:'label':rev">
+
+          <div gantt-label-container>
+            {{ row.label }}
+          </div>
+
+          <div gantt-bar-container>
+            <div gantt-bar ng-repeat="bar in row.bars" ng-begin="bar.start" ng-end="bar.end">
+              <div gantt-dragable-bar>
+                <div class="custom-bar">
+                  {{ bar.label }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div gantt-action-container>
+            {{ row.label }}
+          </div>
+
+        </div>
   </div>
-  <md-divider></md-divider>
-  <!-- END day picker -->
-
-  <!-- calendar -->
-  <md-list layout="row" class="calendar">
-    <md-list-item class="calendar__item" layout-align="center center">Week1</md-list-item>
-    <md-list-item class="calendar__item" layout-align="center center">Week2</md-list-item>
-  </md-list>
-  <!-- END calendar -->
-
-  <!-- list--timeline -->
-  <md-list layout="column" class="list--timeline">
-    <md-list-item>
-      <div class="list--timeline__header">List1</div>
-    </md-list-item>
-  </md-list>
-  <!-- END list--timeline -->
 </md-content>

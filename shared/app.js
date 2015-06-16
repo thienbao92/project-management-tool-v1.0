@@ -8,6 +8,7 @@ angular.module('myApp', [
     'angularMoment',
   '720kb.datepicker',
   'dndLists',
+  'angularGanttChart',
 //shared JS
     'myApp.services',
   'task.Services',

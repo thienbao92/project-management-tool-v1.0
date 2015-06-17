@@ -4,31 +4,21 @@
   </div>
 </md-toolbar>
 
-<md-content>
-  <div gantt-chart ng-begin="scaleBegin" ng-end="scaleEnd" ng-interval="interval"
-           ng-label-title="Label" ng-action-title="Action" ng-format="formatTime(tic)"
-           ng-scroll-left="scrollLeft" class="small-top-margin">
-
-        <div gantt-row ng-repeat="row in data | filter:search | orderBy:'label':rev">
-
-          <div gantt-label-container>
-            {{ row.label }}
-          </div>
-
-          <div gantt-bar-container>
-            <div gantt-bar ng-repeat="bar in row.bars" ng-begin="bar.start" ng-end="bar.end">
-              <div gantt-dragable-bar>
-                <div class="custom-bar">
-                  {{ bar.label }}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div gantt-action-container>
-            {{ row.label }}
-          </div>
-
-        </div>
-  </div>
+<md-content flex layout="column">
+  <svg flex style="width: 100%; overflow: scroll">
+    <g>
+      <rect x="0" y="0" height="100%" width="100%" style="fill: #e6e6e6" />
+    </g>
+    <g>
+      <rect x="40" y="10" height="25" width="{{20 * data[0].duration}}" style="fill: #24eac6"></rect>
+      <path d="M0 40 H1500" stroke-width="1" fill-opacity="1" stroke="#424242"></path>
+      <rect x="{{today}}" y="45" height="25" width="{{20 * data[1].duration}}" style="fill: #24eac6"></rect>
+      <path d="M0 75 H1500" stroke-width="1" fill-opacity="1" stroke="#424242"></path>
+    </g>
+    <g>
+      <path d="M{{today}} 0 V{{40 * data.length}}" stroke-width="4" stroke-opacity="0.5" stroke="#bcbebf"></path>
+      <text text-anchor="middle" x="40" y="{{40 * data.length + 20}}">40</text>
+      <text text-anchor="middle" x="{{today}}" y="{{40 * data.length + 20}}">Today</text>
+    </g>
+  </svg>
 </md-content>

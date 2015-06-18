@@ -10,15 +10,15 @@ angular.module('timeline.Controller', [])
   $scope.data = [
     {
       "name": "List 1",
-      "from": "2015-06-24",
-      "to": "2015-07-13",
-      "duration": 10
+      "from": 0,
+      "to": 2,
+      "progress": 20
     },
     {
       "name": "List 2",
-      "from": "2015-06-26",
-      "to": "2015-07-15",
-      "duration": 20
+      "from": 2,
+      "to": 10,
+      "progress": 70
     }
   ];
   $scope.today = 125;

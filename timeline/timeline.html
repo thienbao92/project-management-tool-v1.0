@@ -17,8 +17,11 @@
     </g>
     <g ng-repeat="i in data">
       <text text-anchor="start" x="20" y="{{125 + $index * 35}}">{{i.name}}</text>
-      <rect x="{{100 + 50 * i.from}}" y="{{105 + $index * 35}}" height="25" width="{{50 * (i.to - i.from)}}" style="fill: #d8d4d2"></rect>
-      <rect x="{{100 + 50 * i.from}}" y="{{105 + $index * 35}}" height="25" width="{{50 * (i.to - i.from) * i.progress / 100}}" style="fill: #24eac6"></rect>
+
+      <rect x="{{positionX(i.from)}}" y="{{positionY($index)}}" height="25" width="{{width(i.from, i.to)}}" style="fill: #d8d4d2"></rect>
+      <rect x="{{positionX(i.from)}}" y="{{positionY($index)}}" height="25" width="{{progressBar(i.progress, i.from, i.to)}}" style="fill: #24eac6"></rect>
+
+
       <path d="M0 {{100 + ($index + 1) * 35}} H1500" stroke-width="1" fill-opacity="1" stroke="#bcbebf"></path>
     </g>
     <g>

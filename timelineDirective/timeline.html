@@ -1,0 +1,26 @@
+<div id="mainContainer">
+  <div style="width:{{tableWidth}}px">
+    <div id="timelineContainer">
+      <div id="testBox" style="height:{{timelineContainerHeight}}"></div>
+      <div ng-repeat="date in dateLine" class="dateBox" style="width:{{pixels}}px" id="{{date}}">
+        {{date|date:'dd/MM'}}
+        <div class="box" style="height:{{timelineContainerHeight}}"></div>
+      </div>
+      <div ng-repeat="list in lists">
+        <div class="listName">{{list.listName}}</div>
+        <div id="taskContainer" ng-init="tasks = tasks(list.$id)">
+          <div class="main" ng-repeat="task in tasks">
+            <div ng-click="goToTask(task.$id,list.$id)">
+              <svg class="container" ng-attr-height="{{svgHeight}}">
+
+                <rect ng-attr-width="{{taskBarWidth(task.startDate,task.endDate)}}" ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-height="{{svgHeight}}" style="fill:rgb(0,0,255)" />
+                <rect ng-attr-width="{{progessBarWidth(task.startDate,task.endDate,task.percentOfChecklist)}}" ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-height="{{svgHeight}}" style="fill:green" />
+                <text ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-y="{{(svgHeight/2)}}" fill="red" id="svgText">{{task.taskName}}</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

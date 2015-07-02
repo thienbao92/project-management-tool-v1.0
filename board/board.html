@@ -1,8 +1,12 @@
 <md-content flex layout="row">
   <md-content layout="column" flex>
-  <div flex layout="column" ui-view="list"></div>
+    <div flex layout="column" ui-view="list"></div>
 
-  <div flex layout="column" ui-view="timeline"></div>
+    <div flex layout="column" >
+
+      <timeline pixels="50" task-height="50"></timeline>
+
+    </div>
   </md-content>
 
   <md-sidenav md-component-id="right" md-is-locked-open="true" class="md-sidenav-right md-whiteframe-z2">
@@ -14,7 +18,9 @@
       <div layout="row" class="member-list" style="flex-wrap: wrap">
         <div ng-repeat="member in users | filterByUserId: projectMemberArray" layout="column" layout-align="start center" layout-padding class="member-list__item">
           <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
-          <md-button ng-click="removeUsers(member.$id)" class="md-warn md-icon-button" ><md-icon md-font-icon="fa fa-times" class="md-title"></md-icon></md-button>
+          <md-button ng-click="removeUsers(member.$id)" class="md-warn md-icon-button">
+            <md-icon md-font-icon="fa fa-times" class="md-title"></md-icon>
+          </md-button>
         </div>
       </div>
 

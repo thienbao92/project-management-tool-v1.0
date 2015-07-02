@@ -9,6 +9,7 @@ angular.module('myApp', [
   '720kb.datepicker',
   'dndLists',
   'angularGanttChart',
+  'timeline',
 //shared JS
     'myApp.services',
   'task.Services',
@@ -17,6 +18,7 @@ angular.module('myApp', [
     'organization.services',
     'list.Services',
   'login.Services',
+  'timeline.Services',
 
 //controllers
     'list.Controller',

@@ -20,6 +20,9 @@
   <!-- datePicker CSS -->
   <link rel="stylesheet" type="text/css" href="dist/datePicker/angular-datepicker.min.css">
   <!--END datePicker CSS-->
+  <!-- timeline CSS -->
+  <link rel="stylesheet" type="text/css" href="timelineDirective/timeline.css">
+  <!--END timeline CSS-->
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="shared/app.css">
@@ -34,13 +37,13 @@
 
 <body>
   <md-content layout="column" style="min-height: 100%">
-  <!-- navigation area -->
-  <div ng-include src="'navigation/navigation.html'"></div>
-  <!------------END navigation area------------>
+    <!-- navigation area -->
+    <div ng-include src="'navigation/navigation.html'"></div>
+    <!------------END navigation area------------>
 
-  <!-- Route view -->
-  <div ui-view flex layout="column"></div>
-  <!------------END Route view------------>
+    <!-- Route view -->
+    <div ui-view flex layout="column"></div>
+    <!------------END Route view------------>
   </md-content>
 
 
@@ -127,6 +130,8 @@
 
   <!-- timeline JS -->
   <script src="timeline/timelineController.js"></script>
+  <script src="timelineDirective/timeline.js"></script>
+  <script src="timelineDirective/timelineServices.js"></script>
 
   <!------------END timeline JS------------>
 

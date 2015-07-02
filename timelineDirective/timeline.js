@@ -83,12 +83,6 @@ angular.module('timeline', [])
         //End calculate position of tasks
 
 
-      scope.$watch('list', function () {
-        console.log('list changed');
-
-      })
-
-
 
     }; //end function link
   }) //end Directive

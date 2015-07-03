@@ -69,30 +69,34 @@ angular.module('organization.Controller', [])
         return array;
       } //end function getProject
 
-    $scope.getProjectFilter = function (orgId) {
-        $scope.projectFilterArray = [];
-        var ref = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId);
 
-        ref.on("value", function (snapshot) {
-          snapshot.forEach(function (value) {
-            $scope.projectFilterArray.push(value.key());
-          })
-        })
+    $scope.projectFilterArray = [];
+    var userProjectMemberRef = new Firebase(firebaseUrl + '/users/' + userId + '/projectMember');
 
-        ref.on("child_removed", function (snapshot) {
-          var removedProject = snapshot.key();
-          var index = $scope.projectFilterArray.indexOf(removedProject);
+    userProjectMemberRef.on("value", function (snapshot) {
+      snapshot.forEach(function (value) {
+        $scope.projectFilterArray.push(value.key());
+      })
 
-          if (index > -1) {
-            $scope.projectFilterArray.splice(index, 1);
-          }
+      console.log($scope.projectFilterArray);
+    })
 
-        })
+    userProjectMemberRef.on("child_added", function (snapshot) {
+      var addedProject = snapshot.key();
+      $scope.projectFilterArray.push(addedProject);
+    })
+    userProjectMemberRef.on("child_removed", function (snapshot) {
+      var removedProject = snapshot.key();
+      var index = $scope.projectFilterArray.indexOf(removedProject);
+
+      if (index > -1) {
+        $scope.projectFilterArray.splice(index, 1);
+      }
+
+    })
 
 
 
-
-      } //end function getProjectFilter
 
     $scope.projectData = {};
     $scope.addProject = function (uid) {
@@ -118,12 +122,17 @@ angular.module('organization.Controller', [])
 
         var projectGroupMemberRef = new Firebase(firebaseUrl + '/projectMember');
 
+        var userProjectMemberRef = new Firebase(firebaseUrl + '/users/' + userId + '/projectMember');
+        userProjectMemberRef.child(projectId).remove();
+
+
         userRef.on("value", function (snapshot) {
           snapshot.forEach(function (listId) {
             var listId = listId.key();
             taskRef.child(listId).remove();
           })
         })
+
         listRef.child(projectId).remove();
         projectUserRef.child(projectId).remove();
         projectGroupMemberRef.child(projectId).remove();

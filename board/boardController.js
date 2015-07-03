@@ -6,7 +6,7 @@
 
 angular.module('board.Controller', [])
 
-.controller('boardCtrl', function ($scope, $stateParams, firebaseUrl, $firebaseArray,  firebaseUser) {
+.controller('boardCtrl', function ($scope, $stateParams, firebaseUrl, $firebaseArray, firebaseUser) {
 
     //Start get member Array from users directory. Source: loginServices.js
     $scope.members = firebaseUser;
@@ -46,6 +46,9 @@ angular.module('board.Controller', [])
         var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/' + orgId);
         var addProjectRef = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId);
 
+        var userProjectMemberRef = new Firebase(firebaseUrl + '/users/' + userId + '/projectMember');
+        userProjectMemberRef.child(projectId).set(true);
+
         groupMemberRef.child(userId).set(true);
         getProjectMemberRef.child(userId).set(true);
         addProjectRef.child(projectId).set(true);
@@ -54,6 +57,9 @@ angular.module('board.Controller', [])
     $scope.removeUsers = function (userId) {
         var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/' + orgId);
         var addProjectRef = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId);
+
+        var userProjectMemberRef = new Firebase(firebaseUrl + '/users/' + userId + '/projectMember');
+        userProjectMemberRef.child(projectId).remove();
 
         groupMemberRef.child(userId).remove();
         getProjectMemberRef.child(userId).remove();

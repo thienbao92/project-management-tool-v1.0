@@ -38,11 +38,13 @@ angular.module('organization.services', [])
       var projectMemberRef = new Firebase(firebaseUrl + '/projectMember');
       var taskRef = new Firebase(firebaseUrl + '/task');
       var listRef = new Firebase(firebaseUrl + '/list');
+      var userProjectMemberRef = new Firebase(firebaseUrl + '/users/' + memberId + '/projectMember');
+
       projectUserRef.on("value", function (snapshot) {
         snapshot.forEach(function (projectId) {
           var projectId = projectId.key();
           listRef.child(projectId).remove();
-
+          userProjectMemberRef.child(projectId).remove();
           var projectGroupMemberRef = new Firebase(firebaseUrl + '/projectMember');
 
           projectGroupMemberRef.child(projectId).remove();
@@ -90,6 +92,9 @@ angular.module('organization.services', [])
 
       var projectMemberRef = new Firebase(firebaseUrl + '/projectMember/' + projectId);
       var listRef = new Firebase(firebaseUrl + '/list');
+
+      var userProjectMemberRef = new Firebase(firebaseUrl + '/users/' + memberId + '/projectMember');
+      userProjectMemberRef.child(projectId).set(true);
 
       projectMemberRef.child(memberId).set(true);
 

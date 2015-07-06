@@ -19,6 +19,7 @@ angular.module('myApp', [
     'list.Services',
   'login.Services',
   'timeline.Services',
+  'notification.services',
 
 //controllers
     'list.Controller',

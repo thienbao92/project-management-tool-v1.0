@@ -2,7 +2,7 @@
   <md-content layout="column" flex>
     <div flex layout="column" ui-view="list"></div>
 
-    <div flex layout="column" >
+    <div flex layout="column">
 
       <timeline pixels="50" task-height="50"></timeline>
 
@@ -27,10 +27,13 @@
       <md-autocomplete md-search-text-change="" md-search-text="searchText" md-selected-item-change="addUsers(item.$id)" md-items="item in users | filter: searchText" md-floating-label="New member's first name">
         <span md-highlight-text="searchText" md-highlight-flags='i' ng-repeat="name in item.profile">{{name.firstName}}</span>
       </md-autocomplete>
-      <!--END Member area-->
+      <!--END Member area -->
 
       <md-subheader>
         <span class="md-subhead">Activities</span>
+        <p><b>Bao</b> added Vu to Project</p>
+        <p>Bao added Vu to Project</p>
+        <p>Bao added Vu to Project</p>
       </md-subheader>
     </md-content>
   </md-sidenav>

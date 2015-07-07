@@ -6,7 +6,24 @@
 
 angular.module('list.Controller', [])
 
-.controller('listCtrl', function ($scope, $stateParams, getProjectName, firebaseList, task, list, firebaseTask, firebaseProject, $mdDialog, $rootScope, $location, $state, getDate, $filter, firebaseUrl) {
+.controller('listCtrl', function (
+    $scope,
+    $stateParams,
+    getProjectName,
+    firebaseList,
+    task,
+    list,
+    firebaseTask,
+    firebaseProject,
+    $mdDialog,
+    $rootScope,
+    $location,
+    $state,
+    getDate,
+    $filter,
+    firebaseUrl,
+    projectActivity //boardController.js
+  ) {
 
     //get list data from firebase
     $scope.projects = getProjectName($stateParams.orgId, $stateParams.projectId);
@@ -19,16 +36,17 @@ angular.module('list.Controller', [])
           listTheme: 'list-bg-default',
         }).then(function (data) {
           var listId = data.key();
+          projectActivity.addList($scope.id, inputListName);
           task.addTaskParent(listId);
           list.addListToUser($scope.id, $stateParams.orgId, $stateParams.projectId, listId);
         })
       } //end function addList
 
-    $scope.removeTaskInList = function (listId) {
+    $scope.removeTaskInList = function (listId, listName) {
         var userId = $scope.id;
         var orgId = $stateParams.orgId;
         var projectId = $stateParams.projectId;
-
+        projectActivity.removeList(userId, listName);
 
         var ref = new Firebase(firebaseUrl + '/task');
         var userRef = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId + '/' + projectId);
@@ -54,7 +72,7 @@ angular.module('list.Controller', [])
     //  var date = parser.parse("2015-01-30");
     //  console.log(date);
     //END date time are
-    $scope.addTask = function (listId, inputTaskName) {
+    $scope.addTask = function (listId, listName, inputTaskName) {
 
         $scope.addTasks = firebaseTask(listId);
 
@@ -63,6 +81,10 @@ angular.module('list.Controller', [])
           startDate: $scope.date,
           endDate: $scope.date
         })
+
+        projectActivity.addTask($scope.id, listName, inputTaskName);
+
+
       } //end function addTask
 
 
@@ -78,23 +100,23 @@ angular.module('list.Controller', [])
     $scope.getListTheme = function (value) {
 
       switch (value) {
-      case 1:
-        return 'list-bg-1';
-        break;
-      case 2:
-        return 'list-bg-2';
-        break;
-      case 3:
-        return 'list-bg-3';
-        break;
-      case 4:
-        return 'list-bg-4';
-        break;
-      case 5:
-        return 'list-bg-5';
-        break;
-      default:
-        return 'list-bg-default';
+        case 1:
+          return 'list-bg-1';
+          break;
+        case 2:
+          return 'list-bg-2';
+          break;
+        case 3:
+          return 'list-bg-3';
+          break;
+        case 4:
+          return 'list-bg-4';
+          break;
+        case 5:
+          return 'list-bg-5';
+          break;
+        default:
+          return 'list-bg-default';
       }
     }
 

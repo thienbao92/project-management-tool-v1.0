@@ -31,9 +31,11 @@
 
       <md-subheader>
         <span class="md-subhead">Activities</span>
-        <p><b>Bao</b> added Vu to Project</p>
-        <p>Bao added Vu to Project</p>
-        <p>Bao added Vu to Project</p>
+        <ul ng-repeat="activity in projectActivities">
+          <li>
+            <a ng-href="{{activity.location}}">{{activity.content}}</a>
+          </li>
+        </ul>
       </md-subheader>
     </md-content>
   </md-sidenav>

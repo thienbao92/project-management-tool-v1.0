@@ -23,7 +23,7 @@
             <md-card md-theme="list-bg-{{i}}" class="list__colorpicker__option">Choose color</md-card>
           </md-option>
         </md-select>
-        <md-button ng-click="lists.$remove(list);removeTaskInList(list.$id)" class="md-icon-button">
+        <md-button ng-click="lists.$remove(list);removeTaskInList(list.$id,list.listName)" class="md-icon-button">
           <md-icon md-font-icon="fa fa-times" class="md-headline"></md-icon>
         </md-button>
       </div>
@@ -48,7 +48,7 @@
         </md-card>
       </md-list-item>
 
-      <md-button ng-click="addTask(list.$id, inputTaskName); inputTaskName =''; ">Add task</md-button>
+      <md-button ng-click="addTask(list.$id, list.listName, inputTaskName); inputTaskName =''; ">Add task</md-button>
 
       <!--END task area-->
 

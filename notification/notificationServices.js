@@ -1,23 +1,24 @@
 angular.module('notification.services', [])
 
+.factory('projectNotiFactory', function (firebaseUrl, $firebaseArray) {
 
-.factory('notiFactory', function (firebaseUrl, $firebaseArray) {
-  var ref = new Firebase(firebaseUrl + '/projectNotification');
-  var array = $firebaseArray(ref);
-  return array
+  return function (projectId) {
+      var ref = new Firebase(firebaseUrl + '/projectNotification/' + projectId);
+      var array = $firebaseArray(ref);
+      return array
+    } //End function
 })
 
-.service('notification', function (notiFactory) {
+
+.service('notification', function (projectNotiFactory) {
     var noti = this;
-    var resource = notiFactory;
 
-
-
-    noti.addNoti = function (content) {
-        resource.$add({
-          title: "thu resources",
-          content: content
-        })
+    noti.add = function (projectId, type, content, location) {
+        var projectNoti = projectNotiFactory(projectId);
+        projectNoti.$add({
+            type: type,
+            content: content,
+            location: location
+          }) //add notification
       } //End function
-
   }) //End services

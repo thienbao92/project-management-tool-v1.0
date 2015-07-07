@@ -6,7 +6,7 @@
 
 angular.module('task.Controller', [])
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, firebaseUser, getTask, getListDetail) {
+.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, firebaseUser, getTask, getListDetail, $window) {
 
     $scope.listDetail = getListDetail($stateParams.projectId, $stateParams.listId);
     $scope.taskId = $stateParams.taskId;
@@ -93,6 +93,7 @@ angular.module('task.Controller', [])
 
 
     //END test change List
+
 
 
   }) //End taskCtrl

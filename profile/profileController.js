@@ -40,6 +40,4 @@ angular.module('profile.Controller', [])
     $scope.notification = function () {
       notification.addNoti("test thu xem hieu qua khong hehehe");
     }
-
-
   }) //End controller

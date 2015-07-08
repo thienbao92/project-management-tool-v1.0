@@ -63,10 +63,13 @@
         <md-subheader><span class="md-subhead">Members</span>
         </md-subheader>
         <div layout="row" class="member">
-          <div ng-repeat="member in users | filterByUserId: projectMemberArray" layout-padding>
-            <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
+          <div ng-repeat="member in users | filterByUserId: taskMember" layout-padding>
+            <span ng-repeat="profile in member.profile">
+<md-button ng-click="addTaskMember(member.$id)">{{profile.firstName}}</md-button>
+            </span>
           </div>
         </div>
+
         <!--END Member area-->
 
         <!-- message Area -->

@@ -6,13 +6,15 @@
 
 angular.module('task.Controller', [])
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, firebaseUser, getTask, getListDetail, $window) {
+.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, firebaseUser, getTask, getListDetail, $window, taskMember, $firebaseObject) {
+
+
 
     $scope.listDetail = getListDetail($stateParams.projectId, $stateParams.listId);
     $scope.taskId = $stateParams.taskId;
 
     $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
-    tasksVar = getTask($stateParams.listId, $stateParams.taskId);
+
 
     //Check list function area
     $scope.users = firebaseUser;
@@ -26,7 +28,6 @@ angular.module('task.Controller', [])
           $scope.projectMemberArray.push(member.$id);
         });
       });
-
     $scope.checklist = firebaseCheckList($stateParams.listId, $stateParams.taskId);
 
     $scope.checklist.$watch(function () {
@@ -73,28 +74,34 @@ angular.module('task.Controller', [])
       }
       //END chat-message area
 
+    //Start add task Member
+    $scope.addTaskMember = function (memberId) {
+        taskMember.addMember(memberId);
+      } //end function addTaskMember
 
-    //Test change List
+    //    $scope.taskMember = [];
+    //
+    //    var listId = $stateParams.listId;
+    //    var taskId = $stateParams.taskId;
+    //
+    //    var ref = new Firebase(firebaseUrl + '/task/' + listId + '/' + taskId + '/member');
+    //
+    //    var obj = $firebaseArray(ref);
+    //    obj.$watch(function (event) {
+    //      angular.forEach(obj, function (value, key) {
+    //        $scope.taskMember.push(value.$id);
+    //      })
+    //
+    //      if (event.event === "child_removed") {
+    //        var deletedValue = event.key;
+    //        var value = $scope.taskMember.indexOf(event.key);
+    //        $scope.taskMember.splice(value, 1);
+    //      }
+    //    });
 
-    $scope.changeListParent = function () {
-        var listId = $stateParams.listId;
-        var taskId = $stateParams.taskId;
-        var ref = new Firebase(firebaseUrl + '/task/' + listId + '/' + taskId);
+    $scope.taskMember = taskMember.memberArray();
 
-        var newRef = new Firebase(firebaseUrl + '/task/' + '-JraoneUti-4BpHxZVnA');
-
-        ref.on('value', function (snapshot) {
-          var data = snapshot.val();
-          newRef.push(data);
-        })
-
-      } //end function changeListParent
-
-
-
-    //END test change List
-
-
+    //End add task Member
 
   }) //End taskCtrl
 

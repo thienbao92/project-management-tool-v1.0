@@ -20,6 +20,7 @@ angular.module('myApp', [
   'login.Services',
   'timeline.Services',
   'notification.services',
+  'task.activities',
 
 //controllers
     'list.Controller',

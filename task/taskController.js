@@ -6,16 +6,26 @@
 
 angular.module('task.Controller', [])
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, firebaseUser, getTask, getListDetail, $window, taskMember, $firebaseObject) {
-
-
+.controller('taskCtrl', function (
+    $scope,
+    $mdDialog,
+    $stateParams,
+    firebaseCheckList,
+    firebaseChat,
+    taskMessage, //taskChatServices.js
+    firebaseUrl,
+    $firebaseArray,
+    firebaseMember,
+    firebaseUser,
+    getTask,
+    getListDetail,
+    $window,
+    taskMember
+  ) {
 
     $scope.listDetail = getListDetail($stateParams.projectId, $stateParams.listId);
     $scope.taskId = $stateParams.taskId;
-
     $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
-
-
     //Check list function area
     $scope.users = firebaseUser;
 
@@ -47,8 +57,6 @@ angular.module('task.Controller', [])
 
         items.percentOfChecklist = percentage;
         $scope.tasks.$save(items);
-
-
       })
 
     });
@@ -62,13 +70,11 @@ angular.module('task.Controller', [])
     //End check list function area
 
     //Chat-message area
-    $scope.messages = firebaseChat($stateParams.listId, $stateParams.taskId);
+    $scope.messages = firebaseChat;
     $scope.sendMsg = function () {
-        $scope.messages.$add({
-          message: $scope.data.msg,
-          sender: $scope.id
-        })
-      } //end function sendMsg
+        taskMessage.send($scope.data.msg, $scope.id);
+      } //End function
+
     $scope.senderIsMe = function (sender) {
         return ($scope.id == sender);
       }
@@ -78,29 +84,7 @@ angular.module('task.Controller', [])
     $scope.addTaskMember = function (memberId) {
         taskMember.addMember(memberId);
       } //end function addTaskMember
-
-    //    $scope.taskMember = [];
-    //
-    //    var listId = $stateParams.listId;
-    //    var taskId = $stateParams.taskId;
-    //
-    //    var ref = new Firebase(firebaseUrl + '/task/' + listId + '/' + taskId + '/member');
-    //
-    //    var obj = $firebaseArray(ref);
-    //    obj.$watch(function (event) {
-    //      angular.forEach(obj, function (value, key) {
-    //        $scope.taskMember.push(value.$id);
-    //      })
-    //
-    //      if (event.event === "child_removed") {
-    //        var deletedValue = event.key;
-    //        var value = $scope.taskMember.indexOf(event.key);
-    //        $scope.taskMember.splice(value, 1);
-    //      }
-    //    });
-
     $scope.taskMember = taskMember.memberArray();
-
     //End add task Member
 
   }) //End taskCtrl

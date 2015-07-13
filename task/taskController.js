@@ -7,59 +7,47 @@
 angular.module('task.Controller', [])
 
 .controller('taskCtrl', function (
+    //common injectors
     $scope,
-    $mdDialog,
     $stateParams,
-    firebaseCheckList,
-    firebaseChat,
-    taskMessage, //taskChatServices.js
     firebaseUrl,
     $firebaseArray,
-    firebaseMember,
     firebaseUser,
+    $window,
+    $firebaseObject,
+    //task injector from taskServices.js
     getTask,
     getListDetail,
-    $window,
-    taskMember
+    //checklist injectors from taskCheckListServices.js
+    firebaseCheckList,
+    taskCheckList,
+    //chat injector from taskChatServices.js
+    firebaseChat,
+    taskMessage,
+    //members injector from taskMemberServices.js
+    taskMember,
+    projectMember
   ) {
+    $scope.getSubjectId = $scope.id;
 
-    $scope.listDetail = getListDetail($stateParams.projectId, $stateParams.listId);
+    $scope.listDetail = getListDetail;
+    console.log(getListDetail);
     $scope.taskId = $stateParams.taskId;
-    $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
+    $scope.tasks = getTask;
     //Check list function area
     $scope.users = firebaseUser;
 
-    var firebaseMembers = firebaseMember($stateParams.projectId, 'projectMember');
+    //Start get projectMember
+    $scope.projectMemberArray = projectMember.projectMemberArray();
+    //console.log($scope.projectMemberArray);
+    //End get projectMember
 
-    $scope.projectMemberArray = [];
-    firebaseMembers.$loaded(
-      function () {
-        firebaseMembers.forEach(function (member) {
-          $scope.projectMemberArray.push(member.$id);
-        });
-      });
-    $scope.checklist = firebaseCheckList($stateParams.listId, $stateParams.taskId);
+    //Start check list area
+    $scope.checklist = firebaseCheckList;
 
-    $scope.checklist.$watch(function () {
-      $scope.checklist.$loaded().then(function (checklists) {
-        $scope.total = checklists.length;
-        $scope.count = 0;
-        angular.forEach(checklists, function (cl) {
-          if (cl.isDone) {
-            $scope.count += 1;
-          }
-        });
+    taskCheckList.modifyCheckList();
+    //End check list area
 
-        var percentage = ($scope.count / $scope.total) * 100;
-        $scope.percentage = percentage;
-
-        var items = $scope.tasks.$getRecord($stateParams.taskId);
-
-        items.percentOfChecklist = percentage;
-        $scope.tasks.$save(items);
-      })
-
-    });
     $scope.data = {};
     $scope.addChecklist = function () {
         $scope.checklist.$add({
@@ -86,6 +74,18 @@ angular.module('task.Controller', [])
       } //end function addTaskMember
     $scope.taskMember = taskMember.memberArray();
     //End add task Member
+
+    //Start test save task name
+    var href = new Firebase(firebaseUrl + '/task/' + $stateParams.listId + '/' + $stateParams.taskId);
+    var obj = $firebaseObject(href);
+    var array = $firebaseArray(href);
+    $scope.saveTaskName = function () {
+        obj.taskName = $scope.data.taskName;
+        obj.$save().then(function (ref) {
+          console.log(ref);
+        })
+      } //end function saveTaskName
+      //End test save task name
 
   }) //End taskCtrl
 

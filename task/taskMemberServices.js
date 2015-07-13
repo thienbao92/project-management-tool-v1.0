@@ -39,13 +39,27 @@ angular.module('member.taskServices', [])
         return taskMemberArray;
       } //End function
   }) //End service task Member
+  .service('projectMember', function (firebaseUrl, $firebaseArray, $stateParams) {
+    var taskId = $stateParams.projectId;
+    var url = firebaseUrl + '/projectMember/' + taskId;
+    var ref = new Firebase(url);
+    var projectMember = $firebaseArray(ref);
+    //var projectMember = firebaseMember;
 
-.factory('firebaseMember', function (firebaseUrl, $firebaseArray) {
+    this.projectMemberArray = function () {
+        var array = [];
+        projectMember.$watch(function (event) {
+          angular.forEach(projectMember, function (value, key) {
+            array.push(value.$id);
+          })
 
-    return function (id, field) {
-        var url = firebaseUrl + '/' + field + '/' + id;
-        var ref = new Firebase(url);
-        var members = $firebaseArray(ref);
-        return members;
-      } //End function
-  }) // END firebaseMember
+          if (event.event === "child_removed") {
+            var deletedValue = event.key;
+            var value = array.indexOf(event.key);
+            array.splice(value, 1);
+          }
+        });
+        return array;
+      } // End projectMemberArray
+
+  })

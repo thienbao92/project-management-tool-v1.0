@@ -6,12 +6,24 @@
       <!-- common information -->
       <div layout-padding layout="row">
         <md-card layout-padding ng-repeat="list in listDetail" md-theme="{{list.listTheme}}" class="list-name">{{list.listName}}</md-card>
-        <input type="text" ng-model="task.taskName" ng-change="tasks.$save(task)" class="md-headline" />
+        <div ng-hide="editTaskName">
+          <h2>{{task.taskName}}</h2>
+          <md-button ng-click="editTaskName = !editTaskName">Edit</md-button>
+        </div>
+        <div ng-show="editTaskName">
+          <input type="text" ng-model="data.taskName" class="md-headline" />
+          <md-button ng-click="editTaskName = !editTaskName; saveTaskName()">Save</md-button>
+          <md-button ng-click="editTaskName = !editTaskName">Cancel</md-button>
+        </div>
+
+
         <md-button ng-click="tasks.$remove(task);close()" class="md-icon-button md-warn">
           <md-icon md-font-icon="fa fa-times" class="md-headline"></md-icon>
         </md-button>
-        <md-button ng-click="changeListParent()">Change to other list</md-button>
       </div>
+      <!-- Activity area -->
+      <task-activity subject-id="id"></task-activity>
+      <!--END Activity area-->
       <div layout="row" class="task-header">
         <md-input-container class="datepicker-container">
           <label>Start date</label>
@@ -30,8 +42,8 @@
 
       <!-- Check list area -->
       <div flex layout="column" layout-padding class="checklist">
-        <div style="text-align: center;">{{percentage | number: 0}} %
-          <md-progress-linear md-theme="progress-state" class="md-primary" md-mode="determinate" value="{{percentage}}"></md-progress-linear>
+        <div style="text-align: center;">{{task.percentOfChecklist | number: 0}} %
+          <md-progress-linear md-theme="progress-state" class="md-primary" md-mode="determinate" value="{{task.percentOfChecklist}}"></md-progress-linear>
         </div>
 
         <ul flex class="checklist__list">

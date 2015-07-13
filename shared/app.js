@@ -13,6 +13,7 @@ angular.module('myApp', [
 //shared JS
     'myApp.services',
   'task.Services',
+  'taskActivity',
 
   //services
     'organization.services',
@@ -20,8 +21,6 @@ angular.module('myApp', [
   'login.Services',
   'timeline.Services',
   'notification.services',
-  'task.activities',
-
 //controllers
     'list.Controller',
     'login.Controller',

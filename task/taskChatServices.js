@@ -6,24 +6,21 @@
 angular.module('chat.TaskServices', [])
 
 .factory('firebaseChat', function (firebaseUrl, $firebaseArray, $stateParams) {
-    var listId = $stateParams.listId;
-    var taskId = $stateParams.taskId;
-
-    var url = firebaseUrl + '/task/' + listId + '/' + taskId + '/chat';
-    var ref = new Firebase(url);
-    var chat = $firebaseArray(ref);
-    return chat
+    return function (listId, taskId) {
+      var url = firebaseUrl + '/task/' + listId + '/' + taskId + '/chat';
+      var ref = new Firebase(url);
+      var chat = $firebaseArray(ref);
+      return chat
+    }
   }) // END firebaseChat
 
 .service('taskMessage', function (firebaseChat) {
-  var messages = firebaseChat;
 
-  this.send = function (content, sender) {
+  this.send = function (listId, taskId, content, sender) {
+    var messages = firebaseChat(listId, taskId);
     messages.$add({
       message: content,
       sender: sender
-    }).error(function (error) {
-      console.log(error);
     })
   }
 })

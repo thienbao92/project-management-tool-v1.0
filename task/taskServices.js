@@ -24,10 +24,14 @@ angular.module('task.Services', [
   }) // END getListDetail
 
 .factory('getTask', function (firebaseUrl, $firebaseArray, $stateParams) {
-    var listId = $stateParams.listId;
-    var taskId = $stateParams.taskId;
-    var ref = new Firebase(firebaseUrl + '/task/' + listId);
-    var query = ref.orderByKey().equalTo(taskId);
-    var tasks = $firebaseArray(query);
-    return tasks
+
+    return function (listId, taskId) {
+      //      var listId = $stateParams.listId;
+      //      var taskId = $stateParams.taskId;
+      var ref = new Firebase(firebaseUrl + '/task/' + listId);
+      var query = ref.orderByKey().equalTo(taskId);
+      var tasks = $firebaseArray(query);
+      return tasks
+
+    }
   }) // END getTask

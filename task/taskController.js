@@ -25,14 +25,16 @@ angular.module('task.Controller', [])
     taskMessage,
     //members injector from taskMemberServices.js
     taskMember,
-    projectMember
+    projectMember,
+    //activity injectors
+    taskActivityServices
   ) {
     $scope.getSubjectId = $scope.id;
 
     $scope.listDetail = getListDetail;
     console.log(getListDetail);
     $scope.taskId = $stateParams.taskId;
-    $scope.tasks = getTask;
+    $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
     //Check list function area
     $scope.users = firebaseUser;
 
@@ -42,24 +44,29 @@ angular.module('task.Controller', [])
     //End get projectMember
 
     //Start check list area
-    $scope.checklist = firebaseCheckList;
+    $scope.checklist = firebaseCheckList($stateParams.listId, $stateParams.taskId);
 
-    taskCheckList.modifyCheckList();
+    taskCheckList.modifyCheckList($stateParams.listId, $stateParams.taskId);
     //End check list area
 
     $scope.data = {};
     $scope.addChecklist = function () {
         $scope.checklist.$add({
           text: $scope.data.text
+        }).then(function (data) {
+          var value = $scope.checklist.$getRecord(data.key());
+          var type = "addCheckList";
+          var content = $scope.id + ' added checklist ' + value.text;
+          taskActivityServices.add(type, content, $stateParams.taskId);
         })
       } //end function addChecklist
 
     //End check list function area
 
     //Chat-message area
-    $scope.messages = firebaseChat;
+    $scope.messages = firebaseChat($stateParams.listId, $stateParams.taskId);
     $scope.sendMsg = function () {
-        taskMessage.send($scope.data.msg, $scope.id);
+        taskMessage.send($stateParams.listId, $stateParams.taskId, $scope.data.msg, $scope.id);
       } //End function
 
     $scope.senderIsMe = function (sender) {

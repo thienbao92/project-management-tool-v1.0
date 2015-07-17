@@ -10,8 +10,7 @@ angular.module('task.Controller', [])
     //common injectors
     $scope,
     $stateParams,
-    firebaseUrl,
-    $firebaseArray,
+    firebaseUrl, $firebaseArray,
     firebaseUser,
     $window,
     $firebaseObject,

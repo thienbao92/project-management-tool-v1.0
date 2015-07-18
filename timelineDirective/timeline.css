@@ -36,11 +36,12 @@
 }
 #mainContainer {
   height: auto;
-  overflow-x: scroll
+  overflow-x: scroll;
 }
 .listName {
   z-index: 1;
   position: absolute;
+  left: 0;
 }
 .listNameContainer {
   position: relative

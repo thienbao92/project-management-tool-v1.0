@@ -7,12 +7,12 @@
 angular.module('checkList.TaskServices', [])
 
 .factory('firebaseCheckList', function (firebaseUrl, $firebaseArray, $stateParams) {
-    var listId = $stateParams.listId;
-    var taskId = $stateParams.taskId;
-    var url = firebaseUrl + '/task/' + listId + '/' + taskId + '/checklist';
-    var ref = new Firebase(url);
-    var checklist = $firebaseArray(ref);
-    return checklist;
+    return function (listId, taskId) {
+      var url = firebaseUrl + '/task/' + listId + '/' + taskId + '/checklist';
+      var ref = new Firebase(url);
+      var checklist = $firebaseArray(ref);
+      return checklist;
+    }
   }) // END firebaseCheckList
 
 .service('taskCheckList', function (
@@ -20,10 +20,10 @@ angular.module('checkList.TaskServices', [])
   getTask, //taskServices.js
   $stateParams
 ) {
-  var checklist = firebaseCheckList;
-  var tasks = getTask;
 
-  this.modifyCheckList = function () {
+  this.modifyCheckList = function (listId, taskId) {
+      var checklist = firebaseCheckList(listId, taskId);
+      var tasks = getTask(listId, taskId);
       checklist.$watch(function () {
         checklist.$loaded().then(function (checklists) {
           var total = checklists.length;

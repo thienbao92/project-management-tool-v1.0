@@ -1,16 +1,17 @@
 angular.module('taskActivity.services', [])
 
 .factory('taskActivityFactory', function (firebaseUrl, $firebaseArray, $stateParams) {
-    var taskId = $stateParams.taskId;
-    var ref = new Firebase(firebaseUrl + '/taskActivity/' + taskId);
-    var array = $firebaseArray(ref);
-    return array;
+    return function (taskId) {
+      var ref = new Firebase(firebaseUrl + '/taskActivity/' + taskId);
+      var array = $firebaseArray(ref);
+      return array;
+    }
   }) //End factory
 
 .service('taskActivityServices', function (taskActivityFactory, locationPath) {
 
-    this.add = function (type, content) {
-        var taskActivity = taskActivityFactory;
+    this.add = function (type, content, taskId) {
+        var taskActivity = taskActivityFactory(taskId);
         taskActivity.$add({
             type: type,
             content: content,
@@ -18,7 +19,4 @@ angular.module('taskActivity.services', [])
           }) //add notification
       } //End function
 
-    this.taskNameChange = function () {
-
-      } //End function
   }) //End service taskActivityServices

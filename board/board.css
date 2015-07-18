@@ -3,4 +3,14 @@
 .member-list__item:hover .md-button {
   opacity: 1; }
 
+md-tab-content,
+md-tabs-content-wrapper {
+  display: flex;
+  flex: 1 1 0%; }
+
+md-tab-content > div {
+  position: relative;
+  width: 100%;
+  overflow-y: scroll; }
+
 /*# sourceMappingURL=board.css.map */

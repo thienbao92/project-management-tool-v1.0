@@ -1,9 +1,9 @@
 .member-list__item {
-  .md-warn {
+  .md-button {
     opacity: 0;
   }
   &:hover {
-    .md-warn {
+    .md-button {
       opacity: 1;
     }
   }

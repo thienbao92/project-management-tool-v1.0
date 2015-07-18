@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AACE,2BAAS;EACP,OAAO,EAAE,CAAC;AAGV,iCAAS;EACP,OAAO,EAAE,CAAC",
+"mappings": "AACE,6BAAW;EACT,OAAO,EAAE,CAAC;AAGV,mCAAW;EACT,OAAO,EAAE,CAAC",
 "sources": ["board.scss"],
 "names": [],
 "file": "board.css"

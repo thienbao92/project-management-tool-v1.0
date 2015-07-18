@@ -1,6 +1,6 @@
-.member-list__item .md-warn {
+.member-list__item .md-button {
   opacity: 0; }
-.member-list__item:hover .md-warn {
+.member-list__item:hover .md-button {
   opacity: 1; }
 
 /*# sourceMappingURL=board.css.map */

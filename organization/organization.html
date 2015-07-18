@@ -12,8 +12,12 @@
         <input type="text" ng-show="showInput" show-focus="showInput" ng-model="org.name" ng-blur="organization.$save(org)">
         <span ng-hide="showInput">{{org.name}}</span>
 
-        <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput"><md-icon md-font-icon="fa fa-pencil"></md-icon></md-button>
-          <md-button ng-click="removeOrg(org.$id)">Remove</md-button>
+        <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput">
+          <md-icon md-font-icon="material-icons">&#xE3C9;</md-icon>
+        </md-button>
+        <md-button ng-click="removeOrg(org.$id)" class="md-icon-button">
+          <md-icon md-font-icon="material-icons">&#xE872;</md-icon>
+        </md-button>
       </h1>
       </form>
     </md-subheader>

@@ -18,8 +18,8 @@
       <div layout="row" class="member-list" style="flex-wrap: wrap">
         <div ng-repeat="member in users | filterByUserId: projectMemberArray" layout="column" layout-align="start center" layout-padding class="member-list__item">
           <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
-          <md-button ng-click="removeUsers(member.$id)" class="md-warn md-icon-button">
-            <md-icon md-font-icon="fa fa-times" class="md-title"></md-icon>
+          <md-button ng-click="removeUsers(member.$id)" class="md-icon-button">
+            <md-icon md-font-icon="material-icons">&#xE872;</md-icon>
           </md-button>
         </div>
       </div>

@@ -14,8 +14,12 @@
     </p>
     <!-- toolbar-menu -->
     <div class="md-toolbar__menu" layout="row">
-      <md-button ui-sref="main">main page</md-button>
-      <md-button ui-sref="board"> board</md-button>
+      <md-menu>
+        <md-button ng-click="$mdOpenMenu()" >!</md-button>
+        <md-menu-content style="width: 300px">
+          <md-menu-item><md-button ng-click="">Notification</md-button></md-menu-item>
+        </md-menu-content>
+      </md-menu>
       <md-button ng-click="logout()">Logout</md-button>
 
     </div>

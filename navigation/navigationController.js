@@ -10,4 +10,7 @@ angular.module('navigation.Controller', [])
     $rootScope.close = function () {
       history.back();
     };
+
+    $scope.userId = $scope.id;
+
   }) //End navCtrl

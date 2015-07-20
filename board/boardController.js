@@ -6,39 +6,54 @@
 
 angular.module('board.Controller', [])
 
+.factory('projectName', function (firebaseUrl, $firebaseObject, $firebaseArray) {
+
+  return function (orgId, projectId) {
+    var ref = new Firebase(firebaseUrl + '/project/' + orgId + '/' + projectId);
+    var object = $firebaseObject(ref);
+    var array = $firebaseArray(ref)
+      //    array.$loaded().then(function () {
+      //      var projectName = array.$getRecord(orgId);
+      //      return projectName
+      //    })
+    return object
+  }
+})
+
+
 .service('projectActivity', function (notification, locationPath, $stateParams) {
   var location = '#' + locationPath;
-  var projectId = $stateParams.projectId;
+  //var projectId = $stateParams.projectId;
 
-  this.addMember = function (firstUser, secondUser) {
+  this.addMember = function (firstUser, secondUser, projectId) {
       var type = "addMember";
       var content = firstUser + " added " + secondUser + " to project";
 
       notification.add(projectId, type, content, location);
     } //End function
 
-  this.removeMember = function (firstUser, secondUser) {
+  this.removeMember = function (firstUser, secondUser, projectId) {
       var type = "removeMember";
       var content = firstUser + " removed " + secondUser + " from project";
 
       notification.add(projectId, type, content, location);
     } //End function
 
-  this.addList = function (user, listName) {
+  this.addList = function (user, listName, projectId) {
       var type = "addList";
       var content = user + " added list " + listName + " to project";
 
       notification.add(projectId, type, content, location);
     } //End function
 
-  this.removeList = function (user, listName) {
+  this.removeList = function (user, listName, projectId) {
       var type = "removeList";
       var content = user + " removed list " + listName + " from project";
 
       notification.add(projectId, type, content, location);
     } //End function
 
-  this.addTask = function (user, listName, taskName) {
+  this.addTask = function (user, listName, taskName, projectId) {
       var type = "addTask";
       var content = user + " added task " + taskName + " to list" + listName;
 
@@ -46,18 +61,19 @@ angular.module('board.Controller', [])
     } //End function
 })
 
-.controller('boardCtrl', function ($scope, $stateParams, firebaseUrl, $firebaseArray, firebaseUser, locationPath, notification, projectNotiFactory, projectActivity) {
+.controller('boardCtrl', function ($scope, $stateParams, firebaseUrl, $firebaseArray, firebaseUser, $location, notification, projectNotiFactory, projectActivity, userNotification, projectName) {
 
     //Start get member Array from users directory. Source: loginServices.js
     $scope.members = firebaseUser;
     //End get member Array from users directory. Source: loginServices.js
 
+
     //Start get State params
     var projectId = $stateParams.projectId;
     var orgId = $stateParams.orgId;
     var id = $scope.id;
+    var location = '#' + $location.path();
     //End get State params
-
     //Start notification
     $scope.projectActivities = projectNotiFactory(projectId);
     //End notification
@@ -98,7 +114,19 @@ angular.module('board.Controller', [])
         getProjectMemberRef.child(userId).set(true);
         addProjectRef.child(projectId).set(true);
 
-        projectActivity.addMember(id, userId);
+        projectActivity.addMember(id, userId, projectId);
+
+        //Start get project name
+        var projectSource = projectName(orgId, projectId);
+        projectSource.$loaded(function (value) {
+          var projectValue = value.projectName;
+          userNotification.addMember(id, userId, projectValue, location);
+        })
+
+        //End get project name
+
+
+
       } //end function addUsers
 
     $scope.removeUsers = function (userId) {
@@ -112,10 +140,16 @@ angular.module('board.Controller', [])
         getProjectMemberRef.child(userId).remove();
         addProjectRef.child(projectId).remove();
 
-        projectActivity.removeMember()
+        projectActivity.removeMember(id, userId, projectId)
+          //Start get project name
+        var projectSource = projectName(orgId, projectId);
+        projectSource.$loaded(function (value) {
+          var projectValue = value.projectName;
+          userNotification.removeMember(id, userId, projectValue, location);
+        })
+
+        //End get project name
 
       } //end function removeUsers
 
-
-    console.log($scope.id);
   }) //End boardCtrl

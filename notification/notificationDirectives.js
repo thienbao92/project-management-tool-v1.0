@@ -10,9 +10,14 @@ angular.module('notification.directive', [])
   return {
     templateUrl: './notification/nav-notification.html',
     restrict: 'E',
-    scope: {},
-    link: function postLink($scope, elem, attrs) {
-
-    }
+    scope: {
+      userId: '='
+    },
+    link: link,
+    controller: 'navNotiCtrl'
   }
 })
+
+function link(scope, elem, attrs) {
+
+}

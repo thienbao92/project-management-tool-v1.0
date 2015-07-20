@@ -13,16 +13,8 @@
     <p class="md-body-1">Welcome <strong>{{googleName}}</strong>
     </p>
     <!-- toolbar-menu -->
-    <div class="md-toolbar__menu" layout="row">
-      <md-menu>
-        <md-button ng-click="$mdOpenMenu()" >!</md-button>
-        <md-menu-content style="width: 300px">
-          <md-menu-item><md-button ng-click="">Notification</md-button></md-menu-item>
-        </md-menu-content>
-      </md-menu>
-      <md-button ng-click="logout()">Logout</md-button>
-
-    </div>
+    <nav-notification></nav-notification>
+    <md-button ng-click="logout()">Logout</md-button>
   </div>
-  <!-- dùng để test, sẽ xoá sau -->
+
 </md-toolbar>

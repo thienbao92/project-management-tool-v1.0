@@ -6,9 +6,8 @@
 
 angular.module('navigation.Controller', [])
 
-.controller('navCtrl', function ($rootScope, $state) {
+.controller('navCtrl', function ($rootScope, $state, $scope) {
     $rootScope.close = function () {
       history.back();
     };
-
-    }) //End navCtrl
+  }) //End navCtrl

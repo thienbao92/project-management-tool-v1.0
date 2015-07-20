@@ -9,6 +9,7 @@ angular.module('myApp', [
   '720kb.datepicker',
   'dndLists',
   'timeline',
+  'notification.module',
 //shared JS
     'myApp.services',
   'task.Services',

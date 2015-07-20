@@ -33,7 +33,6 @@ angular.module('notification.services', [])
 
 .service('userNotification', function (userNotificationRef, locationPath) {
 
-
   this.addMember = function (firstUser, secondUser, projectName, location) {
       var member = userNotificationRef(secondUser);
       var content = firstUser + ' added you to project ' + projectName;

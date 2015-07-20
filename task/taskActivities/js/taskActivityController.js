@@ -30,7 +30,6 @@ angular.module('taskActivity.controller', [])
       var oldStartDateVal = value.startDate;
       var oldEndDateVal = value.endDate;
 
-
       array.$watch(function (event) {
         console.log(event);
 

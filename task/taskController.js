@@ -60,10 +60,8 @@ angular.module('task.Controller', [])
           taskActivityServices.add(type, content, $stateParams.taskId);
         })
       } //end function addChecklist
-
-    //End check list function area
-
-    //Chat-message area
+      //End check list function area
+      //Chat-message area
     $scope.messages = firebaseChat($stateParams.listId, $stateParams.taskId);
     $scope.sendMsg = function () {
         taskMessage.send($stateParams.listId, $stateParams.taskId, $scope.data.msg, $scope.id);

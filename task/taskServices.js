@@ -8,7 +8,8 @@ angular.module('task.Services', [
 
   'chat.TaskServices',
   'member.taskServices',
-  'checkList.TaskServices'
+  'checkList.TaskServices',
+  'taskNotification'
 ])
 
 .factory('getListDetail', function ($firebaseArray, firebaseUrl, $stateParams) {

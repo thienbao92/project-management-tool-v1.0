@@ -26,15 +26,23 @@ angular.module('task.Controller', [])
     //members injector from taskMemberServices.js
     taskMember,
     projectMember,
+    taskMemberFactory,
     //activity injectors
     taskActivityServices
+    //taskNotification injectors
+
   ) {
+    //Start get variables
     $scope.getSubjectId = $scope.id;
+    var listId = $stateParams.listId;
+    var taskId = $stateParams.taskId;
+    //End get variables
 
     $scope.listDetail = getListDetail;
     console.log(getListDetail);
     $scope.taskId = $stateParams.taskId;
     $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
+
     //Check list function area
     $scope.users = firebaseUser;
 
@@ -74,9 +82,10 @@ angular.module('task.Controller', [])
 
     //Start add task Member
     $scope.addTaskMember = function (memberId) {
-        taskMember.addMember(memberId);
+        taskMember.addMember(listId, taskId, memberId);
       } //end function addTaskMember
-    $scope.taskMember = taskMember.memberArray();
+    $scope.taskMember = taskMember.memberArray(listId, taskId);
+    console.log($scope.taskMember);
     //End add task Member
 
     //Start test save task name

@@ -9,6 +9,7 @@
         <div ng-hide="editTaskName">
           <h2>{{task.taskName}}</h2>
           <md-button ng-click="editTaskName = !editTaskName">Edit</md-button>
+          <md-button ng-click="testTaskMember()">test task member array</md-button>
         </div>
         <div ng-show="editTaskName">
           <input type="text" ng-model="data.taskName" class="md-headline" />

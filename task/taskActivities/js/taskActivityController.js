@@ -4,7 +4,7 @@
  * Description
  */
 
-angular.module('taskActivity.controller', [])
+angular.module('taskActivity')
 
 .controller('taskActivityCtrl', function (
     //common injectors
@@ -17,9 +17,34 @@ angular.module('taskActivity.controller', [])
     //test injectors
     firebaseUrl,
     $firebaseArray,
-    $firebaseObject
+    $firebaseObject,
+    //task notification injectors
+    taskNotificationServices,
+    //taskMember
+    taskMember,
+    userNotificationRef
   ) {
-    console.log($scope.subjectId);
+
+
+    //Start get variables
+    var listId = $stateParams.listId;
+    var taskId = $stateParams.taskId;
+    //End get variables
+
+    var member = taskMember.memberArray(listId, taskId);
+
+    function taskNotification(action, content) {
+      member.forEach(function (userId) {
+        var memberRef = userNotificationRef(userId);
+
+        memberRef.$add({
+          type: 'task',
+          action: action,
+          content: content
+        })
+      })
+    };
+
     $scope.taskActivities = taskActivityFactory($stateParams.taskId);
     var ref = new Firebase(firebaseUrl + '/task/' + $stateParams.listId + '/' + $stateParams.taskId);
     var array = $firebaseArray(ref);
@@ -45,6 +70,8 @@ angular.module('taskActivity.controller', [])
             var type = "changeTaskName";
             var content = $scope.subjectId + ' changed task name from ' + oldTaskNameVal + ' to ' + newVal;
             taskActivityServices.add(type, content, $stateParams.taskId);
+
+            taskNotification(type, content);
           }
           if (key === "startDate") {
             console.log('old Value is: ' + oldStartDateVal);

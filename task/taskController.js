@@ -28,9 +28,9 @@ angular.module('task.Controller', [])
     projectMember,
     taskMemberFactory,
     //activity injectors
-    taskActivityServices
+    taskActivityServices,
     //taskNotification injectors
-
+    taskNotificationServices
   ) {
     //Start get variables
     $scope.getSubjectId = $scope.id;
@@ -86,6 +86,9 @@ angular.module('task.Controller', [])
       } //end function addTaskMember
     $scope.taskMember = taskMember.memberArray(listId, taskId);
     console.log($scope.taskMember);
+
+
+
     //End add task Member
 
     //Start test save task name
@@ -99,7 +102,13 @@ angular.module('task.Controller', [])
         })
       } //end function saveTaskName
       //End test save task name
+    $scope.testTaskMember = function () {
+        $scope.taskMember.forEach(function (value) {
+          taskNotificationServices.addNoti(value);
+        })
 
+
+      } //end function testTaskMember
   }) //End taskCtrl
 
 .config(function ($mdThemingProvider) {

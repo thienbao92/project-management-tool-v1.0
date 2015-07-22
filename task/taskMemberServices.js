@@ -24,11 +24,7 @@ angular.module('member.taskServices', [])
         var ref = taskMemberFactory(listId, taskId);
 
         var obj = $firebaseArray(ref);
-        //        obj.$loaded().then(function () {
-        //          angular.forEach(obj, function (value, key) {
-        //            taskMemberArray.push(value.$id);
-        //          })
-        //        })
+
         obj.$watch(function (event) {
           if (event.event === "child_added") {
             taskMemberArray.push(event.key);

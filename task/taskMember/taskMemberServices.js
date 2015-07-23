@@ -4,14 +4,16 @@
  * Description : services container saving task services
  */
 
-angular.module('member.taskServices', [])
-  .factory('taskMemberFactory', function (Firebase, firebaseUrl) {
-    return function (listId, taskId) {
-      var ref = new Firebase(firebaseUrl + '/task/' + listId + '/' + taskId + '/member');
-      return ref
-    }
-  })
+angular.module('task.member')
 
+
+
+.factory('taskMemberFactory', function (Firebase, firebaseUrl) {
+  return function (listId, taskId) {
+    var ref = new Firebase(firebaseUrl + '/task/' + listId + '/' + taskId + '/member');
+    return ref
+  }
+})
 
 .service('taskMember', function ($stateParams, firebaseUrl, $firebaseObject, $firebaseArray, taskMemberFactory) {
     this.addMember = function (listId, taskId, memberId) {

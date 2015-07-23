@@ -12,8 +12,6 @@ angular.module('myApp', [
   'notification.module',
 //shared JS
     'myApp.services',
-  'task.Services',
-  'taskActivity',
 
   //services
     'organization.services',
@@ -28,14 +26,15 @@ angular.module('myApp', [
     'main.Controller',
     'organization.Controller',
     'profile.Controller',
-    'task.Controller',
     'timeline.Controller',
     'navigation.Controller',
 
 //plugin dependecies
     'ui.router',
 //angularfire
-    'firebase'
+    'firebase',
+  //modules
+  'task'
     ])
 
 .config(function ($stateProvider, $urlRouterProvider) {

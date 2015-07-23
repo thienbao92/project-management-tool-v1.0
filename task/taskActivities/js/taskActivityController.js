@@ -4,7 +4,7 @@
  * Description
  */
 
-angular.module('taskActivity')
+angular.module('task.activity')
 
 .controller('taskActivityCtrl', function (
     //common injectors

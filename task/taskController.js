@@ -4,7 +4,7 @@
  * Description
  */
 
-angular.module('task.Controller', [])
+angular.module('task')
 
 .controller('taskCtrl', function (
     //common injectors
@@ -32,6 +32,8 @@ angular.module('task.Controller', [])
     //taskNotification injectors
     taskNotificationServices
   ) {
+
+
     //Start get variables
     $scope.getSubjectId = $scope.id;
     var listId = $stateParams.listId;
@@ -39,7 +41,6 @@ angular.module('task.Controller', [])
     //End get variables
 
     $scope.listDetail = getListDetail;
-    console.log(getListDetail);
     $scope.taskId = $stateParams.taskId;
     $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
 
@@ -58,18 +59,23 @@ angular.module('task.Controller', [])
     //End check list area
 
     $scope.data = {};
-    $scope.addChecklist = function () {
-        $scope.checklist.$add({
-          text: $scope.data.text
-        }).then(function (data) {
-          var value = $scope.checklist.$getRecord(data.key());
-          var type = "addCheckList";
-          var content = $scope.id + ' added checklist ' + value.text;
-          taskActivityServices.add(type, content, $stateParams.taskId);
-        })
-      } //end function addChecklist
-      //End check list function area
-      //Chat-message area
+    $scope.addChecklist = addChecklist;
+
+    function addChecklist() {
+      $scope.checklist.$add({
+        text: $scope.data.text
+      }).then(addToActivities)
+    } //end function addChecklist
+
+    function addToActivities(data) {
+      var value = $scope.checklist.$getRecord(data.key());
+      var type = "addCheckList";
+      var content = $scope.id + ' added checklist ' + value.text;
+      taskActivityServices.add(type, content, $stateParams.taskId);
+    } //End check list function area
+
+
+    //Chat-message area
     $scope.messages = firebaseChat($stateParams.listId, $stateParams.taskId);
     $scope.sendMsg = function () {
         taskMessage.send($stateParams.listId, $stateParams.taskId, $scope.data.msg, $scope.id);
@@ -86,29 +92,9 @@ angular.module('task.Controller', [])
       } //end function addTaskMember
     $scope.taskMember = taskMember.memberArray(listId, taskId);
     console.log($scope.taskMember);
-
-
-
     //End add task Member
 
-    //Start test save task name
-    var href = new Firebase(firebaseUrl + '/task/' + $stateParams.listId + '/' + $stateParams.taskId);
-    var obj = $firebaseObject(href);
-    var array = $firebaseArray(href);
-    $scope.saveTaskName = function () {
-        obj.taskName = $scope.data.taskName;
-        obj.$save().then(function (ref) {
-          console.log(ref);
-        })
-      } //end function saveTaskName
-      //End test save task name
-    $scope.testTaskMember = function () {
-        $scope.taskMember.forEach(function (value) {
-          taskNotificationServices.addNoti(value);
-        })
 
-
-      } //end function testTaskMember
   }) //End taskCtrl
 
 .config(function ($mdThemingProvider) {

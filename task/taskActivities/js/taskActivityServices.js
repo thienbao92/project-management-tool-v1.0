@@ -1,4 +1,4 @@
-angular.module('taskActivity')
+angular.module('task.activity')
 
 .factory('taskActivityFactory', function (firebaseUrl, $firebaseArray, $stateParams) {
     return function (taskId) {

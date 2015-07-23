@@ -5,4 +5,4 @@
  This Js file includes config, run if exist
  */
 
-angular.module('taskActivity', [])
+angular.module('task.activity', []);

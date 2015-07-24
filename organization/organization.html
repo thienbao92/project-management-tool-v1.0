@@ -4,13 +4,13 @@
   <section layout-padding class="org__item" ng-repeat="org in organization |filterByUserId:filteredArray ">
 
     <!-- organization header -->
-    <md-subheader>
       <form>
-        <h1 class="md-title">
+        <h1 class="md-title" style="display: inline-block">
         <!-- input organization name -->
 
         <input type="text" ng-show="showInput" show-focus="showInput" ng-model="org.name" ng-blur="organization.$save(org)">
         <span ng-hide="showInput">{{org.name}}</span>
+      </h1>
 
         <md-button class="md-icon-button" style="font-size: inherit" ng-click="showInput = !showInput">
           <md-icon md-font-icon="material-icons">&#xE3C9;</md-icon>
@@ -18,9 +18,7 @@
         <md-button ng-click="removeOrg(org.$id)" class="md-icon-button">
           <md-icon md-font-icon="material-icons">&#xE872;</md-icon>
         </md-button>
-      </h1>
       </form>
-    </md-subheader>
 
     <!-- projects list -->
     <md-grid-list ng-init="projects = getProjects(org.$id)" md-cols="4" md-gutter="3em" md-row-height="10em" class="projects">

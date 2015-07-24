@@ -10,9 +10,9 @@
 
     var directive = {
       templateUrl: 'task/taskMessage/task-message.html',
-      restrict: 'EA',
+      restrict: 'E',
       scope: {
-
+        senderId: '='
       },
       link: link,
       controller: 'taskMessageCtrl'

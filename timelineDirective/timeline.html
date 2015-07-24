@@ -13,9 +13,9 @@
             <div ng-click="goToTask(task.$id,list.$id)">
               <svg class="container" ng-attr-height="{{svgHeight}}">
 
-                <rect ng-attr-width="{{taskBarWidth(task.startDate,task.endDate)}}" ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-height="{{svgHeight}}" style="fill:rgb(0,0,255)" />
-                <rect ng-attr-width="{{progessBarWidth(task.startDate,task.endDate,task.percentOfChecklist)}}" ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-height="{{svgHeight}}" style="fill:green" />
-                <text ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-y="{{(svgHeight/2)}}" fill="red" id="svgText">{{task.taskName}}</text>
+                <rect ng-attr-width="{{taskBarWidth(task.startDate,task.endDate)}}" ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-height="{{svgHeight}}" class="task__duration" />
+                <rect ng-attr-width="{{progessBarWidth(task.startDate,task.endDate,task.percentOfChecklist)}}" ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-height="{{svgHeight}}" class="task__percent" />
+                <text ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-y="{{(svgHeight/2)}}" class="task__text" id="svgText">{{task.taskName}}</text>
               </svg>
             </div>
           </div>

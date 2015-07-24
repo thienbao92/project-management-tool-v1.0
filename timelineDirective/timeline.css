@@ -59,3 +59,9 @@
   position: absolute;
   z-index: 1
 }
+.task__duration {
+  fill: #d8d4d2;
+}
+.task__percent {
+  fill: #24eac6;
+}

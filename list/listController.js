@@ -36,7 +36,7 @@ angular.module('list.Controller', [])
           listTheme: 'list-bg-default',
         }).then(function (data) {
           var listId = data.key();
-          projectActivity.addList($scope.id, inputListName);
+          projectActivity.addList($scope.id, inputListName, $stateParams.projectId);
           task.addTaskParent(listId);
           list.addListToUser($scope.id, $stateParams.orgId, $stateParams.projectId, listId);
         })
@@ -46,7 +46,7 @@ angular.module('list.Controller', [])
         var userId = $scope.id;
         var orgId = $stateParams.orgId;
         var projectId = $stateParams.projectId;
-        projectActivity.removeList(userId, listName);
+        projectActivity.removeList(userId, listName, $stateParams.projectId);
 
         var ref = new Firebase(firebaseUrl + '/task');
         var userRef = new Firebase(firebaseUrl + '/users/' + userId + '/groupMember/' + orgId + '/' + projectId);
@@ -82,7 +82,7 @@ angular.module('list.Controller', [])
           endDate: $scope.date
         })
 
-        projectActivity.addTask($scope.id, listName, inputTaskName);
+        projectActivity.addTask($scope.id, listName, inputTaskName, $stateParams.projectId);
 
 
       } //end function addTask

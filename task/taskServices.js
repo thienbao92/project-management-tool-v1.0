@@ -4,12 +4,7 @@
  * Description
  */
 
-angular.module('task.Services', [
-
-  'chat.TaskServices',
-  'member.taskServices',
-  'checkList.TaskServices'
-])
+angular.module('task')
 
 .factory('getListDetail', function ($firebaseArray, firebaseUrl, $stateParams) {
 

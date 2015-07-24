@@ -4,7 +4,7 @@
  * Description task Activity directive
  */
 
-angular.module('taskActivity.directive', [])
+angular.module('task.activity')
 
 .directive('taskActivity', function () {
   return {

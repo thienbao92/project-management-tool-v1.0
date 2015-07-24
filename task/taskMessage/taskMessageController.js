@@ -6,7 +6,12 @@
     .controller('taskMessageCtrl', taskMessageCtrl);
 
   //////////////
-  function taskMessageCtrl($scope) {
 
+  /**
+    task message controller
+    @taskMessageCtrl
+ */
+  function taskMessageCtrl($scope, testTaskMessage) {
+    testTaskMessage.test();
   };
 })();

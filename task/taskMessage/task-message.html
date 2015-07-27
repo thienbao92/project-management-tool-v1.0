@@ -1,1 +1,27 @@
-<p>dcmdckcdcdcm</p>
+<md-subheader><span class="md-subhead">Messages</span>
+
+</md-subheader>
+<div flex layout="column">
+  <div flex class="message__container">
+    <div layout="column" layout-padding class="message">
+      <div ng-repeat="msg in messages" layout="row" class="message__item" ng-class="senderIsMe(msg.sender) ? 'message__item--right' : '' ">
+        <div ng-repeat="member in users | filterByUserId: msg.sender" ng-hide="senderIsMe(msg.sender)" layout layout-align="center center">
+          <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
+        </div>
+        <md-card flex layout-padding md-theme="message-bg">
+          {{msg.message}}
+        </md-card>
+      </div>
+    </div>
+  </div>
+
+  <form layout="row" layout-align="start center" class="message__send" layout-padding>
+    <md-input-container flex>
+      <label>Message all</label>
+      <input type="text" ng-model="data.msg" />
+    </md-input-container>
+    <md-button ng-click="addMsg(); data.msg=''" class="md-icon-button md-primary">
+      <md-icon md-font-icon="fa fa-paper-plane" class="md-headline"></md-icon>
+    </md-button>
+  </form>
+</div>

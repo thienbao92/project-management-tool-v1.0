@@ -1,17 +1,53 @@
+<!--
 <div id="mainContainer">
   <div style="width:{{tableWidth}}px">
     <div id="timelineContainer">
       <div id="testBox" style="height:{{timelineContainerHeight}}"></div>
       <div ng-repeat="date in dateLine" class="dateBox" style="width:{{pixels}}px" id="{{date}}">
         {{date|date:'dd/MM'}}
-        <div class="box" style="height:{{timelineContainerHeight}}"></div>
+        <div class="box" style="height: {{timelineContainerHeight}}"></div>
       </div>
       <div ng-repeat="list in lists">
         <div class="listName">{{list.listName}}</div>
         <div id="taskContainer" ng-init="tasks = tasks(list.$id)">
           <div class="main" ng-repeat="task in tasks">
             <div ng-click="goToTask(task.$id,list.$id)">
-              <svg class="container" ng-attr-height="{{svgHeight}}">
+              <svg class="container" ng-attr-height="{{svgHeight}}" style="margin: {{svgHeight * 0.2}}px 0;">
+
+                <rect ng-attr-width="{{taskBarWidth(task.startDate,task.endDate)}}" ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-height="{{svgHeight}}" class="task__duration" />
+                <rect ng-attr-width="{{progessBarWidth(task.startDate,task.endDate,task.percentOfChecklist)}}" ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-height="{{svgHeight}}" class="task__percent" />
+                <text ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-y="{{(svgHeight/2)}}" class="task__text" id="svgText">{{task.taskName}}</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<div layout="row">
+  <div flex="20" class="lists-container" style="margin-top: 40px;">
+    <div ng-repeat="list in lists" style="height: {{tasks.length * svgHeight * 1.4}}px; padding: 0.5em 1em " ng-init="tasks = tasks(list.$id)">
+      <md-card md-theme="{{list.listTheme}}" md-theme-watch layout-padding layout-fill layout-align="center start" style="color: #fff">
+        <div class="md-subhead">{{list.listName}}</div>
+      </md-card>
+    </div>
+  </div>
+  <div flex="80" class="timeline-container" style="overflow-x: scroll; position: relative">
+    <div class="tasks-container" style="display: inline-block">
+      <div class="days-container" style="display: inline-flex">
+        <div ng-repeat="date in dayRuler" class="dateBox" ng-style="width:{{pixels}}px;" id="{{date}}">
+          <div ng-class="{ 'weekMark--hidden': !weekMark(date) }">{{date|date:'dd/MM'}}</div>
+          <div class="dayLine" ng-style="height: {{tasksLength * svgHeight * 1.4}}px; padding-top: {{lists.length + 1}}em;" ng-class="{'dayLine--weekMark': weekMark(date), 'dayLine--today': checkToday(date)}"></div>
+        </div>
+      </div>
+
+      <div ng-repeat="list in lists">
+        <div id="taskContainer" ng-init="tasks = tasks(list.$id)">
+          <div class="main" ng-repeat="task in tasks">
+            <div ng-click="goToTask(task.$id,list.$id)">
+              <svg class="container" ng-attr-height="{{svgHeight}}" style="margin: {{svgHeight * 0.2}}px 0;">
 
                 <rect ng-attr-width="{{taskBarWidth(task.startDate,task.endDate)}}" ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-height="{{svgHeight}}" class="task__duration" />
                 <rect ng-attr-width="{{progessBarWidth(task.startDate,task.endDate,task.percentOfChecklist)}}" ng-attr-x="{{startPositionX(task.startDate)}}" ng-attr-height="{{svgHeight}}" class="task__percent" />

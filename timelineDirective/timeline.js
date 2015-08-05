@@ -14,12 +14,6 @@ angular.module('timeline', [])
       scope.pixels = pixels;
       scope.svgHeight = attrs.taskHeight;
 
-      //Start timelineContainer Height
-      $timeout(function () {
-        scope.timelineContainerHeight = document.getElementById('timelineContainer').clientHeight + 'px';
-      });
-      //End timelineContainer Height
-
       //Start calculate min and max value of tasks
       var maxValue = today + 365;
       console.log('max value is: ' + maxValue * 86400000);
@@ -44,16 +38,26 @@ angular.module('timeline', [])
         var value = ((startDate) * pixels);
         return value;
       }
-      scope.dateLine = [];
+      scope.dayRuler = [];
       for (i = previousDateValue; i < maxValue; i++) {
-        scope.dateLine.push(i * 86400000)
+        scope.dayRuler.push(i * 86400000)
       }
       //End calculate dateLine
 
-      //Start calculate table width
-      scope.tableWidth = scope.dateLine.length * pixels;
-      console.log('table width is: ' + scope.tableWidth);
-      //End calculate table width
+      scope.weekMark = function (dateValue) {
+        if (dateValue/86400000 % 7 == 4) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      scope.checkToday = function (dateValue) {
+        if (dateValue/86400000 == today)
+          return true;
+        else
+          return false;
+      }
 
       //Start calculate task and progress bar
       scope.taskBarWidth = function (start, end) {

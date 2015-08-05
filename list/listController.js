@@ -57,13 +57,26 @@ angular.module('list.Controller', [])
 
 
     //End list modification area
-    $scope.task = firebaseTask;
     $scope.date = getDate;
 
     $scope.tasks = function (listId) {
       var tasks = firebaseTask(listId);
       return tasks;
     }
+
+    $scope.tasksLength = 0;
+    $scope.lists.$loaded(function () {
+      var tasksLength = 0;
+      $scope.lists.forEach(function (list) {
+        var tasks = $scope.tasks(list.$id);
+        tasks.$loaded(function () {
+          tasksLength += tasks.length;
+          if (list.$id == $scope.lists[$scope.lists.length - 1].$id) {
+            $scope.tasksLength = tasksLength;
+          }
+        });
+      });
+    });
 
     //$scope.date = $filter('date')(new Date(), 'dd/MM/yyyy');
 

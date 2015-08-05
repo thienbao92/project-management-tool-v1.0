@@ -1,37 +1,21 @@
 #taskContainer {
-  width: 100%;
-  height: 100%;
-  min-height: 6.5em;
-  margin-bottom: 1em;
-  margin-top: 1em;
-  background-color: #29e;
-  color: white;
-  border-radius: 0.75em;
-  -webkit-transform: translate(0px, 0px);
-  transform: translate(0px, 0px);
-  opacity: 0.9;
+  margin: 1em 0;
+  background-color: #607D8B;
+  opacity: 0.7;
 }
 #drag-me::before {
   content: "#" attr(id);
   font-weight: bold;
 }
-.rect {
-  margin-left: 10px;
-  width: auto;
-  overflow: hidden;
-}
 .container {
   object-fit: contain;
   width: 100%;
   height: auto;
-  opacity: 1;
 }
 .dateBox {
   display: inline-block;
   width: 50px;
-  /*  height: 1000px;*/
   text-align: center;
-  /*  border-right: 1px solid gray;*/
   position: relative;
 }
 #mainContainer {
@@ -43,25 +27,29 @@
   position: absolute;
   left: 0;
 }
-.listNameContainer {
-  position: relative
+.lists-container {
+  display: inline-flex;
+  flex-direction: column;
 }
-.box {
+.dayLine {
   width: 1px;
-  background-color: darkslategray;
+  background-color: #424242;
   position: absolute;
-  z-index: 0
+  z-index: 0;
 }
-#testBox {
-  height: 100px;
-  width: 100px;
-  background-color: aqua;
-  position: absolute;
-  z-index: 1
+.dayLine--weekMark {
+  width: 3px;
+}
+.dayLine--today {
+  width: 5px;
+  background-color: #d50000;
 }
 .task__duration {
   fill: #d8d4d2;
 }
 .task__percent {
   fill: #24eac6;
+}
+.weekMark--hidden {
+  visibility: hidden;
 }

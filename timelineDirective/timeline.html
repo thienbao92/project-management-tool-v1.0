@@ -37,9 +37,9 @@
   <div flex="80" class="timeline-container" style="overflow-x: scroll; position: relative">
     <div class="tasks-container" style="display: inline-block">
       <div class="days-container" style="display: inline-flex">
-        <div ng-repeat="date in dayRuler" class="dateBox" ng-style="width:{{pixels}}px;" id="{{date}}">
+        <div ng-repeat="date in dayRuler" class="dateBox" style="width:{{pixels}}px;" id="{{date}}">
           <div ng-class="{ 'weekMark--hidden': !weekMark(date) }">{{date|date:'dd/MM'}}</div>
-          <div class="dayLine" ng-style="height: {{tasksLength * svgHeight * 1.4}}px; padding-top: {{lists.length + 1}}em;" ng-class="{'dayLine--weekMark': weekMark(date), 'dayLine--today': checkToday(date)}"></div>
+          <div class="dayLine" style="height: {{tasksLength * svgHeight * 1.4}}px; padding-top: {{lists.length + 1}}em;" ng-class="{'dayLine--weekMark': weekMark(date), 'dayLine--today': checkToday(date)}"></div>
         </div>
       </div>
 

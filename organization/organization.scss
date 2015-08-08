@@ -6,8 +6,11 @@
   }
 
   .org__add {
-    @extend .org__item;
-    margin-left: 0.5em;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    margin: 2em 4em;
   }
 }
 

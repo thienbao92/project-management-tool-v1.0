@@ -16,9 +16,15 @@
             </md-autocomplete>
             <!--END Member area -->
           </md-content>
-    <div flex layout="column" ui-view="list"></div>
+    <div flex layout="column" ng-if="!showTimeline" ui-view="list"></div>
 
-    <div flex layout="column">
+      <md-button class="md-raised md-primary" ng-click="showTimeline = !showTimeline">
+        <div ng-switch="showTimeline">
+          <span ng-switch-when="true">Hide Timeline</span>
+          <span ng-switch-default>Show Timeline</span>
+        </div>
+    </md-button>
+    <div flex layout="column" ng-if="showTimeline">
 
       <timeline pixels="30" task-height="25"></timeline>
 

@@ -36,6 +36,7 @@ angular.module('task')
 
     //Start get variables
     $scope.getSubjectId = $scope.id;
+    console.log($scope.id);
     var listId = $stateParams.listId;
     var taskId = $stateParams.taskId;
     //End get variables
@@ -75,17 +76,16 @@ angular.module('task')
     } //End check list function area
 
 
-    //Chat-message area
-    $scope.messages = firebaseChat($stateParams.listId, $stateParams.taskId);
-    $scope.sendMsg = function () {
-        taskMessage.send($stateParams.listId, $stateParams.taskId, $scope.data.msg, $scope.id);
-      } //End function
-
-    $scope.senderIsMe = function (sender) {
-        return ($scope.id == sender);
-      }
-      //END chat-message area
-
+    //    //Chat-message area
+    //    $scope.messages = firebaseChat($stateParams.listId, $stateParams.taskId);
+    //    $scope.sendMsg = function () {
+    //        taskMessage.send($stateParams.listId, $stateParams.taskId, $scope.data.msg, $scope.id);
+    //      } //End function
+    //
+    //    $scope.senderIsMe = function (sender) {
+    //        return ($scope.id == sender);
+    //      }
+    //      //END chat-message area
     //Start add task Member
     $scope.addTaskMember = function (memberId) {
         taskMember.addMember(listId, taskId, memberId);

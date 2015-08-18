@@ -13,12 +13,14 @@
     firebaseUrl,
     $firebaseArray
   ) {
-    var vm = this;
+
     //Start get values
     var senderId = $scope.senderId;
+    console.log($scope.senderId);
+
     var listId = $stateParams.listId;
     var taskId = $stateParams.taskId;
-    console.log(senderId);
+
     //End get values
 
     //Start message Array
@@ -29,7 +31,6 @@
 
     $scope.messages = messageArray;
     $scope.data = {};
-    $scope.test = "cdscmcksdmckcm";
     $scope.addMsg = addMessage;
     $scope.senderIsMe = senderIsMe;
     //add message function
@@ -41,7 +42,7 @@
     function addMessage() {
       messageArray.$add({
         message: $scope.data.msg,
-        sender: senderId
+        sender: $scope.senderId
       })
     }
     //End add message functions

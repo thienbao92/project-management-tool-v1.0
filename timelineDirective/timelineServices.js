@@ -19,7 +19,11 @@ angular.module('timeline.Services', [])
 
 .factory('today', function () {
     var d = new Date();
-    var UTC = d.getTime();
-    var date = UTC / 86400000;
-    return Math.round(date);
+    var day = d.getDate();
+    var month = d.getMonth();
+    var year = d.getFullYear();
+    var dateUTC = new Date(Date.UTC(year, month + 1, day));
+    var miliseconds = dateUTC.getTime();
+    var date = dateUTC / 86400000;
+    return date;
   }) // END today

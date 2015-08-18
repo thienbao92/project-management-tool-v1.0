@@ -19,8 +19,6 @@
     };
     return directive;
 
-    function link(scope, element, attrs) {
-
-    } // end function link
+    function link(scope, element, attrs) {} // end function link
   }; // rnd function taskMessage
 })();

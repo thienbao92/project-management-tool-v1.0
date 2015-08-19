@@ -1,3 +1,28 @@
+<!-- navigation area -->
+<md-toolbar layout="row" class="md-whiteframe-z3" ng-controller="navCtrl">
+  <div class="md-toolbar-tools">
+    <md-button ng-click="close()" class="md-icon-button">
+      <md-icon md-font-icon="material-icons">&#xE5C4;</md-icon>
+    </md-button>
+
+    <!-- logo -->
+    <md-button ng-repeat="list in listDetail" class="md-icon-button" ui-sref="main">
+      {{list.listName}}
+    </md-button>
+
+    <span flex></span>
+    <!-- toolbar-menu -->
+
+    <md-button class="md-icon-button" ng-click="toggleRight()">
+      <md-icon md-font-icon="material-icons">&#xE0B7;</md-icon>
+    </md-button>
+    <nav-notification user-id="userId"></nav-notification>
+    <md-button ng-click="logout()">Logout</md-button>
+  </div>
+
+</md-toolbar>
+<!------------END navigation area------------>
+
 <md-content flex layout="column" ng-repeat="task in tasks">
 
   <div layout="row" flex>
@@ -5,7 +30,6 @@
 
       <!-- common information -->
       <div layout-padding layout="row">
-        <md-card layout-padding ng-repeat="list in listDetail" md-theme="{{list.listTheme}}" class="list-name">{{list.listName}}</md-card>
         <div ng-hide="editTaskName">
           <h2>{{task.taskName}}</h2>
           <md-button ng-click="editTaskName = !editTaskName">Edit</md-button>
@@ -71,8 +95,8 @@
 
     </md-content>
 
-    <md-sidenav md-component-id="right" md-is-locked-open="true" class="md-sidenav-right md-whiteframe-z2">
-      <md-content flex layout="column">
+    <md-sidenav md-component-id="right" class="md-sidenav-right md-whiteframe-z2">
+      <md-content layout="column" style="height: 100%">
         <md-subheader><span class="md-subhead">Members</span>
         </md-subheader>
         <div layout="row" class="member">

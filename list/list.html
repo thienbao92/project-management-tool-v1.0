@@ -43,7 +43,7 @@
         <md-card flex layout-padding md-theme="default">
           <md-input-container>
             <label>Add new task</label>
-            <input type="text" ng-model="inputTaskName" ng-model-options="{ updateOn: 'blur' }" />
+            <input show-focus="showAddTask" type="text" ng-model="inputTaskName" ng-model-options="{ updateOn: 'blur' }" />
           </md-input-container>
           <div layout="row" layout-align="space-between center">
             <md-button class="md-primary md-icon-button" ng-click="addTask(list.$id, list.listName, inputTaskName); inputTaskName =''; ">
@@ -77,7 +77,7 @@
       <md-button ng-click="addList(inputListName); openList = !openList; inputListName='' " class="md-primary md-icon-button">
         <md-icon md-font-icon="material-icons">&#xE5CA;</md-icon>
       </md-button>
-      <md-button class="md-primary md-icon-button" ng-click="openList = false; inputListName = '' ">
+      <md-button class="md-primary md-icon-button" ng-click="inputListName = ''; openList = false; ">
         <md-icon md-font-icon="material-icons">&#xE5CD;</md-icon>
       </md-button>
     </div>

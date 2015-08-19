@@ -30,9 +30,13 @@ angular.module('task')
     //activity injectors
     taskActivityServices,
     //taskNotification injectors
-    taskNotificationServices
+    taskNotificationServices,
+     $mdSidenav
   ) {
 
+    $scope.toggleRight = function () {
+      $mdSidenav('right').toggle();
+    };
 
     //Start get variables
     $scope.getSubjectId = $scope.id;

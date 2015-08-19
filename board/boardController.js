@@ -61,13 +61,16 @@ angular.module('board.Controller', [])
     } //End function
 })
 
-.controller('boardCtrl', function ($scope, $stateParams, firebaseUrl, $firebaseArray, firebaseUser, $location, notification, projectNotiFactory, projectActivity, userNotification, projectName) {
+.controller('boardCtrl', function ($scope, $stateParams, firebaseUrl, $firebaseArray, firebaseUser, $location, notification, projectNotiFactory, projectActivity, userNotification, projectName, $mdSidenav) {
 
     //Start get member Array from users directory. Source: loginServices.js
     $scope.members = firebaseUser;
     //End get member Array from users directory. Source: loginServices.js
 
 
+    $scope.toggleRight = function () {
+      $mdSidenav('right').toggle();
+    };
     //Start get State params
     var projectId = $stateParams.projectId;
     var orgId = $stateParams.orgId;

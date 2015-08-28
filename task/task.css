@@ -9,7 +9,9 @@
 
 .checklist__list {
   display: flex;
-  flex-flow: column wrap; }
+  flex-flow: row wrap; }
+  .checklist__list li {
+    width: 33%; }
 
 .message__container {
   position: relative;

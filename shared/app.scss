@@ -18,3 +18,10 @@ ul li {
   list-style: outside none none;
   display: inline block;
 }
+.fab-form {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    margin: 2em 4em;
+}

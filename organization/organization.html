@@ -59,11 +59,8 @@
 
   </section>
 
-  <md-button class="md-fab org__add" ng-click="openOrgInput = !openOrgInput">
-    <md-icon md-font-icon="material-icons">&#xE145;</md-icon>
-  </md-button>
-
-  <md-content layout-padding ng-show="openOrgInput" class="md-whiteframe-z2 org__add" style="max-width: 400px; right: 100px; background-color: #fff">
+  <div class="fab-form">
+  <md-content layout-padding ng-show="openOrgInput" class="md-whiteframe-z2 org__add" style="max-width: 400px; background-color: #fff; display: inline-block">
     <form layout="column">
       <md-input-container flex>
         <label>Organization name</label>
@@ -79,5 +76,10 @@
       </div>
     </form>
   </md-content>
+
+  <md-button class="md-fab org__add" ng-click="openOrgInput = !openOrgInput">
+    <md-icon md-font-icon="material-icons">&#xE145;</md-icon>
+  </md-button>
+  </div>
 
 </md-content>

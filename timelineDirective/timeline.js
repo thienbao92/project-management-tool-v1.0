@@ -23,8 +23,8 @@ angular.module('timeline', [])
       //End calculate min and max value of tasks
 
       //Start auto scroll to position
-      var scrollLocation = today * 86400000;
-      $location.hash((scrollLocation + (10 * 86400000)));
+      var scrollLocation = (today - 10) * 86400000;
+      $location.hash(scrollLocation);
 
       var mainContainer = angular.element(document.getElementById('mainContainer'));
       mainContainer.$anchorScroll;
@@ -85,8 +85,6 @@ angular.module('timeline', [])
           return value;
         }
         //End calculate position of tasks
-
-
-
+      console.log(today);
     }; //end function link
   }) //end Directive

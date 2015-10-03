@@ -6,20 +6,6 @@
 
 angular.module('organization.Controller', [])
 
-.directive('showFocus', function ($timeout) {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      scope.$watch(attrs.showFocus,
-        function (newValue) {
-          $timeout(function () {
-            newValue && element.focus();
-          });
-        }, true);
-    }
-  }
-})
-
 
 .controller('orgCtrl', function ($scope, firebaseOrg, firebaseProject, firebaseUrl, organization, $firebaseArray, projectServices) {
 

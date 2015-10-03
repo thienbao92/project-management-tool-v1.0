@@ -1,7 +1,15 @@
-.org .org__item, .org .org__add {
-  margin: 1em 0; }
-.org .org__add {
-  margin-left: 0.5em; }
+.org {
+  /*
+    .org__add {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      z-index: 100;
+      margin: 2em 4em;
+    }
+  */ }
+  .org .org__item {
+    margin: 1em 0; }
 
 .projects md-grid-tile figure {
   background-color: #fff; }

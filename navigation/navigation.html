@@ -1,7 +1,7 @@
 <md-toolbar ng-if="isLogin" layout="row" class="md-whiteframe-z3" ng-controller="navCtrl">
   <div class="md-toolbar-tools">
     <md-button ng-click="close()" class="md-icon-button">
-      <md-icon md-font-icon="fa fa-arrow-left" class="md-subhead"></md-icon>
+      <md-icon md-font-icon="material-icons">&#xE5C4;</md-icon>
     </md-button>
 
     <!-- logo -->
@@ -13,6 +13,7 @@
     <p class="md-body-1">Welcome <strong>{{googleName}}</strong>
     </p>
     <!-- toolbar-menu -->
+
     <nav-notification user-id="userId"></nav-notification>
     <md-button ng-click="logout()">Logout</md-button>
   </div>

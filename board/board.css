@@ -1,6 +1,16 @@
-.member-list__item .md-warn {
+.member-list__item .md-button {
   opacity: 0; }
-.member-list__item:hover .md-warn {
+.member-list__item:hover .md-button {
   opacity: 1; }
+
+md-tabs-content-wrapper,
+md-tab-content {
+  display: flex;
+  flex: 1 1 0%; }
+
+md-tab-content > div {
+  position: relative;
+  width: 100%;
+  overflow-y: scroll; }
 
 /*# sourceMappingURL=board.css.map */

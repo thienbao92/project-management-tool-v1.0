@@ -1,3 +1,28 @@
+<!-- navigation area -->
+<md-toolbar layout="row" class="md-whiteframe-z3" ng-controller="navCtrl">
+  <div class="md-toolbar-tools">
+    <md-button ng-click="close()" class="md-icon-button">
+      <md-icon md-font-icon="material-icons">&#xE5C4;</md-icon>
+    </md-button>
+
+    <!-- logo -->
+    <md-button ng-repeat="list in listDetail" class="md-icon-button" ui-sref="main">
+      {{list.listName}}
+    </md-button>
+
+    <span flex></span>
+    <!-- toolbar-menu -->
+
+    <md-button class="md-icon-button" ng-click="toggleRight()">
+      <md-icon md-font-icon="material-icons">&#xE0B7;</md-icon>
+    </md-button>
+    <nav-notification user-id="userId"></nav-notification>
+    <md-button ng-click="logout()">Logout</md-button>
+  </div>
+
+</md-toolbar>
+<!------------END navigation area------------>
+
 <md-content flex layout="column" ng-repeat="task in tasks">
 
   <div layout="row" flex>
@@ -5,7 +30,6 @@
 
       <!-- common information -->
       <div layout-padding layout="row">
-        <md-card layout-padding ng-repeat="list in listDetail" md-theme="{{list.listTheme}}" class="list-name">{{list.listName}}</md-card>
         <div ng-hide="editTaskName">
           <h2>{{task.taskName}}</h2>
           <md-button ng-click="editTaskName = !editTaskName">Edit</md-button>
@@ -18,13 +42,10 @@
         </div>
 
 
-        <md-button ng-click="tasks.$remove(task);close()" class="md-icon-button md-warn">
-          <md-icon md-font-icon="fa fa-times" class="md-headline"></md-icon>
+        <md-button ng-click="tasks.$remove(task);close()" class="md-icon-button ">
+          <md-icon md-font-icon="material-icons">&#xE872;</md-icon>
         </md-button>
       </div>
-      <!-- Activity area -->
-      <task-activity subject-id="id"></task-activity>
-      <!--END Activity area-->
       <div layout="row" class="task-header">
         <md-input-container class="datepicker-container">
           <label>Start date</label>
@@ -43,36 +64,49 @@
 
       <!-- Check list area -->
       <div flex layout="column" layout-padding class="checklist">
-        <div style="text-align: center;">{{task.percentOfChecklist | number: 0}} %
+        <div style="text-align: center; margin: 2em 0">{{task.percentOfChecklist | number: 0}} %
           <md-progress-linear md-theme="progress-state" class="md-primary" md-mode="determinate" value="{{task.percentOfChecklist}}"></md-progress-linear>
         </div>
 
-        <ul flex class="checklist__list">
-          <li ng-repeat="cl in checklist">
+        <div layout="column" flex style="position: relative; overflow-y: scroll">
+        <ul layout-fill class="checklist__list" style="position: absolute; top: 0; left: 0; padding: 0">
+          <li ng-repeat="cl in checklist" style="padding: 0.5em 0">
             <md-checkbox ng-model="cl.isDone" ng-change="checklist.$save(cl)" class="md-primary">
               {{cl.text}}
             </md-checkbox>
           </li>
         </ul>
+        </div>
 
-        <p>Number of Check list: {{total}}</p>
-
-        <form class="checklist__add" layout="row" layout-align="start center">
-          <md-input-container flex>
-            <label>New todos</label>
-            <input type="text" ng-model="data.text" />
-          </md-input-container>
-          <md-button ng-click="addChecklist(); data.text=''" class="md-primary md-icon-button">
-            <md-icon md-font-icon="fa fa-plus" class="md-headline"></md-icon>
-          </md-button>
-        </form>
+        <div class="fab-form">
+        <md-content layout-padding ng-show="showAddChecklist" class="md-whiteframe-z2 checklist__add" style="max-width: 400px; background-color: #fff; display: inline-block">
+          <form layout="column">
+            <md-input-container flex>
+              <label>New todos</label>
+              <input type="text" ng-model="data.text" show-focus="showAddChecklist" />
+            </md-input-container>
+            <div layout="row" layout-align="space-between center">
+              <md-button class="md-primary md-icon-button" ng-click="addChecklist(); data.text=''">
+                <md-icon md-font-icon="material-icons">&#xE5CA;</md-icon>
+              </md-button>
+              <md-button class="md-primary md-icon-button" ng-click="showAddChecklist = !showAddChecklist">
+                <md-icon md-font-icon="material-icons">&#xE5CD;</md-icon>
+              </md-button>
+            </div>
+          </form>
+        </md-content>
+        <md-button ng-click="showAddChecklist = !showAddChecklist" class="md-fab">
+          <md-icon md-font-icon="material-icons">&#xE145;</md-icon>
+        </md-button>
+        </div>
       </div>
       <!--END Check list area-->
 
     </md-content>
 
-    <md-sidenav md-component-id="right" md-is-locked-open="true" class="md-sidenav-right md-whiteframe-z2">
-      <md-content flex layout="column">
+    <md-sidenav md-component-id="right" class="md-sidenav-right md-whiteframe-z2">
+      <md-content layout="column" style="height: 100%">
+        <!--
         <md-subheader><span class="md-subhead">Members</span>
         </md-subheader>
         <div layout="row" class="member">
@@ -82,11 +116,12 @@
             </span>
           </div>
         </div>
+-->
 
         <!--END Member area-->
 
         <!-- message Area -->
-        <task-message sender-id="getSubjectId"></task-message>
+        <task-message layout="column" flex sender-id="getSubjectId"></task-message>
         <!-- END message area -->
       </md-content>
     </md-sidenav>

@@ -1,42 +1,88 @@
+<!-- navigation area -->
+<md-toolbar ng-if="isLogin" layout="row" class="md-whiteframe-z3" ng-controller="navCtrl">
+  <div class="md-toolbar-tools">
+    <md-button ng-click="close()" class="md-icon-button">
+      <md-icon md-font-icon="material-icons">&#xE5C4;</md-icon>
+    </md-button>
+
+    <!-- logo -->
+    <md-button class="md-icon-button" ui-sref="main">
+      <div ng-repeat="project in projects">
+        <h1 layout-padding class="md-headline">{{project.projectName}}</h1>
+      </div>
+    </md-button>
+
+    <span flex></span>
+    <!-- toolbar-menu -->
+
+    <md-button class="md-icon-button" ng-click="toggleMessage()">
+      <md-icon md-font-icon="material-icons">&#xE0B7;</md-icon>
+    </md-button>
+    <md-button class="md-icon-button" ng-click="toggleActivity()">
+      <md-icon md-font-icon="material-icons">&#xE149;</md-icon>
+    </md-button>
+    <nav-notification user-id="userId"></nav-notification>
+    <md-button ng-click="logout()">Logout</md-button>
+  </div>
+
+</md-toolbar>
+<!------------END navigation area------------>
+
 <md-content flex layout="row">
   <md-content layout="column" flex>
-    <div flex layout="column" ui-view="list"></div>
+    <md-content>
+      <!-- member area -->
+      <div layout="row" class="member-list" style="flex-wrap: wrap">
+        <div ng-repeat="member in users | filterByUserId: projectMemberArray" layout="column" layout-align="start center" layout-padding class="member-list__item">
+          <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
+          <md-button ng-click="removeUsers(member.$id)" class="md-icon-button">
+            <md-icon md-font-icon="material-icons">&#xE872;</md-icon>
+          </md-button>
+        </div>
+        <md-button ng-click="showAddMember = true" ng-hide="showAddMember" class="md-icon-button">
+          <md-icon md-font-icon="material-icons">&#xE7FE;</md-icon>
+        </md-button>
+        <div style="position: relative; overflow:visible">
+          <md-content layout="row" layout-padding ng-show="showAddMember" class="org__add" style="max-width: 400px; background-color: #fff; position: absolute; top: 0; left: 0">
+            <md-autocomplete md-search-text-change="" md-search-text="searchText" md-selected-item-change="addUsers(item.$id)" md-items="item in users | filter: searchText" md-floating-label="New member's first name">
+              <span md-highlight-text="searchText" md-highlight-flags='i' ng-repeat="name in item.profile">{{name.firstName}}</span>
+            </md-autocomplete>
+            <md-button class="md-primary md-icon-button" ng-click="showAddMember = false">
+              <md-icon md-font-icon="material-icons">&#xE5CD;</md-icon>
+            </md-button>
+          </md-content>
+        </div>
+      </div>
+      <!--END Member area -->
+    </md-content>
+    <div flex layout="column" ng-if="!showTimeline" ui-view="list"></div>
 
-    <div flex layout="column">
+    <md-button class="md-raised md-primary" ng-click="showTimeline = !showTimeline">
+      <div ng-switch="showTimeline">
+        <span ng-switch-when="true">Hide Timeline</span>
+        <span ng-switch-default>Show Timeline</span>
+      </div>
+    </md-button>
+    <div flex layout="column" ng-if="showTimeline">
 
-      <timeline pixels="50" task-height="50"></timeline>
+      <timeline pixels="30" task-height="25"></timeline>
 
     </div>
   </md-content>
 
-  <md-sidenav md-component-id="right" md-is-locked-open="true" class="md-sidenav-right md-whiteframe-z2">
-    <md-content flex layout="column" layout-padding>
-      <!-- member area -->
-      <md-subheader>
-        <span class="md-subhead">Members</span>
-      </md-subheader>
-      <div layout="row" class="member-list" style="flex-wrap: wrap">
-        <div ng-repeat="member in users | filterByUserId: projectMemberArray" layout="column" layout-align="start center" layout-padding class="member-list__item">
-          <span ng-repeat="profile in member.profile">{{profile.firstName}}</span>
-          <md-button ng-click="removeUsers(member.$id)" class="md-warn md-icon-button">
-            <md-icon md-font-icon="fa fa-times" class="md-title"></md-icon>
-          </md-button>
-        </div>
-      </div>
+  <md-sidenav md-component-id="message" class="md-sidenav-right md-whiteframe-z2" layout="column">
+    <md-content flex layout="column">
+      <h3 class="md-headline">Message</h3>
+    </md-content>
+  </md-sidenav>
 
-      <md-autocomplete md-search-text-change="" md-search-text="searchText" md-selected-item-change="addUsers(item.$id)" md-items="item in users | filter: searchText" md-floating-label="New member's first name">
-        <span md-highlight-text="searchText" md-highlight-flags='i' ng-repeat="name in item.profile">{{name.firstName}}</span>
-      </md-autocomplete>
-      <!--END Member area -->
-
-      <md-subheader>
-        <span class="md-subhead">Activities</span>
-        <ul ng-repeat="activity in projectActivities">
-          <li>
-            <a ng-href="{{activity.location}}">{{activity.content}}</a>
-          </li>
-        </ul>
-      </md-subheader>
+  <md-sidenav md-component-id="activity" class="md-sidenav-right md-whiteframe-z2" layout="column">
+    <md-content flex style="position: absolute; width: 100%">
+      <ul ng-repeat="activity in projectActivities">
+        <li>
+          <a ng-href="{{activity.location}}">{{activity.content}}</a>
+        </li>
+      </ul>
     </md-content>
   </md-sidenav>
 </md-content>

@@ -207,6 +207,20 @@ angular.module('myApp', [
   }
 })
 
+.directive('showFocus', function ($timeout) {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      scope.$watch(attrs.showFocus,
+        function (newValue) {
+          $timeout(function () {
+            newValue && element.focus();
+          });
+        }, true);
+    }
+  }
+})
+
 .run(function ($rootScope, $templateCache) {
   $rootScope.$on('$viewContentLoaded', function () {
     $templateCache.removeAll();

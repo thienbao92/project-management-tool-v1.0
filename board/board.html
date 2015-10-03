@@ -15,8 +15,11 @@
     <span flex></span>
     <!-- toolbar-menu -->
 
-    <md-button class="md-icon-button" ng-click="toggleRight()">
+    <md-button class="md-icon-button" ng-click="toggleMessage()">
       <md-icon md-font-icon="material-icons">&#xE0B7;</md-icon>
+    </md-button>
+    <md-button class="md-icon-button" ng-click="toggleActivity()">
+      <md-icon md-font-icon="material-icons">&#xE149;</md-icon>
     </md-button>
     <nav-notification user-id="userId"></nav-notification>
     <md-button ng-click="logout()">Logout</md-button>
@@ -40,14 +43,14 @@
           <md-icon md-font-icon="material-icons">&#xE7FE;</md-icon>
         </md-button>
         <div style="position: relative; overflow:visible">
-        <md-content layout="row" layout-padding ng-show="showAddMember" class="org__add" style="max-width: 400px; background-color: #fff; position: absolute; top: 0; left: 0">
-          <md-autocomplete md-search-text-change="" md-search-text="searchText" md-selected-item-change="addUsers(item.$id)" md-items="item in users | filter: searchText" md-floating-label="New member's first name">
-            <span md-highlight-text="searchText" md-highlight-flags='i' ng-repeat="name in item.profile">{{name.firstName}}</span>
-          </md-autocomplete>
+          <md-content layout="row" layout-padding ng-show="showAddMember" class="org__add" style="max-width: 400px; background-color: #fff; position: absolute; top: 0; left: 0">
+            <md-autocomplete md-search-text-change="" md-search-text="searchText" md-selected-item-change="addUsers(item.$id)" md-items="item in users | filter: searchText" md-floating-label="New member's first name">
+              <span md-highlight-text="searchText" md-highlight-flags='i' ng-repeat="name in item.profile">{{name.firstName}}</span>
+            </md-autocomplete>
             <md-button class="md-primary md-icon-button" ng-click="showAddMember = false">
               <md-icon md-font-icon="material-icons">&#xE5CD;</md-icon>
             </md-button>
-        </md-content>
+          </md-content>
         </div>
       </div>
       <!--END Member area -->
@@ -67,22 +70,19 @@
     </div>
   </md-content>
 
-  <md-sidenav md-component-id="right" class="md-sidenav-right md-whiteframe-z2" layout="column">
+  <md-sidenav md-component-id="message" class="md-sidenav-right md-whiteframe-z2" layout="column">
     <md-content flex layout="column">
-      <md-tabs md-dynamic-height flex layout="column">
-        <md-tab label="Messages">
-        </md-tab>
-        <md-tab label="Activities" flex>
-          <md-content flex style="position: absolute; width: 100%">
-            <ul ng-repeat="activity in projectActivities">
-              <li>
-                <a ng-href="{{activity.location}}">{{activity.content}}</a>
-              </li>
-            </ul>
-          </md-content>
-        </md-tab>
-      </md-tabs>
+      <h3 class="md-headline">Message</h3>
+    </md-content>
+  </md-sidenav>
 
+  <md-sidenav md-component-id="activity" class="md-sidenav-right md-whiteframe-z2" layout="column">
+    <md-content flex style="position: absolute; width: 100%">
+      <ul ng-repeat="activity in projectActivities">
+        <li>
+          <a ng-href="{{activity.location}}">{{activity.content}}</a>
+        </li>
+      </ul>
     </md-content>
   </md-sidenav>
 </md-content>

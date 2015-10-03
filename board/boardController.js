@@ -68,8 +68,13 @@ angular.module('board.Controller', [])
     //End get member Array from users directory. Source: loginServices.js
 
 
-    $scope.toggleRight = function () {
-      $mdSidenav('right').toggle();
+    $scope.toggleMessage = function () {
+      $mdSidenav('activity').close();
+      $mdSidenav('message').toggle();
+    };
+    $scope.toggleActivity = function () {
+      $mdSidenav('message').close();
+      $mdSidenav('activity').toggle();
     };
     //Start get State params
     var projectId = $stateParams.projectId;

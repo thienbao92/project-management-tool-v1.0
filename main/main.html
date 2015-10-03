@@ -1,5 +1,11 @@
-<md-content layout="row" style="min-height: 100%;">
-  <div ui-view="profile" flex="25"></div>
+<!-- navigation area -->
+<div ng-include src="'navigation/navigation.html'"></div>
+<!------------END navigation area------------>
 
-  <div ui-view="org" flex="75"></div>
+<md-content flex layout="row">
+  <md-sidenav md-component-id="left" md-is-locked-open="true" layout="column" class="md-sidenav-left md-whiteframe-z2">
+    <md-content flex ui-view="profile"></md-content>
+  </md-sidenav>
+
+  <section flex ui-view="org"></section>
 </md-content>

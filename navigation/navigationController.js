@@ -6,6 +6,11 @@
 
 angular.module('navigation.Controller', [])
 
-.controller('navCtrl', function ($scope, $state) {
+.controller('navCtrl', function ($rootScope, $state, $scope) {
+    $rootScope.close = function () {
+      history.back();
+    };
 
-    }) //End navCtrl
+    $scope.userId = $scope.id;
+
+  }) //End navCtrl

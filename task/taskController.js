@@ -4,73 +4,106 @@
  * Description
  */
 
-angular.module('task.Controller', [])
+angular.module('task')
 
-.controller('taskCtrl', function ($scope, $mdDialog, firebaseTask, $stateParams, firebaseCheckList, firebaseChat, firebaseUrl, $firebaseArray, firebaseMember, getTask, getListDetail) {
+.controller('taskCtrl', function (
+    //common injectors
+    $scope,
+    $stateParams,
+    firebaseUrl, $firebaseArray,
+    firebaseUser,
+    $window,
+    $firebaseObject,
+    //task injector from taskServices.js
+    getTask,
+    getListDetail,
+    //checklist injectors from taskCheckListServices.js
+    firebaseCheckList,
+    taskCheckList,
+    //chat injector from taskChatServices.js
+    firebaseChat,
+    taskMessage,
+    //members injector from taskMemberServices.js
+    taskMember,
+    projectMember,
+    taskMemberFactory,
+    //activity injectors
+    taskActivityServices,
+    //taskNotification injectors
+    taskNotificationServices,
+     $mdSidenav
+  ) {
 
-    $scope.listDetail = getListDetail($stateParams.projectId, $stateParams.listId);
-    $scope.taskId = $stateParams.taskId;
-
-    $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
-    tasksVar = getTask($stateParams.listId, $stateParams.taskId);
-    $scope.close = function () {
-      history.back();
+    $scope.toggleRight = function () {
+      $mdSidenav('right').toggle();
     };
 
+    //Start get variables
+    $scope.getSubjectId = $scope.id;
+    console.log($scope.id);
+    var listId = $stateParams.listId;
+    var taskId = $stateParams.taskId;
+    //End get variables
+
+    $scope.listDetail = getListDetail;
+    $scope.taskId = $stateParams.taskId;
+    $scope.tasks = getTask($stateParams.listId, $stateParams.taskId);
+
     //Check list function area
+    $scope.users = firebaseUser;
 
+    //Start get projectMember
+    $scope.projectMemberArray = projectMember.projectMemberArray();
+    //console.log($scope.projectMemberArray);
+    //End get projectMember
 
-
-
+    //Start check list area
     $scope.checklist = firebaseCheckList($stateParams.listId, $stateParams.taskId);
 
-    $scope.checklist.$watch(function () {
-      $scope.checklist.$loaded().then(function (checklists) {
-        $scope.total = checklists.length;
-        $scope.count = 0;
-        angular.forEach(checklists, function (cl) {
-          if (cl.isDone) {
-            $scope.count += 1;
-          }
-        });
+    taskCheckList.modifyCheckList($stateParams.listId, $stateParams.taskId);
+    //End check list area
 
-        var percentage = ($scope.count / $scope.total) * 100;
-        $scope.percentage = percentage;
-
-        var items = $scope.tasks.$getRecord($stateParams.taskId);
-        items.percentOfChecklist = percentage;
-        $scope.tasks.$save(items).then(function (ref) {
-
-        })
-
-      })
-
-    });
     $scope.data = {};
-    $scope.addChecklist = function () {
-        $scope.checklist.$add({
-          text: $scope.data.text
-        })
-      } //end function addChecklist
+    $scope.addChecklist = addChecklist;
 
-    //End check list function area
+    function addChecklist() {
+      $scope.checklist.$add({
+        text: $scope.data.text
+      }).then(addToActivities)
+    } //end function addChecklist
 
-    //Chat-message area
-    $scope.messages = firebaseChat($stateParams.listId, $stateParams.taskId);
-    $scope.sendMsg = function () {
-        $scope.messages.$add({
-          message: $scope.data.msg,
-          sender: $scope.id
-        })
-      } //end function sendMsg
+    function addToActivities(data) {
+      var value = $scope.checklist.$getRecord(data.key());
+      var type = "addCheckList";
+      var content = $scope.id + ' added checklist ' + value.text;
+      taskActivityServices.add(type, content, $stateParams.taskId);
+    } //End check list function area
 
-    //END chat-message area
+
+    //    //Chat-message area
+    //    $scope.messages = firebaseChat($stateParams.listId, $stateParams.taskId);
+    //    $scope.sendMsg = function () {
+    //        taskMessage.send($stateParams.listId, $stateParams.taskId, $scope.data.msg, $scope.id);
+    //      } //End function
+    //
+    //    $scope.senderIsMe = function (sender) {
+    //        return ($scope.id == sender);
+    //      }
+    //      //END chat-message area
+    //Start add task Member
+    $scope.addTaskMember = function (memberId) {
+        taskMember.addMember(listId, taskId, memberId);
+      } //end function addTaskMember
+    $scope.taskMember = taskMember.memberArray(listId, taskId);
+    console.log($scope.taskMember);
+    //End add task Member
+
 
   }) //End taskCtrl
 
 .config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('message-bg')
-  .backgroundPalette('light-blue', {
-    'default': '100',
-  });
+    .backgroundPalette('light-blue', {
+      'default': '100',
+    });
 })

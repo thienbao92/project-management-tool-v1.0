@@ -3,6 +3,7 @@
  *
  * Description
  */
+'use strict'
 
 angular.module('main.Controller', [])
 

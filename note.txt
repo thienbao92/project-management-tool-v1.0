@@ -1,0 +1,6 @@
+take note như sau:
+
+Action project:
+  - Xoa project : thong bao cho Users biet ve project da bi xoa
+  - Tao project: thong bao cho Main organizer biet khi project moi duoc tao
+  

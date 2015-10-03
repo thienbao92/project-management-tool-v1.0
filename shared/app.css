@@ -3,14 +3,21 @@ body {
   color: #424242; }
 
 .slide-down.ng-hide {
-  transform: scaleY(0); }
+  transform: translateY(-50%);
+  opacity: 0.5; }
 
-.slide-down.ng-hide-add.ng-hide-add-active,
-.slide-down.ng-hide-remove.ng-hide-remove-active {
-  transition: all linear 0.2s; }
+.slide-down {
+  transition: all 0.2s ease-in-out 0s; }
 
 ul li {
   list-style: outside none none;
   display: inline block; }
+
+.fab-form {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  margin: 2em 4em; }
 
 /*# sourceMappingURL=app.css.map */

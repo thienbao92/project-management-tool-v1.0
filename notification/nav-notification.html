@@ -1,0 +1,19 @@
+<div class="md-toolbar__menu" layout="row">
+  <md-menu>
+    <md-button ng-click="$mdOpenMenu()" class="md-icon-button">
+      <md-icon md-font-icon="material-icons">&#xE7F4;</md-icon>
+    </md-button>
+    <md-menu-content width="4">
+      <div ng-repeat="notification in notifications">
+        <a href="{{notification.location}}">
+  {{notification.content}}
+
+  </a>
+      </div>
+
+
+
+      <md-button ng-click="">Close</md-button>
+    </md-menu-content>
+  </md-menu>
+</div>

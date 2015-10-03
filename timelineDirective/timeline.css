@@ -1,0 +1,55 @@
+#taskContainer {
+  margin: 1em 0;
+  background-color: #607D8B;
+  opacity: 0.7;
+}
+#drag-me::before {
+  content: "#" attr(id);
+  font-weight: bold;
+}
+.container {
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+}
+.dateBox {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  position: relative;
+}
+#mainContainer {
+  height: auto;
+  overflow-x: scroll;
+}
+.listName {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+}
+.lists-container {
+  display: inline-flex;
+  flex-direction: column;
+}
+.dayLine {
+  width: 1px;
+  background-color: #424242;
+  position: absolute;
+  z-index: 0;
+}
+.dayLine--weekMark {
+  width: 3px;
+}
+.dayLine--today {
+  width: 5px;
+  background-color: #d50000;
+}
+.task__duration {
+  fill: #d8d4d2;
+}
+.task__percent {
+  fill: #24eac6;
+}
+.weekMark--hidden {
+  visibility: hidden;
+}

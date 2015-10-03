@@ -20,7 +20,6 @@ angular.module('login.Services', [])
   }) // END firbaseUser
 
 
-
 //run function
 .run(function ($rootScope, firebaseAuth, $state, firebaseUser) {
 
@@ -47,5 +46,3 @@ angular.module('login.Services', [])
         }
       }) //END rootScope function
   }) //END run function
-
-

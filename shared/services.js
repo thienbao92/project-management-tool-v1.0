@@ -45,3 +45,8 @@ angular.module('myApp.services', [])
 
     return today;
   }) // END getDate
+
+.factory('locationPath', function ($location) {
+  var location = $location.path();
+  return location;
+})

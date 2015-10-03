@@ -1,10 +1,10 @@
-form {
+form[name|="auth"] {
   position: relative;
   z-index: 2;
   min-width: 500px; }
-  form md-content {
+  form[name|="auth"] md-content {
     padding: 2em; }
-    form md-content h1 {
+    form[name|="auth"] md-content h1 {
       text-align: center; }
 
 /*# sourceMappingURL=login.css.map */

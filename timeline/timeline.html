@@ -4,32 +4,27 @@
   </div>
 </md-toolbar>
 
-<md-content>
-  <!-- day picker -->
-  <div layout="row" layout-align="start center" flex>
-    <md-button>Today</md-button>
-    <div layout="column" layout-align="center start" flex>
-      <md-select placeholder="Month" ng-model="month">
-        <md-option value="1">Jan</md-option>
-        <md-option value="2">Feb</md-option>
-      </md-select>
-    </div>
-  </div>
-  <md-divider></md-divider>
-  <!-- END day picker -->
+<md-content flex layout="column">
+  <svg flex style="width: 100%; overflow: scroll">
+    <g>
+      <rect x="0" y="0" height="100%" width="100%" style="fill: #e6e6e6" />
+    </g>
+    <g>
+      <text text-anchor="middle" x="100" y="80">40</text>
+      <text text-anchor="middle" x="{{100 + today}}" y="80">Today</text>
+      <path d="M0 100 H1500" stroke-width="1" stroke="#bcbebf"></path>
+      <path d="M{{100 + today}} 100 v{{35 * data.length}}" stroke-width="4" stroke-opacity="1" stroke="#bcbebf"></path>
+    </g>
+    <g ng-repeat="i in data">
+      <text text-anchor="start" x="20" y="{{125 + $index * 35}}">{{i.name}}</text>
 
-  <!-- calendar -->
-  <md-list layout="row" class="calendar">
-    <md-list-item class="calendar__item" layout-align="center center">Week1</md-list-item>
-    <md-list-item class="calendar__item" layout-align="center center">Week2</md-list-item>
-  </md-list>
-  <!-- END calendar -->
+      <rect x="{{positionX(i.from)}}" y="{{positionY($index)}}" height="25" width="{{width(i.from, i.to)}}" style="fill: #d8d4d2"></rect>
+      <rect x="{{positionX(i.from)}}" y="{{positionY($index)}}" height="25" width="{{progressBar(i.progress, i.from, i.to)}}" style="fill: #24eac6"></rect>
 
-  <!-- list--timeline -->
-  <md-list layout="column" class="list--timeline">
-    <md-list-item>
-      <div class="list--timeline__header">List1</div>
-    </md-list-item>
-  </md-list>
-  <!-- END list--timeline -->
+
+      <path d="M0 {{100 + ($index + 1) * 35}} H1500" stroke-width="1" fill-opacity="1" stroke="#bcbebf"></path>
+    </g>
+    <g>
+    </g>
+  </svg>
 </md-content>

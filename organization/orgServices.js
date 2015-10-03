@@ -30,7 +30,7 @@ angular.module('organization.services', [])
   this.removeOrg = function (groupId, memberId) {
       var ref = new Firebase(firebaseUrl + '/groupMember/' + groupId + '/member');
       var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember');
-      var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/');
+
       var orgRef = new Firebase(firebaseUrl + '/organization');
       var projectRef = new Firebase(firebaseUrl + '/project');
       var projectUserRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember/' + groupId);
@@ -38,11 +38,13 @@ angular.module('organization.services', [])
       var projectMemberRef = new Firebase(firebaseUrl + '/projectMember');
       var taskRef = new Firebase(firebaseUrl + '/task');
       var listRef = new Firebase(firebaseUrl + '/list');
+      var userProjectMemberRef = new Firebase(firebaseUrl + '/users/' + memberId + '/projectMember');
+
       projectUserRef.on("value", function (snapshot) {
         snapshot.forEach(function (projectId) {
           var projectId = projectId.key();
           listRef.child(projectId).remove();
-
+          userProjectMemberRef.child(projectId).remove();
           var projectGroupMemberRef = new Firebase(firebaseUrl + '/projectMember');
 
           projectGroupMemberRef.child(projectId).remove();
@@ -56,16 +58,30 @@ angular.module('organization.services', [])
               taskRef.child(listId).remove();
             })
           })
-
         })
       })
 
       projectRef.child(groupId).remove();
       orgRef.child(groupId).remove();
-      groupMemberRef.child(groupId).remove();
+
       ref.child(memberId).remove();
       userRef.child(groupId).remove();
     } //End function addMemberToGroup
+
+  this.removeOrgfromMember = function (orgId) {
+
+      var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/' + orgId);
+      groupMemberRef.on("value", function (members) {
+        members.forEach(function (member) {
+          var memberId = member.key();
+          var userRef = new Firebase(firebaseUrl + '/users/' + memberId + '/groupMember');
+          userRef.child(orgId).remove();
+        })
+        var groupMemberRef = new Firebase(firebaseUrl + '/groupMember/');
+        groupMemberRef.child(orgId).remove();
+      })
+    } //End functionr emoveOrgfromMember
+
 })
 
 .service('projectServices', function (firebaseUrl) {
@@ -76,6 +92,9 @@ angular.module('organization.services', [])
 
       var projectMemberRef = new Firebase(firebaseUrl + '/projectMember/' + projectId);
       var listRef = new Firebase(firebaseUrl + '/list');
+
+      var userProjectMemberRef = new Firebase(firebaseUrl + '/users/' + memberId + '/projectMember');
+      userProjectMemberRef.child(projectId).set(true);
 
       projectMemberRef.child(memberId).set(true);
 

@@ -7,15 +7,18 @@ angular.module('myApp', [
     'ngMaterial',
     'angularMoment',
   '720kb.datepicker',
+  'dndLists',
+  'timeline',
+  'notification.module',
 //shared JS
     'myApp.services',
-  'task.Services',
 
   //services
     'organization.services',
     'list.Services',
   'login.Services',
-
+  'timeline.Services',
+  'notification.services',
 //controllers
     'list.Controller',
     'login.Controller',
@@ -23,14 +26,15 @@ angular.module('myApp', [
     'main.Controller',
     'organization.Controller',
     'profile.Controller',
-    'task.Controller',
     'timeline.Controller',
     'navigation.Controller',
 
 //plugin dependecies
     'ui.router',
 //angularfire
-    'firebase'
+    'firebase',
+  //modules
+  'task'
     ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
@@ -180,7 +184,7 @@ angular.module('myApp', [
     });
 })
 
-  .directive('jsonDate', function ($filter) {
+.directive('jsonDate', function ($filter) {
   return {
     restrict: 'A',
     require: 'ngModel',
@@ -201,4 +205,24 @@ angular.module('myApp', [
       });
     }
   }
+})
+
+.directive('showFocus', function ($timeout) {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      scope.$watch(attrs.showFocus,
+        function (newValue) {
+          $timeout(function () {
+            newValue && element.focus();
+          });
+        }, true);
+    }
+  }
+})
+
+.run(function ($rootScope, $templateCache) {
+  $rootScope.$on('$viewContentLoaded', function () {
+    $templateCache.removeAll();
+  });
 })

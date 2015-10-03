@@ -4,35 +4,42 @@
 <head>
   <title>Project management tool v0.2</title>
 
+  <!-- angular material CSS -->
   <link rel="stylesheet" href="dist/angular-material/angular-material.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+  <!-- END angular material CSS -->
 
+  <!-- Material icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <!-- END Material icons -->
+
+  <!-- datePicker CSS -->
+  <link rel="stylesheet" type="text/css" href="dist/datePicker/angular-datepicker.min.css">
+  <!--END datePicker CSS-->
+  <!-- timeline CSS -->
+  <link rel="stylesheet" type="text/css" href="timelineDirective/timeline.css">
+  <!--END timeline CSS-->
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="shared/app.css">
   <link rel="stylesheet" href="authentication/login.css">
   <link rel="stylesheet" href="navigation/navigation.css">
   <link rel="stylesheet" href="organization/organization.css">
   <link rel="stylesheet" href="profile/profile.css">
+  <link rel="stylesheet" href="board/board.css">
   <link rel="stylesheet" href="list/list.css">
   <link rel="stylesheet" href="task/task.css">
-
-  <!-- datePicker CSS -->
-  <link rel="stylesheet" type="text/css" href="dist/datePicker/angular-datepicker.min.css">
-  <!--END datePicker CSS-->
-  <!-- Font-Awesome CDN -->
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <!--END Font-Awesome CDN-->
+  <link rel="stylesheet" href="task/taskActivities/css/task-activity.css">
 </head>
 
 <body>
-  <!-- navigation area -->
-  <div ng-include src="'navigation/navigation.html'"></div>
-  <!------------END navigation area------------>
+  <md-content layout="column" style="min-height: 100%">
 
-  <!-- Route view -->
-  <div ui-view layout-fill style="display: inline"></div>
-  <!------------END Route view------------>
-
+    <!-- Route view -->
+    <div ui-view flex layout="column"></div>
+    <!------------END Route view------------>
+  </md-content>
 
 
   <!-- Angular JS library -->
@@ -67,8 +74,9 @@
   <script src="dist/datePicker/angular-datepicker.min.js"></script>
   <!--END datePicker library-->
 
-
-
+  <!-- Angular drag n drop -->
+  <script src="dist/angular-drag-and-drop-lists.min.js"></script>
+  <!--END Angular drag n drop-->
 
 
   <!-----------------Custom JS----------------------->
@@ -106,18 +114,59 @@
   <!------------END profile JS------------>
 
   <!-- task JS -->
+  <script src="task/task.js"></script>
   <script src="task/taskController.js"></script>
   <script src="task/taskServices.js"></script>
+
+  <script src="task/taskChatServices.js"></script>
+
+  <script src="task/taskCheckListServices.js"></script>
+  <!-- task Activities -->
+  <script src="task/taskActivities/js/taskActivity.js"></script>
+  <script src="task/taskActivities/js/taskActivityController.js"></script>
+  <script src="task/taskActivities/js/taskActivityServices.js"></script>
+  <script src="task/taskActivities/js/taskActivityDirectives.js"></script>
+
+  <!--END task Activities-->
+  <!-- task member -->
+  <script src="task/taskMember/taskMember.js"></script>
+  <script src="task/taskMember/taskMemberServices.js"></script>
+  <!--END task member-->
+  <!-- task Notification -->
+  <script src="task/taskNotification/taskNotification.js"></script>
+  <script src="task/taskNotification/taskNotificationServices.js"></script>
+  <script src="task/taskMember/test.js"></script>
+  <!--END task Notification-->
+  <!-- task message -->
+  <script src="task/taskMessage/taskMessage.js"></script>
+  <script src="task/taskMessage/taskDirective.js"></script>
+  <script src="task/taskMessage/taskMessageController.js"></script>
+  <script src="task/taskMessage/taskMessageService.js"></script>
+  <!--END task message-->
+  <!-- task checklist -->
+  <script src="task/taskChecklist/task.checklist.js"></script>
+  <script src="task/taskChecklist/task.checklist.controller.js"></script>
+  <script src="task/taskChecklist/task.checklist.directive.js"></script>
+  <script src="task/taskChecklist/task.checklist.services.js"></script>
+  <!--END task checklist-->
   <!------------END task JS------------>
 
   <!-- timeline JS -->
   <script src="timeline/timelineController.js"></script>
+  <script src="timelineDirective/timeline.js"></script>
+  <script src="timelineDirective/timelineServices.js"></script>
 
   <!------------END timeline JS------------>
 
   <!-- navigation JS -->
   <script src="navigation/navigationController.js"></script>
   <!------------END navigation JS------------>
+  <!-- notification -->
+  <script src="notification/notification.js"></script>
+  <script src="notification/notificationServices.js"></script>
+  <script src="notification/notificationController.js"></script>
+  <script src="notification/notificationDirectives.js"></script>
+  <!--END notification services-->
 
 </body>
 

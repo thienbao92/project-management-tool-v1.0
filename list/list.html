@@ -6,47 +6,57 @@
 <!-- lists area -->
 <div layout="row" class="list-container">
 
-    <!-- lists array -->
-    <md-list flex="20" ng-repeat="list in lists" layout="column" layout-padding class="list">
-      <md-card md-theme="{{ list.listTheme }}" md-theme-watch>
-        <div layout="row" class="list__header">
-          <h1 layout-padding layout-margin class="md-subhead">{{list.listName}}</h1>
-          <span flex></span>
-          <md-button ng-click="showListToolbar = !showListToolbar" class="md-icon-button">
-            <md-icon md-font-icon="fa fa-ellipsis-v" class="md-headline"></md-icon>
-          </md-button>
-        </div>
+  <!-- lists array -->
+  <md-list flex="20" ng-repeat="list in lists" layout="column" layout-padding class="list">
+    <md-card dnd-list="lists" dnd-drop="changeListParent(list.$id)" md-theme="{{ list.listTheme }}" md-theme-watch>
+      <div layout="row" class="list__header">
+        <h1 layout-padding layout-margin class="md-subhead">{{list.listName}}</h1>
+        <span flex></span>
+        <md-button ng-click="showListToolbar = !showListToolbar" class="md-icon-button">
+          <md-icon md-font-icon="material-icons">&#xE5D4;</md-icon>
+        </md-button>
+      </div>
 
-        <div layout="row" layout-align="space-around center" ng-show="showListToolbar" class="list__toolbar slide-down">
-          <md-select placeholder="Choose color" ng-model="paletteNumber" class="list__colorpicker">
-            <md-option ng-repeat="i in [1,2,3,4,5]" value="{{i}}" ng-click="list.listTheme = getListTheme(i); lists.$save(list)"><md-card md-theme="list-bg-{{i}}" class="list__colorpicker__option">Choose color</md-card></md-option>
-          </md-select>
-          <md-button ng-click="lists.$remove(list);removeTaskInList(list.$id)" class="md-icon-button">
-            <md-icon md-font-icon="fa fa-times" class="md-headline"></md-icon>
-          </md-button>
-        </div>
+      <div layout="row" layout-align="space-around center" ng-show="showListToolbar" class="list__toolbar slide-down">
+        <md-select placeholder="Choose color" ng-model="paletteNumber" class="list__colorpicker">
+          <md-option ng-repeat="i in [1,2,3,4,5]" value="{{i}}" ng-click="list.listTheme = getListTheme(i); lists.$save(list)">
+            <md-card md-theme="list-bg-{{i}}" class="list__colorpicker__option">Choose color</md-card>
+          </md-option>
+        </md-select>
+        <md-button ng-click="lists.$remove(list);removeTaskInList(list.$id,list.listName)" class="md-icon-button">
+          <md-icon md-font-icon="material-icons">&#xE872;</md-icon>
+        </md-button>
+      </div>
 
 
-        <!-- task area -->
-        <div layout="column" ng-init="tasks = tasks(list.$id)">
+      <!-- task area -->
+      <div layout="column" ng-init="tasks = tasks(list.$id)">
         <md-list-item ng-repeat="x in tasks" class="list__item">
 
-          <md-card ng-click="goToTask(x.$id, list.$id)" flex layout-padding md-theme="default">
+          <md-card dnd-draggable="x" dnd-dragstart="movedTaskComponents('tada, I am moving', list.$id, x.$id)" dnd-moved="removeTask()" ng-click="goToTask(x.$id, list.$id)" flex layout-padding md-theme="default">
             <md-progress-linear md-mode="determinate" value="{{x.percentOfChecklist}}" md-theme="progress-state" class="md-primary"></md-progress-linear>
             <p>{{x.taskName}}</p>
           </md-card>
         </md-list-item>
       </div>
-      <md-list-item class="list__item">
+      <md-list-item ng-show="showAddTask" layout="column" class="list__item md-no-proxy" >
         <md-card flex layout-padding md-theme="default">
           <md-input-container>
             <label>Add new task</label>
-            <input type="text" ng-model="inputTaskName" ng-model-options="{ updateOn: 'blur' }" />
+            <input show-focus="showAddTask" type="text" ng-model="inputTaskName" ng-model-options="{ updateOn: 'blur' }" />
           </md-input-container>
+          <div layout="row" layout-align="space-between center">
+            <md-button class="md-primary md-icon-button" ng-click="addTask(list.$id, list.listName, inputTaskName); inputTaskName =''; ">
+              <md-icon md-font-icon="material-icons">&#xE5CA;</md-icon>
+            </md-button>
+            <md-button class="md-primary md-icon-button" ng-click="showAddTask = false; inputTaskName = '' ">
+              <md-icon md-font-icon="material-icons">&#xE5CD;</md-icon>
+            </md-button>
+          </div>
         </md-card>
       </md-list-item>
 
-      <md-button ng-click="addTask(list.$id, inputTaskName); inputTaskName =''; ">Add task</md-button>
+      <md-button ng-click="showAddTask = true">Add task</md-button>
 
       <!--END task area-->
 
@@ -58,9 +68,19 @@
     <md-button ng-hide="openList" ng-click="openList = !openList ">Add list</md-button>
   </div>
 
-  <div ng-show="openList">
-    <input type="text" ng-model="inputListName" />
-    <md-button ng-click="addList(inputListName); openList = !openList ">Add list</md-button>
-  </div>
+  <md-card ng-show="openList" layout-padding style="display: inline-table; background-color: #fff">
+    <md-input-container>
+      <label>List name</label>
+      <input show-focus="openList" type="text" ng-model="inputListName" />
+    </md-input-container>
+    <div layout="row" layout-align="space-between center">
+      <md-button ng-click="addList(inputListName); openList = !openList; inputListName='' " class="md-primary md-icon-button">
+        <md-icon md-font-icon="material-icons">&#xE5CA;</md-icon>
+      </md-button>
+      <md-button class="md-primary md-icon-button" ng-click="inputListName = ''; openList = false; ">
+        <md-icon md-font-icon="material-icons">&#xE5CD;</md-icon>
+      </md-button>
+    </div>
+  </md-card>
 </div>
 <!-- END list area -->
